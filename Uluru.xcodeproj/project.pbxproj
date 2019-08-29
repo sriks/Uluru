@@ -10,6 +10,23 @@
 		AD804B0D230FA8130033C7B0 /* Uluru.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD804B03230FA8130033C7B0 /* Uluru.framework */; };
 		AD804B12230FA8130033C7B0 /* UluruTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD804B11230FA8130033C7B0 /* UluruTests.swift */; };
 		AD804B14230FA8130033C7B0 /* Uluru.h in Headers */ = {isa = PBXBuildFile; fileRef = AD804B06230FA8130033C7B0 /* Uluru.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ADA0F1DC2314C213001ED542 /* AHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1DB2314C213001ED542 /* AHeader.swift */; };
+		ADA0F1E02314C607001ED542 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADA0F1DE2314C607001ED542 /* Nimble.framework */; };
+		ADA0F1E12314C607001ED542 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADA0F1DF2314C607001ED542 /* Quick.framework */; };
+		ADA0F1E32314C636001ED542 /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = ADA0F1DE2314C607001ED542 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		ADA0F1E42314C636001ED542 /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = ADA0F1DF2314C607001ED542 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		ADA0F1EA2314C860001ED542 /* ServiceExecutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1E82314C860001ED542 /* ServiceExecutable.swift */; };
+		ADA0F1EB2314C860001ED542 /* ExecutorURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1E92314C860001ED542 /* ExecutorURLSession.swift */; };
+		ADA0F1F12314CC96001ED542 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1EC2314CC96001ED542 /* Service.swift */; };
+		ADA0F1F22314CC96001ED542 /* ServicePluginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1ED2314CC96001ED542 /* ServicePluginType.swift */; };
+		ADA0F1F32314CC96001ED542 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1EE2314CC96001ED542 /* ServiceProvider.swift */; };
+		ADA0F1F42314CC96001ED542 /* AccessAuthorizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1EF2314CC96001ED542 /* AccessAuthorizable.swift */; };
+		ADA0F1F52314CC96001ED542 /* APIDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1F02314CC96001ED542 /* APIDefinition.swift */; };
+		ADA0F1F92314D173001ED542 /* EncodingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1F82314D173001ED542 /* EncodingSpec.swift */; };
+		ADA0F1FB2314D611001ED542 /* ServiceProvider+Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1FA2314D611001ED542 /* ServiceProvider+Defaults.swift */; };
+		ADA0F1FD231634FC001ED542 /* URLRequest+Encoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1FC231634FC001ED542 /* URLRequest+Encoding.swift */; };
+		ADA0F2022317CD10001ED542 /* TestAPIDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F2012317CD10001ED542 /* TestAPIDefinition.swift */; };
+		ADA0F2042317D9CA001ED542 /* ResolvedAPIDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F2032317D9CA001ED542 /* ResolvedAPIDefinition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,6 +39,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		ADA0F1E22314C617001ED542 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				ADA0F1E32314C636001ED542 /* Nimble.framework in CopyFiles */,
+				ADA0F1E42314C636001ED542 /* Quick.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		AD804B03230FA8130033C7B0 /* Uluru.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Uluru.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD804B06230FA8130033C7B0 /* Uluru.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Uluru.h; sourceTree = "<group>"; };
@@ -29,6 +60,21 @@
 		AD804B0C230FA8130033C7B0 /* UluruTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UluruTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD804B11230FA8130033C7B0 /* UluruTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UluruTests.swift; sourceTree = "<group>"; };
 		AD804B13230FA8130033C7B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ADA0F1DB2314C213001ED542 /* AHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AHeader.swift; sourceTree = "<group>"; };
+		ADA0F1DE2314C607001ED542 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
+		ADA0F1DF2314C607001ED542 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
+		ADA0F1E82314C860001ED542 /* ServiceExecutable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceExecutable.swift; sourceTree = "<group>"; };
+		ADA0F1E92314C860001ED542 /* ExecutorURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecutorURLSession.swift; sourceTree = "<group>"; };
+		ADA0F1EC2314CC96001ED542 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		ADA0F1ED2314CC96001ED542 /* ServicePluginType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicePluginType.swift; sourceTree = "<group>"; };
+		ADA0F1EE2314CC96001ED542 /* ServiceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
+		ADA0F1EF2314CC96001ED542 /* AccessAuthorizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessAuthorizable.swift; sourceTree = "<group>"; };
+		ADA0F1F02314CC96001ED542 /* APIDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIDefinition.swift; sourceTree = "<group>"; };
+		ADA0F1F82314D173001ED542 /* EncodingSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodingSpec.swift; sourceTree = "<group>"; };
+		ADA0F1FA2314D611001ED542 /* ServiceProvider+Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ServiceProvider+Defaults.swift"; sourceTree = "<group>"; };
+		ADA0F1FC231634FC001ED542 /* URLRequest+Encoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Encoding.swift"; sourceTree = "<group>"; };
+		ADA0F2012317CD10001ED542 /* TestAPIDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAPIDefinition.swift; sourceTree = "<group>"; };
+		ADA0F2032317D9CA001ED542 /* ResolvedAPIDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolvedAPIDefinition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +90,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD804B0D230FA8130033C7B0 /* Uluru.framework in Frameworks */,
+				ADA0F1E02314C607001ED542 /* Nimble.framework in Frameworks */,
+				ADA0F1E12314C607001ED542 /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +104,7 @@
 				AD804B05230FA8130033C7B0 /* Uluru */,
 				AD804B10230FA8130033C7B0 /* UluruTests */,
 				AD804B04230FA8130033C7B0 /* Products */,
+				ADA0F1DD2314C607001ED542 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,8 +120,10 @@
 		AD804B05230FA8130033C7B0 /* Uluru */ = {
 			isa = PBXGroup;
 			children = (
+				ADA0F1E52314C804001ED542 /* Sources */,
 				AD804B06230FA8130033C7B0 /* Uluru.h */,
 				AD804B07230FA8130033C7B0 /* Info.plist */,
+				ADA0F1DB2314C213001ED542 /* AHeader.swift */,
 			);
 			path = Uluru;
 			sourceTree = "<group>";
@@ -80,10 +131,70 @@
 		AD804B10230FA8130033C7B0 /* UluruTests */ = {
 			isa = PBXGroup;
 			children = (
+				ADA0F1F72314D12B001ED542 /* Specs */,
 				AD804B11230FA8130033C7B0 /* UluruTests.swift */,
 				AD804B13230FA8130033C7B0 /* Info.plist */,
 			);
 			path = UluruTests;
+			sourceTree = "<group>";
+		};
+		ADA0F1DD2314C607001ED542 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ADA0F1DE2314C607001ED542 /* Nimble.framework */,
+				ADA0F1DF2314C607001ED542 /* Quick.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ADA0F1E52314C804001ED542 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				ADA0F1E72314C819001ED542 /* Service */,
+				ADA0F1E62314C80F001ED542 /* Executor */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		ADA0F1E62314C80F001ED542 /* Executor */ = {
+			isa = PBXGroup;
+			children = (
+				ADA0F1E82314C860001ED542 /* ServiceExecutable.swift */,
+				ADA0F1E92314C860001ED542 /* ExecutorURLSession.swift */,
+			);
+			path = Executor;
+			sourceTree = "<group>";
+		};
+		ADA0F1E72314C819001ED542 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				ADA0F20023179F32001ED542 /* URLRequest */,
+				ADA0F1EF2314CC96001ED542 /* AccessAuthorizable.swift */,
+				ADA0F1F02314CC96001ED542 /* APIDefinition.swift */,
+				ADA0F1EC2314CC96001ED542 /* Service.swift */,
+				ADA0F1ED2314CC96001ED542 /* ServicePluginType.swift */,
+				ADA0F1EE2314CC96001ED542 /* ServiceProvider.swift */,
+				ADA0F1FA2314D611001ED542 /* ServiceProvider+Defaults.swift */,
+				ADA0F2032317D9CA001ED542 /* ResolvedAPIDefinition.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		ADA0F1F72314D12B001ED542 /* Specs */ = {
+			isa = PBXGroup;
+			children = (
+				ADA0F1F82314D173001ED542 /* EncodingSpec.swift */,
+				ADA0F2012317CD10001ED542 /* TestAPIDefinition.swift */,
+			);
+			path = Specs;
+			sourceTree = "<group>";
+		};
+		ADA0F20023179F32001ED542 /* URLRequest */ = {
+			isa = PBXGroup;
+			children = (
+				ADA0F1FC231634FC001ED542 /* URLRequest+Encoding.swift */,
+			);
+			path = URLRequest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,6 +236,7 @@
 				AD804B08230FA8130033C7B0 /* Sources */,
 				AD804B09230FA8130033C7B0 /* Frameworks */,
 				AD804B0A230FA8130033C7B0 /* Resources */,
+				ADA0F1E22314C617001ED542 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -148,6 +260,7 @@
 				TargetAttributes = {
 					AD804B02230FA8130033C7B0 = {
 						CreatedOnToolsVersion = 10.3;
+						LastSwiftMigration = 1030;
 					};
 					AD804B0B230FA8130033C7B0 = {
 						CreatedOnToolsVersion = 10.3;
@@ -194,6 +307,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADA0F1F32314CC96001ED542 /* ServiceProvider.swift in Sources */,
+				ADA0F1F52314CC96001ED542 /* APIDefinition.swift in Sources */,
+				ADA0F1F42314CC96001ED542 /* AccessAuthorizable.swift in Sources */,
+				ADA0F1DC2314C213001ED542 /* AHeader.swift in Sources */,
+				ADA0F1F22314CC96001ED542 /* ServicePluginType.swift in Sources */,
+				ADA0F1F12314CC96001ED542 /* Service.swift in Sources */,
+				ADA0F1EA2314C860001ED542 /* ServiceExecutable.swift in Sources */,
+				ADA0F2042317D9CA001ED542 /* ResolvedAPIDefinition.swift in Sources */,
+				ADA0F1EB2314C860001ED542 /* ExecutorURLSession.swift in Sources */,
+				ADA0F1FD231634FC001ED542 /* URLRequest+Encoding.swift in Sources */,
+				ADA0F1FB2314D611001ED542 /* ServiceProvider+Defaults.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +325,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADA0F1F92314D173001ED542 /* EncodingSpec.swift in Sources */,
+				ADA0F2022317CD10001ED542 /* TestAPIDefinition.swift in Sources */,
 				AD804B12230FA8130033C7B0 /* UluruTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,10 +467,11 @@
 		AD804B18230FA8130033C7B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 2E8VMJTP9D;
+				DEVELOPMENT_TEAM = DJZ49D3E6J;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -355,9 +482,10 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.srikanth.Uluru;
+				PRODUCT_BUNDLE_IDENTIFIER = au.com.tabcorp.uluru;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -366,10 +494,11 @@
 		AD804B19230FA8130033C7B0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 2E8VMJTP9D;
+				DEVELOPMENT_TEAM = DJZ49D3E6J;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -380,7 +509,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.srikanth.Uluru;
+				PRODUCT_BUNDLE_IDENTIFIER = au.com.tabcorp.uluru;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -391,8 +520,13 @@
 		AD804B1B230FA8130033C7B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2E8VMJTP9D;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = UluruTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -409,8 +543,13 @@
 		AD804B1C230FA8130033C7B0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2E8VMJTP9D;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = UluruTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
