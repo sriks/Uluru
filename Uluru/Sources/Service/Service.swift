@@ -20,6 +20,13 @@ public typealias ResponseCompletion = (_ completion: ResponseResult) -> Void
 
 public protocol Service {
     func request(_ apiDefinition: APIDefinition,
-                completion: @escaping ResponseCompletion) -> ServiceCancellable
-    var plugins: [ServicePluginType] { get }
+                 completion: @escaping ResponseCompletion) -> ServiceCancellable
+}
+
+public typealias APIResult<T: Decodable> = Result<T, Error>
+public typealias APIRequestCompletion<T: Decodable> = (_ completion: APIResult<T>) -> Void
+
+// API Service - performs JSON API requests
+public protocol APIService {
+    func request<T: Decodable>(_ apiDefinition: APIDefinition, completion: @escaping APIRequestCompletion<T>) -> ServiceCancellable
 }
