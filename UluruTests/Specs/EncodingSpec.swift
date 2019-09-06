@@ -77,10 +77,11 @@ class EncodingSpec: QuickSpec {
 
             let postParams = TestParameters.make()
             var urlRequest: URLRequest!
+            var customEncoder: CustomEncoder!
 
             beforeEach {
-                CustomEncoder.isInvoked = false
-                let api = self.sampleResolvedDefinition(encoding: .jsonBodyUsingCustomEncoder(parameters: postParams, encoder: CustomEncoder()),
+                customEncoder = CustomEncoder()
+                let api = self.sampleResolvedDefinition(encoding: .jsonBodyUsingCustomEncoder(parameters: postParams, encoder: customEncoder),
                                                         method: .POST)
                 urlRequest = try! requestMapper(api).get()
             }
@@ -88,7 +89,7 @@ class EncodingSpec: QuickSpec {
             it("custom encoder is indeed used") {
                 let decodedBody = try! JSONDecoder().decode(TestParameters.self, from: urlRequest.httpBody!)
                 // Checking if our custom encoder is indeed invoked.
-                expect(CustomEncoder.isInvoked).to(beTrue())
+                expect(customEncoder.isInvoked).to(beTrue())
             }
             it("body is json encoded") {
                 let decodedBody = try! JSONDecoder().decode(TestParameters.self, from: urlRequest.httpBody!)
@@ -184,23 +185,6 @@ class EncodingSpec: QuickSpec {
     }
 }
 
-
-//struct ArrayOf<T: Decodable>: Decodable {
-//    private(set) var elements: [T]?
-//
-////    let itemType: T.Type
-////
-////    init(_ itemType: T.Type) {
-////        self.itemType = itemType
-////    }
-//
-//    init(from decoder: Decoder) throws {
-//        let ourItems = try decoder.singleValueContainer().decode(ArrayOf<T>.self)
-//        elements = ourItems
-//    }
-//
-//}
-
 struct CommentById: Encodable, JSONRepresentable {
     let postId: Int
 }
@@ -254,7 +238,6 @@ extension SampleAPI: APIDefinition {
 
 }
 
-
 struct EmptyParameters: Codable, Equatable, JSONRepresentable {}
 
 struct TestParameters: Codable, Equatable, JSONRepresentable {
@@ -267,14 +250,3 @@ struct TestParameters: Codable, Equatable, JSONRepresentable {
         return TestParameters(state: "New South Wales", city: "Sydney", postcode: 2000, isSunny: true)
     }
 }
-
-// A fake encoder to ensure it is invoked.
-class CustomEncoder: JSONEncoder {
-    static var isInvoked = false
-
-    override func encode<T>(_ value: T) throws -> Data where T : Encodable {
-        CustomEncoder.isInvoked = true
-        return try JSONEncoder().encode(value)
-    }
-}
-

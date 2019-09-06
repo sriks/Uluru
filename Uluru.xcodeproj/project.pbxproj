@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		045D3A9728F6ECE861565E61 /* Pods_UluruTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D306E63C7298CF6C3536AE70 /* Pods_UluruTests.framework */; };
 		7E736AAF8A20CEEA7F649589 /* Pods_Uluru.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA2134552B8F8991A0A4FC2D /* Pods_Uluru.framework */; };
+		AD00E2D52321F56D00A228F5 /* ServiceProviderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00E2D42321F56D00A228F5 /* ServiceProviderSpec.swift */; };
+		AD00E2DA2321FA5000A228F5 /* TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00E2D92321FA5000A228F5 /* TestHelper.swift */; };
+		AD00E2DC2321FB7500A228F5 /* EncoderDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00E2DB2321FB7500A228F5 /* EncoderDecoder.swift */; };
 		AD804B0D230FA8130033C7B0 /* Uluru.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD804B03230FA8130033C7B0 /* Uluru.framework */; };
-		AD804B12230FA8130033C7B0 /* UluruTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD804B11230FA8130033C7B0 /* UluruTests.swift */; };
 		AD804B14230FA8130033C7B0 /* Uluru.h in Headers */ = {isa = PBXBuildFile; fileRef = AD804B06230FA8130033C7B0 /* Uluru.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ADA0F1DC2314C213001ED542 /* AHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1DB2314C213001ED542 /* AHeader.swift */; };
 		ADA0F1EA2314C860001ED542 /* ServiceExecutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1E82314C860001ED542 /* ServiceExecutable.swift */; };
@@ -55,11 +57,13 @@
 		0BF19BE5EA68ED2F7C10BAFE /* Pods-Uluru.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uluru.release.xcconfig"; path = "Target Support Files/Pods-Uluru/Pods-Uluru.release.xcconfig"; sourceTree = "<group>"; };
 		5F88F3860D06AF3B2BA80BC4 /* Pods-UluruTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UluruTests.release.xcconfig"; path = "Target Support Files/Pods-UluruTests/Pods-UluruTests.release.xcconfig"; sourceTree = "<group>"; };
 		8B07865935F553CC376180FE /* Pods-UluruTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UluruTests.debug.xcconfig"; path = "Target Support Files/Pods-UluruTests/Pods-UluruTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AD00E2D42321F56D00A228F5 /* ServiceProviderSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderSpec.swift; sourceTree = "<group>"; };
+		AD00E2D92321FA5000A228F5 /* TestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelper.swift; sourceTree = "<group>"; };
+		AD00E2DB2321FB7500A228F5 /* EncoderDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncoderDecoder.swift; sourceTree = "<group>"; };
 		AD804B03230FA8130033C7B0 /* Uluru.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Uluru.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD804B06230FA8130033C7B0 /* Uluru.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Uluru.h; sourceTree = "<group>"; };
 		AD804B07230FA8130033C7B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD804B0C230FA8130033C7B0 /* UluruTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UluruTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AD804B11230FA8130033C7B0 /* UluruTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UluruTests.swift; sourceTree = "<group>"; };
 		AD804B13230FA8130033C7B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADA0F1DB2314C213001ED542 /* AHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AHeader.swift; sourceTree = "<group>"; };
 		ADA0F1DE2314C607001ED542 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
@@ -115,6 +119,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		AD00E2D62321F96C00A228F5 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				AD00E2D92321FA5000A228F5 /* TestHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		AD804AF9230FA8130033C7B0 = {
 			isa = PBXGroup;
 			children = (
@@ -150,7 +162,6 @@
 			isa = PBXGroup;
 			children = (
 				ADA0F1F72314D12B001ED542 /* Specs */,
-				AD804B11230FA8130033C7B0 /* UluruTests.swift */,
 				AD804B13230FA8130033C7B0 /* Info.plist */,
 			);
 			path = UluruTests;
@@ -203,10 +214,12 @@
 		ADA0F1F72314D12B001ED542 /* Specs */ = {
 			isa = PBXGroup;
 			children = (
+				AD00E2D62321F96C00A228F5 /* Helpers */,
 				ADE9DF5A2321E55900195774 /* Data */,
 				ADA0F1F82314D173001ED542 /* EncodingSpec.swift */,
 				ADA0F2012317CD10001ED542 /* TestAPIDefinition.swift */,
 				ADE9DF582321E4BA00195774 /* PluginsSpec.swift */,
+				AD00E2D42321F56D00A228F5 /* ServiceProviderSpec.swift */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -223,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				ADE9DF5B2321E56900195774 /* TestPlugin.swift */,
+				AD00E2DB2321FB7500A228F5 /* EncoderDecoder.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -423,9 +437,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADA0F1F92314D173001ED542 /* EncodingSpec.swift in Sources */,
+				AD00E2DC2321FB7500A228F5 /* EncoderDecoder.swift in Sources */,
+				AD00E2D52321F56D00A228F5 /* ServiceProviderSpec.swift in Sources */,
 				ADE9DF592321E4BA00195774 /* PluginsSpec.swift in Sources */,
+				AD00E2DA2321FA5000A228F5 /* TestHelper.swift in Sources */,
 				ADA0F2022317CD10001ED542 /* TestAPIDefinition.swift in Sources */,
-				AD804B12230FA8130033C7B0 /* UluruTests.swift in Sources */,
 				ADE9DF5C2321E56900195774 /* TestPlugin.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

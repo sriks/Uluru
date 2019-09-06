@@ -8,7 +8,7 @@ import Nimble
 /// Tests the functionality of Plugin system
 class PluginsSpec: QuickSpec {
     override func spec() {
-        Nimble.AsyncDefaults.Timeout = 5
+        TestHelper.markWaitExpecationAsAPIRequest()
         var service: ServiceProvider!
         var plugin: TestPlugin!
 

@@ -16,14 +16,18 @@ public class ServiceProvider: Service {
 
     public let plugins: [ServicePluginType]
 
+    public let jsonDecoder: JSONDecoder
+
     private let serviceExecutor: ServiceExecutable
 
     public init(apiDefinitionResolver: @escaping APIDefinitionResolver = ServiceProvider.defaultAPIDefinitionResolver,
                 requestMapper: @escaping RequestMapper = ServiceProvider.defaultRequestMapper(),
                 plugins: [ServicePluginType] = [],
+                jsonDecoder: JSONDecoder = JSONDecoder(),
                 serviceExecutor: ServiceExecutable = ExecutorURLSession.make()) {
         self.apiDefinitionResolver = apiDefinitionResolver
         self.requestMapper = requestMapper
+        self.jsonDecoder = jsonDecoder
         self.serviceExecutor = serviceExecutor
         self.plugins = plugins
     }
@@ -36,7 +40,7 @@ public class ServiceProvider: Service {
             case let .success(successResponse):
                 DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                     guard let self = self else { return }
-                    completion(self.decode(successResponse.data, using: JSONDecoder()))
+                    completion(self.decode(successResponse.data, using: self.jsonDecoder))
                 }
                 break
             case let .failure(errorResponse):
@@ -57,7 +61,6 @@ public class ServiceProvider: Service {
             return DummyCancellable()
         }
     }
-
 
     private func perform(urlRequest: URLRequest,
                          target: APIDefinition,
