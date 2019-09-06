@@ -7,7 +7,7 @@ public extension ServiceProvider {
     static var defaultAPIDefinitionResolver: APIDefinitionResolver {
         let resolver: APIDefinitionResolver = { apiDef in
             // TODO: use extension on URL to cleanly create this.
-            return ResolvedAPIDefinition(url: apiDef.baseURL.appendingPathComponent(apiDef.path),
+            return APITarget(url: apiDef.baseURL.appendingPathComponent(apiDef.path),
                                          path: apiDef.path,
                                          method: apiDef.method,
                                          encoding: apiDef.encoding,
@@ -29,9 +29,10 @@ public extension ServiceProvider {
         }
         return mapper
     }
+
 }
 
-extension ResolvedAPIDefinition {
+extension APITarget {
     func urlRequest() throws -> URLRequest {
         var ourRequest = URLRequest(url: url)
         try ourRequest.encoded(encoding)

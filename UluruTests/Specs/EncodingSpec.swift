@@ -8,8 +8,8 @@ import Nimble
 // Tests default encoding strategies.
 class EncodingSpec: QuickSpec {
 
-    func sampleResolvedDefinition(encoding: EncodingStrategy, method: TargetMethod = .GET, headers: [String: String]? = nil) -> ResolvedAPIDefinition {
-        return ResolvedAPIDefinition(url: URL(string: "https://example.com")!,
+    func sampleResolvedDefinition(encoding: EncodingStrategy, method: TargetMethod = .GET, headers: [String: String]? = nil) -> APITarget {
+        return APITarget(url: URL(string: "https://example.com")!,
                                      path: "/some-path",
                                      method: method,
                                      encoding: encoding,
@@ -151,8 +151,109 @@ class EncodingSpec: QuickSpec {
             }
         }
 
+        fit("sample test") {
+
+            struct OurDomainModel: Decodable {
+                //let userId: Int
+                let id: Int
+                //let title: String
+                let body: String
+            }
+
+
+
+            let service = ServiceProvider()
+
+            waitUntil(timeout: 1200) { done in
+
+                service.request(SampleAPI.getWithParams(postId: CommentById(postId: 1)), completion: {
+                    (result: Result<[OurDomainModel], Error>) in
+                    switch result {
+
+                    case let .success(model):
+                        print("decoded model: \(model)")
+                    case let .failure(error):
+                        print("service error: \(error)")
+                    }
+                    print(result)
+                    done()
+                })
+            }
+        }
+
     }
 }
+
+
+//struct ArrayOf<T: Decodable>: Decodable {
+//    private(set) var elements: [T]?
+//
+////    let itemType: T.Type
+////
+////    init(_ itemType: T.Type) {
+////        self.itemType = itemType
+////    }
+//
+//    init(from decoder: Decoder) throws {
+//        let ourItems = try decoder.singleValueContainer().decode(ArrayOf<T>.self)
+//        elements = ourItems
+//    }
+//
+//}
+
+struct CommentById: Encodable, JSONRepresentable {
+    let postId: Int
+}
+
+enum SampleAPI {
+    case simpleGET
+    case getWithParams(postId: CommentById)
+}
+
+extension SampleAPI: APIDefinition {
+    var baseURL: URL {
+        return URL(string: "https://jsonplaceholder.typicode.com")!
+    }
+
+    var path: String {
+        switch self {
+        case .simpleGET:
+            return "/posts/1"
+
+        case .getWithParams:
+            return "/comments"
+        }
+    }
+
+    var method: TargetMethod {
+        switch self {
+        case .simpleGET, .getWithParams:
+            return .GET
+
+
+        }
+    }
+
+    var encoding: EncodingStrategy {
+        switch self {
+        case .simpleGET:
+            return .ignore
+
+        case let .getWithParams(postId):
+            return .queryParameters(parameters: postId)
+        }
+    }
+
+    var headers: [String : String]? {
+        return nil
+    }
+
+    var authorizationType: TypeOfAuthorization {
+        return .none
+    }
+
+}
+
 
 struct EmptyParameters: Codable, Equatable, JSONRepresentable {}
 
@@ -167,7 +268,7 @@ struct TestParameters: Codable, Equatable, JSONRepresentable {
     }
 }
 
-// A fake encoder
+// A fake encoder to ensure it is invoked.
 class CustomEncoder: JSONEncoder {
     static var isInvoked = false
 

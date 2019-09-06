@@ -5,12 +5,11 @@ import Foundation
 public class ServiceProvider: Service {
 
     // Maps an APIDefinition to a resolved Definition
-    public typealias APIDefinitionResolver = (_ apiDefinition: APIDefinition) -> ResolvedAPIDefinition
+    public typealias APIDefinitionResolver = (_ apiDefinition: APIDefinition) -> APITarget
 
     // Maps a resolved definition to an URLRequest
-    public typealias RequestMapper = (_ resolvedAPIDefinition: ResolvedAPIDefinition) -> Result<URLRequest, Error>
+    public typealias RequestMapper = (_ resolvedAPIDefinition: APITarget) -> Result<URLRequest, Error>
 
-    //public let urlResolver: URLResolver
     public let apiDefinitionResolver: APIDefinitionResolver
 
     public let requestMapper: RequestMapper
@@ -19,17 +18,35 @@ public class ServiceProvider: Service {
 
     private let serviceExecutor: ServiceExecutable
 
-    public init(apiDefinitionResolver: @escaping APIDefinitionResolver,
-                requestMapper: @escaping RequestMapper,
-                plugins: [ServicePluginType],
-                serviceExecutor: ServiceExecutable) {
+    public init(apiDefinitionResolver: @escaping APIDefinitionResolver = ServiceProvider.defaultAPIDefinitionResolver,
+                requestMapper: @escaping RequestMapper = ServiceProvider.defaultRequestMapper(),
+                plugins: [ServicePluginType] = [],
+                serviceExecutor: ServiceExecutable = ExecutorURLSession.make()) {
         self.apiDefinitionResolver = apiDefinitionResolver
         self.requestMapper = requestMapper
         self.serviceExecutor = serviceExecutor
         self.plugins = plugins
     }
 
-    public func request(_ apiDefinition: APIDefinition,
+    public func request<T>(_ apiDefinition: APIDefinition,
+                           completion: @escaping (Result<T, Error>) -> Void) -> ServiceCancellable where T : Decodable {
+        return self.perform(apiDefinition) { [weak self] (result) in
+            guard let self = self else { return }
+            switch result {
+            case let .success(successResponse):
+                DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+                    guard let self = self else { return }
+                    completion(self.decode(successResponse.data, using: JSONDecoder()))
+                }
+                break
+            case let .failure(errorResponse):
+                completion(.failure(errorResponse.error))
+                break
+            }
+        }
+    }
+
+    public func perform(_ apiDefinition: APIDefinition,
                         completion: @escaping ResponseCompletion) -> ServiceCancellable {
         let target = apiDefinitionResolver(apiDefinition)
         switch requestMapper(target) {
@@ -88,7 +105,15 @@ public class ServiceProvider: Service {
             default:
                 return .failure(RawErrorResponse(error: NSError(domain: NSURLErrorDomain, code: NSURLErrorUnknown, userInfo: nil), data: nil, urlResponse: nil))
         }
+    }
 
+    private func decode<T: Decodable>(_ data: Data, using: JSONDecoder) -> Result<T, Error> {
+        do {
+            let decoded: T = try JSONDecoder().decode(T.self, from: data)
+            return .success(decoded)
+        } catch {
+            return .failure(error)
+        }
     }
 }
 

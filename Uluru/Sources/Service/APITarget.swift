@@ -1,8 +1,9 @@
-//Copyright © 2019 Tabcorp. All rights reserved.
+// Copyright © 2019 Tabcorp. All rights reserved.
 
 import Foundation
 
-public struct ResolvedAPIDefinition {
+/// A concrete resolved representation of an abstract `APIDefinition`. This representation can be used to a target to create a URLRequest.
+public struct APITarget {
     // The fully resolved url
     public let url: URL
 
@@ -17,7 +18,7 @@ public struct ResolvedAPIDefinition {
     public let authorizationType: TypeOfAuthorization
 }
 
-extension ResolvedAPIDefinition {
+extension APITarget {
     mutating func add(httpHeader key: String, value: String) {
         var ourHeaders = headers ?? [:]
         ourHeaders[key] = value

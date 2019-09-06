@@ -24,7 +24,7 @@
 		ADA0F1FB2314D611001ED542 /* ServiceProvider+Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1FA2314D611001ED542 /* ServiceProvider+Defaults.swift */; };
 		ADA0F1FD231634FC001ED542 /* URLRequest+Encoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1FC231634FC001ED542 /* URLRequest+Encoding.swift */; };
 		ADA0F2022317CD10001ED542 /* TestAPIDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F2012317CD10001ED542 /* TestAPIDefinition.swift */; };
-		ADA0F2042317D9CA001ED542 /* ResolvedAPIDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F2032317D9CA001ED542 /* ResolvedAPIDefinition.swift */; };
+		ADA0F2042317D9CA001ED542 /* APITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F2032317D9CA001ED542 /* APITarget.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,7 +73,7 @@
 		ADA0F1FA2314D611001ED542 /* ServiceProvider+Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ServiceProvider+Defaults.swift"; sourceTree = "<group>"; };
 		ADA0F1FC231634FC001ED542 /* URLRequest+Encoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Encoding.swift"; sourceTree = "<group>"; };
 		ADA0F2012317CD10001ED542 /* TestAPIDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAPIDefinition.swift; sourceTree = "<group>"; };
-		ADA0F2032317D9CA001ED542 /* ResolvedAPIDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolvedAPIDefinition.swift; sourceTree = "<group>"; };
+		ADA0F2032317D9CA001ED542 /* APITarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITarget.swift; sourceTree = "<group>"; };
 		BA2134552B8F8991A0A4FC2D /* Pods_Uluru.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Uluru.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAD080F4B49C9556E4CEE1FD /* Pods-Uluru.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uluru.debug.xcconfig"; path = "Target Support Files/Pods-Uluru/Pods-Uluru.debug.xcconfig"; sourceTree = "<group>"; };
 		D306E63C7298CF6C3536AE70 /* Pods_UluruTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UluruTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,7 +191,7 @@
 				ADA0F1ED2314CC96001ED542 /* ServicePluginType.swift */,
 				ADA0F1EE2314CC96001ED542 /* ServiceProvider.swift */,
 				ADA0F1FA2314D611001ED542 /* ServiceProvider+Defaults.swift */,
-				ADA0F2032317D9CA001ED542 /* ResolvedAPIDefinition.swift */,
+				ADA0F2032317D9CA001ED542 /* APITarget.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -397,7 +397,7 @@
 				ADA0F1F22314CC96001ED542 /* ServicePluginType.swift in Sources */,
 				ADA0F1F12314CC96001ED542 /* Service.swift in Sources */,
 				ADA0F1EA2314C860001ED542 /* ServiceExecutable.swift in Sources */,
-				ADA0F2042317D9CA001ED542 /* ResolvedAPIDefinition.swift in Sources */,
+				ADA0F2042317D9CA001ED542 /* APITarget.swift in Sources */,
 				ADA0F1EB2314C860001ED542 /* ExecutorURLSession.swift in Sources */,
 				ADA0F1FD231634FC001ED542 /* URLRequest+Encoding.swift in Sources */,
 				ADA0F1FB2314D611001ED542 /* ServiceProvider+Defaults.swift in Sources */,

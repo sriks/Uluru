@@ -15,18 +15,20 @@ public struct RawErrorResponse: Error {
     let urlResponse: HTTPURLResponse?
 }
 
+// Raw Data Requests
 public typealias ResponseResult = Result<RawSuccessResponse, RawErrorResponse>
 public typealias ResponseCompletion = (_ completion: ResponseResult) -> Void
 
-public protocol Service {
-    func request(_ apiDefinition: APIDefinition,
-                 completion: @escaping ResponseCompletion) -> ServiceCancellable
-}
-
+// JSON requests
 public typealias APIResult<T: Decodable> = Result<T, Error>
 public typealias APIRequestCompletion<T: Decodable> = (_ completion: APIResult<T>) -> Void
 
-// API Service - performs JSON API requests
-public protocol APIService {
-    func request<T: Decodable>(_ apiDefinition: APIDefinition, completion: @escaping APIRequestCompletion<T>) -> ServiceCancellable
+public protocol Service {
+    func perform(_ apiDefinition: APIDefinition,
+                 completion: @escaping ResponseCompletion) -> ServiceCancellable
+
+    func request<T: Decodable>(_ apiDefinition: APIDefinition,
+                               completion: @escaping APIRequestCompletion<T>) -> ServiceCancellable
 }
+
+
