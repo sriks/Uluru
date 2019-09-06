@@ -4,6 +4,7 @@ import Foundation
 @testable import Uluru
 
 enum TestAPIDefinition {
+    case justGet
     case getWithParams(params: JSONRepresentable)
     case postWithBody(body: JSONRepresentable)
     case postBodyWithCustomEncoder(body: JSONRepresentable)
@@ -17,7 +18,7 @@ extension TestAPIDefinition: APIDefinition {
 
     var path: String {
         switch self {
-        case .getWithParams:
+        case .getWithParams, .justGet:
             return "/get"
 
         case .postWithBody, .postBodyWithCustomEncoder, .postWithoutBody:
@@ -27,7 +28,7 @@ extension TestAPIDefinition: APIDefinition {
 
     var method: TargetMethod {
         switch self {
-        case .getWithParams:
+        case .getWithParams, .justGet:
             return .GET
 
         case .postWithBody, .postBodyWithCustomEncoder, .postWithoutBody:
@@ -37,6 +38,9 @@ extension TestAPIDefinition: APIDefinition {
 
     var encoding: EncodingStrategy {
         switch self {
+        case .justGet:
+            return .ignore
+            
         case let .getWithParams(params):
             return .queryParameters(parameters: params)
 
@@ -59,3 +63,5 @@ extension TestAPIDefinition: APIDefinition {
         return .none
     }
 }
+
+struct TestDecodableModel: Decodable {}

@@ -63,30 +63,30 @@ public class ServiceProvider: Service {
                          target: APIDefinition,
                          completion: @escaping ResponseCompletion) -> ServiceCancellable {
         // Let plugins mutate request
-        let mutatedResult = plugins.reduce(urlRequest) { $1.mutate($0, target: target) }
+        let mutatedRequest = plugins.reduce(urlRequest) { $1.mutate($0, target: target) }
 
-        // Invoke plugins to inform we are about to send the request to executor.
-        self.plugins.forEach { $0.willSend(mutatedResult, target: target) }
+        // Invoke plugins to inform we are about to send the request.
+        self.plugins.forEach { $0.willSend(mutatedRequest, target: target) }
 
         let postRequestPlugins = plugins
         let onRequestCompletion: ServiceExecutionDataTaskCompletion = { (data, urlResponse, error) in
-            let responseResult = self.process(data: data, urlResponse: urlResponse, error: error)
+            let responseResult = self.map(data: data, urlResponse: urlResponse, error: error)
 
             // Invoke plugins to inform we did receive result.
-            //postRequestPlugins.forEach { $0.didReceive(ourResult, target: target) }
+            postRequestPlugins.forEach { $0.didReceive(responseResult, target: target) }
 
-            // Invoke plugins to mutate result.
-            // let mutatedResult = postRequestPlugins.reduce(ourResult) { $1.willFinish($0, target: target) }
+            // Invoke plugins to mutate result before sending off to caller.
+            let mutatedResult = postRequestPlugins.reduce(responseResult) { $1.willFinish($0, target: target) }
 
             // Invoke completion
-            completion(responseResult)
+            completion(mutatedResult)
         }
 
         // Execute request
-        return serviceExecutor.execute(dataRequest: mutatedResult, completion: onRequestCompletion)
+        return serviceExecutor.execute(dataRequest: mutatedRequest, completion: onRequestCompletion)
     }
 
-    private func process(data: Data?, urlResponse: HTTPURLResponse?, error: Error?) -> ResponseResult {
+    private func map(data: Data?, urlResponse: HTTPURLResponse?, error: Error?) -> ResponseResult {
         switch (urlResponse, data, error) {
 
             // All good
@@ -107,9 +107,9 @@ public class ServiceProvider: Service {
         }
     }
 
-    private func decode<T: Decodable>(_ data: Data, using: JSONDecoder) -> Result<T, Error> {
+    private func decode<T: Decodable>(_ data: Data, using decoder: JSONDecoder) -> Result<T, Error> {
         do {
-            let decoded: T = try JSONDecoder().decode(T.self, from: data)
+            let decoded: T = try decoder.decode(T.self, from: data)
             return .success(decoded)
         } catch {
             return .failure(error)

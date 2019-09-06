@@ -151,7 +151,7 @@ class EncodingSpec: QuickSpec {
             }
         }
 
-        fit("sample test") {
+        it("sample test") {
 
             struct OurDomainModel: Decodable {
                 //let userId: Int
