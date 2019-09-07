@@ -9,7 +9,7 @@ import Nimble
 class PluginsSpec: QuickSpec {
     override func spec() {
         TestHelper.markWaitExpecationAsAPIRequest()
-        var service: ServiceProvider!
+        var service: ServiceProvider<TestAPIDefinition>!
         var plugin: TestPlugin!
 
         beforeEach {

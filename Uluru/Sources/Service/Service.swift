@@ -3,31 +3,33 @@
 import Foundation
 
 /// Represents a success response hot and fresh right way from the network.
-public struct RawSuccessResponse {
+public struct DataSuccessResponse {
     let data: Data
     let urlResponse: HTTPURLResponse
 }
 
 /// Represents a network error response hot and fresh right way from the network.
-public struct RawErrorResponse: Error {
+public struct DataErrorResponse: Error {
     let error: Error
     let data: Data?
     let urlResponse: HTTPURLResponse?
 }
 
 // Raw Data Requests
-public typealias ResponseResult = Result<RawSuccessResponse, RawErrorResponse>
-public typealias ResponseCompletion = (_ completion: ResponseResult) -> Void
+public typealias DataResult = Result<DataSuccessResponse, DataErrorResponse>
+public typealias DataRequestCompletion = (_ completion: DataResult) -> Void
 
 // JSON requests
 public typealias APIResult<T: Decodable> = Result<T, Error>
 public typealias APIRequestCompletion<T: Decodable> = (_ completion: APIResult<T>) -> Void
 
 public protocol Service {
-    func perform(_ apiDefinition: APIDefinition,
-                 completion: @escaping ResponseCompletion) -> ServiceCancellable
+    associatedtype API: APIDefinition
 
-    func request<T: Decodable>(_ apiDefinition: APIDefinition,
+    func requestData(_ api: API,
+                     completion: @escaping DataRequestCompletion) -> ServiceCancellable
+
+    func request<T: Decodable>(_ api: API,
                                completion: @escaping APIRequestCompletion<T>) -> ServiceCancellable
 }
 

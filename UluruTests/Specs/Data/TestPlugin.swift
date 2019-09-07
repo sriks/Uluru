@@ -19,11 +19,11 @@ class TestPlugin: ServicePluginType {
         didMutate = (request.value(forHTTPHeaderField: "animal") == "godzilla")
     }
 
-    func didReceive(_ result: ResponseResult, target: APIDefinition) {
+    func didReceive(_ result: DataResult, target: APIDefinition) {
         didRecieveResponse = true
     }
 
-    func willFinish(_ result: ResponseResult, target: APIDefinition) -> ResponseResult {
-        return .failure(RawErrorResponse(error: errorWithLove, data: nil, urlResponse: nil))
+    func willFinish(_ result: DataResult, target: APIDefinition) -> DataResult {
+        return .failure(DataErrorResponse(error: errorWithLove, data: nil, urlResponse: nil))
     }
 }

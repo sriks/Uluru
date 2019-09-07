@@ -2,10 +2,10 @@
 
 import Foundation
 
-public class ServiceProvider: Service {
+public class ServiceProvider<API: APIDefinition>: Service {
 
     // Maps an APIDefinition to a resolved Definition
-    public typealias APIDefinitionResolver = (_ apiDefinition: APIDefinition) -> APITarget
+    public typealias APIDefinitionResolver = (_ apiDefinition: API) -> APITarget
 
     // Maps a resolved definition to an URLRequest
     public typealias RequestMapper = (_ resolvedAPIDefinition: APITarget) -> Result<URLRequest, Error>
@@ -32,9 +32,9 @@ public class ServiceProvider: Service {
         self.plugins = plugins
     }
 
-    public func request<T>(_ apiDefinition: APIDefinition,
+    public func request<T>(_ api: API,
                            completion: @escaping (Result<T, Error>) -> Void) -> ServiceCancellable where T : Decodable {
-        return self.perform(apiDefinition) { [weak self] (result) in
+        return self.requestData(api) { [weak self] (result) in
             guard let self = self else { return }
             switch result {
             case let .success(successResponse):
@@ -50,21 +50,21 @@ public class ServiceProvider: Service {
         }
     }
 
-    public func perform(_ apiDefinition: APIDefinition,
-                        completion: @escaping ResponseCompletion) -> ServiceCancellable {
-        let target = apiDefinitionResolver(apiDefinition)
+    public func requestData(_ api: API,
+                        completion: @escaping DataRequestCompletion) -> ServiceCancellable {
+        let target = apiDefinitionResolver(api)
         switch requestMapper(target) {
         case let .success(urlRequest):
-            return perform(urlRequest: urlRequest, target: apiDefinition, completion: completion)
+            return perform(urlRequest: urlRequest, target: api, completion: completion)
         case let .failure(error):
-            completion(.failure(RawErrorResponse(error: error, data: nil, urlResponse: nil)))
+            completion(.failure(DataErrorResponse(error: error, data: nil, urlResponse: nil)))
             return DummyCancellable()
         }
     }
 
     private func perform(urlRequest: URLRequest,
-                         target: APIDefinition,
-                         completion: @escaping ResponseCompletion) -> ServiceCancellable {
+                         target: API,
+                         completion: @escaping DataRequestCompletion) -> ServiceCancellable {
         // Let plugins mutate request
         let mutatedRequest = plugins.reduce(urlRequest) { $1.mutate($0, target: target) }
 
@@ -89,24 +89,24 @@ public class ServiceProvider: Service {
         return serviceExecutor.execute(dataRequest: mutatedRequest, completion: onRequestCompletion)
     }
 
-    private func map(data: Data?, urlResponse: HTTPURLResponse?, error: Error?) -> ResponseResult {
+    private func map(data: Data?, urlResponse: HTTPURLResponse?, error: Error?) -> DataResult {
         switch (urlResponse, data, error) {
 
             // All good
             case let (.some(urlResponse), data, .none):
-                return .success(RawSuccessResponse(data: data ?? Data(), urlResponse: urlResponse))
+                return .success(DataSuccessResponse(data: data ?? Data(), urlResponse: urlResponse))
 
             // Errored out but with some data.
             case let (.some(urlResponse), data, .some(error)):
-                return .failure(RawErrorResponse(error: error, data: data, urlResponse: urlResponse))
+                return .failure(DataErrorResponse(error: error, data: data, urlResponse: urlResponse))
 
             // Error without data
             case let (_, _, .some(error)):
-                return .failure(RawErrorResponse(error: error, data: nil, urlResponse: nil))
+                return .failure(DataErrorResponse(error: error, data: nil, urlResponse: nil))
 
             // Something wierd so falling back to nsurlerror.
             default:
-                return .failure(RawErrorResponse(error: NSError(domain: NSURLErrorDomain, code: NSURLErrorUnknown, userInfo: nil), data: nil, urlResponse: nil))
+                return .failure(DataErrorResponse(error: NSError(domain: NSURLErrorDomain, code: NSURLErrorUnknown, userInfo: nil), data: nil, urlResponse: nil))
         }
     }
 

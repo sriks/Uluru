@@ -19,7 +19,7 @@ class EncodingSpec: QuickSpec {
 
     override func spec() {
 
-        var requestMapper: ServiceProvider.RequestMapper  { return ServiceProvider.defaultRequestMapper() }
+        var requestMapper: ServiceProvider<TestAPIDefinition>.RequestMapper  { return ServiceProvider<TestAPIDefinition>.defaultRequestMapper() }
 
         context("when encoding strategy is .queryParameters") {
             
@@ -163,11 +163,11 @@ class EncodingSpec: QuickSpec {
 
 
 
-            let service = ServiceProvider()
+            let service = ServiceProvider<SampleAPI>()
 
             waitUntil(timeout: 1200) { done in
 
-                service.request(SampleAPI.getWithParams(postId: CommentById(postId: 1)), completion: {
+                service.request(.getWithParams(postId: CommentById(postId: 1)), completion: {
                     (result: Result<[OurDomainModel], Error>) in
                     switch result {
 

@@ -16,10 +16,10 @@ public protocol ServicePluginType {
     func willSend(_ request: URLRequest, target: APIDefinition)
     
     /// Called after receiving response.
-    func didReceive(_ result: ResponseResult, target: APIDefinition)
+    func didReceive(_ result: DataResult, target: APIDefinition)
 
     /// Called to modify a result before sending it to caller.
-    func willFinish(_ result: ResponseResult, target: APIDefinition) -> ResponseResult
+    func willFinish(_ result: DataResult, target: APIDefinition) -> DataResult
 }
 
 // MARK: - Default implementation
@@ -28,7 +28,7 @@ public extension ServicePluginType {
 
     func willSend(_ request: URLRequest, target: APIDefinition) {}
     
-    func didReceive(_ result: ResponseResult, target: APIDefinition) {}
+    func didReceive(_ result: DataResult, target: APIDefinition) {}
 
-    func willFinish(_ result: ResponseResult, target: APIDefinition) -> ResponseResult { return result }
+    func willFinish(_ result: DataResult, target: APIDefinition) -> DataResult { return result }
 }

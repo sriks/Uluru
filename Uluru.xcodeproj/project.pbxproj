@@ -217,7 +217,6 @@
 				AD00E2D62321F96C00A228F5 /* Helpers */,
 				ADE9DF5A2321E55900195774 /* Data */,
 				ADA0F1F82314D173001ED542 /* EncodingSpec.swift */,
-				ADA0F2012317CD10001ED542 /* TestAPIDefinition.swift */,
 				ADE9DF582321E4BA00195774 /* PluginsSpec.swift */,
 				AD00E2D42321F56D00A228F5 /* ServiceProviderSpec.swift */,
 			);
@@ -235,6 +234,7 @@
 		ADE9DF5A2321E55900195774 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				ADA0F2012317CD10001ED542 /* TestAPIDefinition.swift */,
 				ADE9DF5B2321E56900195774 /* TestPlugin.swift */,
 				AD00E2DB2321FB7500A228F5 /* EncoderDecoder.swift */,
 			);
