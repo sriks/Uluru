@@ -55,7 +55,7 @@ public class ServiceProvider<API: APIDefinition>: Service {
         let target = apiDefinitionResolver(api)
         switch requestMapper(target) {
         case let .success(urlRequest):
-            return perform(urlRequest: urlRequest, target: api, completion: completion)
+            return perform(urlRequest: urlRequest, api: api, target: target, completion: completion)
         case let .failure(error):
             completion(.failure(DataErrorResponse(error: error, data: nil, urlResponse: nil)))
             return DummyCancellable()
@@ -63,30 +63,38 @@ public class ServiceProvider<API: APIDefinition>: Service {
     }
 
     private func perform(urlRequest: URLRequest,
-                         target: API,
+                         api: API,
+                         target: APITarget,
                          completion: @escaping DataRequestCompletion) -> ServiceCancellable {
         // Let plugins mutate request
-        let mutatedRequest = plugins.reduce(urlRequest) { $1.mutate($0, target: target) }
+        let mutatedRequest = plugins.reduce(urlRequest) { $1.mutate($0, api: api) }
 
         // Invoke plugins to inform we are about to send the request.
-        self.plugins.forEach { $0.willSend(mutatedRequest, target: target) }
+        self.plugins.forEach { $0.willSend(mutatedRequest, api: api) }
 
         let postRequestPlugins = plugins
         let onRequestCompletion: ServiceExecutionDataTaskCompletion = { (data, urlResponse, error) in
             let responseResult = self.map(data: data, urlResponse: urlResponse, error: error)
 
             // Invoke plugins to inform we did receive result.
-            postRequestPlugins.forEach { $0.didReceive(responseResult, target: target) }
+            postRequestPlugins.forEach { $0.didReceive(responseResult, api: api) }
 
             // Invoke plugins to mutate result before sending off to caller.
-            let mutatedResult = postRequestPlugins.reduce(responseResult) { $1.willFinish($0, target: target) }
+            let mutatedResult = postRequestPlugins.reduce(responseResult) { $1.willFinish($0, api: api) }
 
             // Invoke completion
             completion(mutatedResult)
         }
 
-        // Execute request
-        return serviceExecutor.execute(dataRequest: mutatedRequest, completion: onRequestCompletion)
+        if let placeholderData = api.placeholderData {
+            // Placeholder data
+            let ourResponse = HTTPURLResponse(url: mutatedRequest.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            completion(.success(DataSuccessResponse(data: placeholderData, urlResponse: ourResponse)))
+            return DummyCancellable()
+        } else {
+            // Execute request
+            return serviceExecutor.execute(dataRequest: mutatedRequest, completion: onRequestCompletion)
+        }
     }
 
     private func map(data: Data?, urlResponse: HTTPURLResponse?, error: Error?) -> DataResult {

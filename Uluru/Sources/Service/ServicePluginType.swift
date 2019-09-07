@@ -10,25 +10,25 @@ import Foundation
 
 public protocol ServicePluginType {
     /// Called to process before sending the request
-    func mutate(_ request: URLRequest, target: APIDefinition) -> URLRequest
+    func mutate(_ request: URLRequest, api: APIDefinition) -> URLRequest
     
     /// Called before the request is sent over.
-    func willSend(_ request: URLRequest, target: APIDefinition)
+    func willSend(_ request: URLRequest, api: APIDefinition)
     
     /// Called after receiving response.
-    func didReceive(_ result: DataResult, target: APIDefinition)
+    func didReceive(_ result: DataResult, api: APIDefinition)
 
     /// Called to modify a result before sending it to caller.
-    func willFinish(_ result: DataResult, target: APIDefinition) -> DataResult
+    func willFinish(_ result: DataResult, api: APIDefinition) -> DataResult
 }
 
 // MARK: - Default implementation
 public extension ServicePluginType {
-    func mutate(_ request: URLRequest, target: APIDefinition) -> URLRequest { return request }
+    func mutate(_ request: URLRequest, api: APIDefinition) -> URLRequest { return request }
 
-    func willSend(_ request: URLRequest, target: APIDefinition) {}
+    func willSend(_ request: URLRequest, api: APIDefinition) {}
     
-    func didReceive(_ result: DataResult, target: APIDefinition) {}
+    func didReceive(_ result: DataResult, api: APIDefinition) {}
 
-    func willFinish(_ result: DataResult, target: APIDefinition) -> DataResult { return result }
+    func willFinish(_ result: DataResult, api: APIDefinition) -> DataResult { return result }
 }

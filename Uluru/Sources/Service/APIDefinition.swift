@@ -40,5 +40,10 @@ public protocol APIDefinition: AccessAuthorizable {
     var method: TargetMethod { get }
     var encoding: EncodingStrategy { get }
     var headers: [String: String]? { get }
+    var placeholderData: Data? { get }
+}
+
+extension APIDefinition {
+    var placeholderData: Data? { return nil }
 }
 

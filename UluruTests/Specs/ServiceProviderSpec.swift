@@ -15,6 +15,7 @@ class ServiceProvderSpec: QuickSpec {
             service = ServiceProvider()
         }
 
+        // Custom JSONDecoder
         context("Custom JSONDecoder") {
             var customDecoder: CustomDecoder!
             beforeEach {
@@ -30,6 +31,37 @@ class ServiceProvderSpec: QuickSpec {
                 }
 
                 expect(customDecoder.isInvoked).to( beTrue() )
+            }
+        }
+
+        // MARK: Placeholder data
+        context("Placeholder data") {
+            beforeEach {
+                service = ServiceProvider()
+            }
+
+            it("should return placeholder data when provided") {
+                var decoded: MockPlaceholder!
+                waitUntil { done in
+                    let _  = service.request(.justGetWithPlaceholderData) { (result: Result<MockPlaceholder, Error>) in
+                        decoded = try! result.get()
+                        done()
+                    }
+                }
+
+                expect(decoded).to( equal(MockPlaceholder()) )
+            }
+
+            it("statusCode of placeholder data response is 200") {
+                var dataSuccessResponse: DataSuccessResponse!
+                waitUntil { done in
+                    let _ = service.requestData(.justGetWithPlaceholderData) { result in
+                        dataSuccessResponse = try! result.get()
+                        done()
+                    }
+                }
+
+                expect(dataSuccessResponse.urlResponse.statusCode).to( equal(200) )
             }
         }
 

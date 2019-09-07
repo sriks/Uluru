@@ -19,7 +19,7 @@ class PluginsSpec: QuickSpec {
 
         it("will let plugin mutate request before sending") {
             waitUntil { done in
-                let _ = service.request(TestAPIDefinition.justGet) { (_ result: Result<TestDecodableModel, Error>) in
+                let _ = service.request(.justGet) { (_ result: Result<TestDecodableModel, Error>) in
                     done()
                 }
             }

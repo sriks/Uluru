@@ -9,6 +9,8 @@ enum TestAPIDefinition {
     case postWithBody(body: JSONRepresentable)
     case postBodyWithCustomEncoder(body: JSONRepresentable)
     case postWithoutBody
+
+    case justGetWithPlaceholderData
 }
 
 extension TestAPIDefinition: APIDefinition {
@@ -18,7 +20,7 @@ extension TestAPIDefinition: APIDefinition {
 
     var path: String {
         switch self {
-        case .getWithParams, .justGet:
+        case .getWithParams, .justGet, .justGetWithPlaceholderData:
             return "/get"
 
         case .postWithBody, .postBodyWithCustomEncoder, .postWithoutBody:
@@ -28,7 +30,7 @@ extension TestAPIDefinition: APIDefinition {
 
     var method: TargetMethod {
         switch self {
-        case .getWithParams, .justGet:
+        case .getWithParams, .justGet, .justGetWithPlaceholderData:
             return .GET
 
         case .postWithBody, .postBodyWithCustomEncoder, .postWithoutBody:
@@ -38,7 +40,7 @@ extension TestAPIDefinition: APIDefinition {
 
     var encoding: EncodingStrategy {
         switch self {
-        case .justGet:
+        case .justGet, .justGetWithPlaceholderData:
             return .ignore
             
         case let .getWithParams(params):
@@ -59,9 +61,22 @@ extension TestAPIDefinition: APIDefinition {
         return nil
     }
 
+    var placeholderData: Data? {
+        switch self {
+        case .justGetWithPlaceholderData:
+            return try! JSONEncoder().encode(MockPlaceholder())
+        default:
+            return nil
+        }
+    }
+
     var authorizationType: TypeOfAuthorization {
         return .none
     }
+}
+
+struct MockPlaceholder: Codable, Equatable {
+    let name = "This is placeholder data."
 }
 
 struct TestDecodableModel: Decodable {}
