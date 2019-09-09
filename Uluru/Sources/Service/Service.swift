@@ -20,8 +20,7 @@ public typealias DataResult = Result<DataSuccessResponse, DataErrorResponse>
 public typealias DataRequestCompletion = (_ completion: DataResult) -> Void
 
 // JSON requests
-public typealias APIResult<T: Decodable> = Result<T, Error>
-public typealias APIRequestCompletion<T: Decodable> = (_ completion: APIResult<T>) -> Void
+public typealias APIRequestCompletion<T: Decodable> = (_ result: Result<T, ServiceError>) -> Void
 
 public protocol Service {
     associatedtype API: APIDefinition
@@ -30,7 +29,9 @@ public protocol Service {
                      completion: @escaping DataRequestCompletion) -> ServiceCancellable
 
     func request<T: Decodable>(_ api: API,
+                               expecting: T.Type,
                                completion: @escaping APIRequestCompletion<T>) -> ServiceCancellable
+
 }
 
 

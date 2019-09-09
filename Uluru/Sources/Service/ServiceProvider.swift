@@ -32,19 +32,21 @@ public class ServiceProvider<API: APIDefinition>: Service {
         self.plugins = plugins
     }
 
-    public func request<T>(_ api: API,
-                           completion: @escaping (Result<T, Error>) -> Void) -> ServiceCancellable where T : Decodable {
+    public func request<T: Decodable>(_ api: API,
+                                      expecting: T.Type,
+                                      completion: @escaping APIRequestCompletion<T>) -> ServiceCancellable {
+
         return self.requestData(api) { [weak self] (result) in
             guard let self = self else { return }
             switch result {
             case let .success(successResponse):
                 DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                     guard let self = self else { return }
-                    completion(self.decode(successResponse.data, using: self.jsonDecoder))
+                    completion(self.decode(successResponse, using: self.jsonDecoder))
                 }
                 break
             case let .failure(errorResponse):
-                completion(.failure(errorResponse.error))
+                completion(.failure(.requestFailed(errorResponse)))
                 break
             }
         }
@@ -118,12 +120,12 @@ public class ServiceProvider<API: APIDefinition>: Service {
         }
     }
 
-    private func decode<T: Decodable>(_ data: Data, using decoder: JSONDecoder) -> Result<T, Error> {
+    private func decode<T: Decodable>(_ response: DataSuccessResponse, using decoder: JSONDecoder) -> Result<T, ServiceError> {
         do {
-            let decoded: T = try decoder.decode(T.self, from: data)
+            let decoded: T = try decoder.decode(T.self, from: response.data)
             return .success(decoded)
         } catch {
-            return .failure(error)
+            return .failure(.decodingFailed(response, error))
         }
     }
 }

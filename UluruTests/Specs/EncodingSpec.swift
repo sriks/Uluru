@@ -167,8 +167,8 @@ class EncodingSpec: QuickSpec {
 
             waitUntil(timeout: 1200) { done in
 
-                service.request(.getWithParams(postId: CommentById(postId: 1)), completion: {
-                    (result: Result<[OurDomainModel], Error>) in
+                let _ = service.request(.getWithParams(postId: CommentById(postId: 1)), expecting: [OurDomainModel].self, completion: {
+                    result in
                     switch result {
 
                     case let .success(model):

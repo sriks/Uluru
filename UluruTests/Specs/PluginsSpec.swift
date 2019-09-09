@@ -19,7 +19,7 @@ class PluginsSpec: QuickSpec {
 
         it("will let plugin mutate request before sending") {
             waitUntil { done in
-                let _ = service.request(.justGet) { (_ result: Result<TestDecodableModel, Error>) in
+                let _ = service.request(.justGet, expecting: TestDecodableModel.self) { result in
                     done()
                 }
             }
@@ -30,7 +30,7 @@ class PluginsSpec: QuickSpec {
 
         it("informs plugin that response recieved") {
             waitUntil { done in
-                let _ = service.request(TestAPIDefinition.justGet) { (_ result: Result<TestDecodableModel, Error>) in
+                let _ = service.request(.justGet, expecting: TestDecodableModel.self) { result in
                     done()
                 }
             }
@@ -41,9 +41,9 @@ class PluginsSpec: QuickSpec {
         it("will let plugin to mutate response before invoking completion on caller") {
             var theError: NSError!
             waitUntil { done in
-                let _ = service.request(TestAPIDefinition.justGet) { (_ result: Result<TestDecodableModel, Error>) in
-                    if case let .failure(error) = result {
-                        theError = error as NSError
+                let _ = service.request(TestAPIDefinition.justGet, expecting: TestDecodableModel.self) { result in
+                    if case let .failure(serviceError) = result, case .requestFailed(let errorResponse) = serviceError {
+                        theError = errorResponse.error as NSError
                     }
                     done()
                 }

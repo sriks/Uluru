@@ -25,9 +25,9 @@ class ServiceProvderSpec: QuickSpec {
 
             it("uses the provided json decoder") {
                 waitUntil { done in
-                    let _ = service.request(TestAPIDefinition.justGet) { (result: Result<TestDecodableModel, Error>) in
+                    let _ = service.request(.justGet, expecting: TestDecodableModel.self, completion: { (result) in
                         done()
-                    }
+                    })
                 }
 
                 expect(customDecoder.isInvoked).to( beTrue() )
@@ -43,7 +43,7 @@ class ServiceProvderSpec: QuickSpec {
             it("should return placeholder data when provided") {
                 var decoded: MockPlaceholder!
                 waitUntil { done in
-                    let _  = service.request(.justGetWithPlaceholderData) { (result: Result<MockPlaceholder, Error>) in
+                    let _  = service.request(.justGetWithPlaceholderData, expecting: MockPlaceholder.self) { result in
                         decoded = try! result.get()
                         done()
                     }
