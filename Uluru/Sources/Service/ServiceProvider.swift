@@ -8,6 +8,23 @@ public protocol ResponseParser {
     static func make() -> ResponseParser
 }
 
+public enum StubResponse {
+    /// A network response to indicate the request went through.
+    case network(response: HTTPURLResponse, data: Data)
+
+    /// Network error like failed or timeout.
+    case error(error: NSError)
+
+    /// Continue course with executing a real network request. Use this to conditionally stub a response.
+    case continueCourse
+}
+
+public typealias StubReponseProvider = (_ apiTarget: APITarget) -> StubResponse
+public enum StubStrategy {
+    case dontStub
+    case stub(delay: TimeInterval, response: StubReponseProvider)
+}
+
 public class ServiceProvider<API: APIDefinition>: Service {
 
     // Maps an APIDefinition to a resolved Definition
@@ -22,6 +39,8 @@ public class ServiceProvider<API: APIDefinition>: Service {
 
     public let plugins: [ServicePluginType]
 
+    public let stubStrategy: StubStrategy
+
     public let parser: ResponseParser.Type
 
     private let serviceExecutor: ServiceExecutable
@@ -29,10 +48,12 @@ public class ServiceProvider<API: APIDefinition>: Service {
     public init(apiDefinitionResolver: @escaping APIDefinitionResolver = ServiceProvider.defaultAPIDefinitionResolver,
                 requestMapper: @escaping RequestMapper = ServiceProvider.defaultRequestMapper(),
                 plugins: [ServicePluginType] = [],
+                stubStrategy: StubStrategy = .dontStub,
                 parser: ResponseParser.Type = ServiceProvider.defaultParser,
                 serviceExecutor: ServiceExecutable = ExecutorURLSession.make()) {
         self.apiDefinitionResolver = apiDefinitionResolver
         self.requestMapper = requestMapper
+        self.stubStrategy = stubStrategy
         self.parser = parser
         self.serviceExecutor = serviceExecutor
         self.plugins = plugins
@@ -101,7 +122,45 @@ public class ServiceProvider<API: APIDefinition>: Service {
             return DummyCancellable()
         } else {
             // Execute request
-            return serviceExecutor.execute(dataRequest: mutatedRequest, completion: onRequestCompletion)
+            return execute(target, request: mutatedRequest, stubStrategy: stubStrategy, completion: onRequestCompletion)
+        }
+    }
+
+    private func execute(_ target: APITarget, request: URLRequest, stubStrategy: StubStrategy, completion: @escaping ServiceExecutionDataTaskCompletion) -> ServiceCancellable {
+        switch stubStrategy {
+        case .dontStub:
+            return serviceExecutor.execute(dataRequest: request, completion: completion)
+        case .stub(let delay, let response):
+            executeStub(target, urlRequest: request, delay: delay, responseProvider: response, completion: completion)
+            // Here we have to send a wrapper canceller which works for .continueCourse
+            return DummyCancellable()
+        }
+    }
+
+    private func executeStub(_ target: APITarget,
+                             urlRequest: URLRequest,
+                             delay: TimeInterval,
+                             responseProvider: @escaping StubReponseProvider,
+                             completion: @escaping ServiceExecutionDataTaskCompletion) {
+        let stubInvocation = { [weak self] in
+            guard let self = self else { return }
+            let stubResponse = responseProvider(target)
+            switch stubResponse {
+            case .network(let response, let data):
+                completion(data, response, nil)
+            case .error(let error):
+                completion(nil, nil, error)
+            case .continueCourse:
+                let _ = self.serviceExecutor.execute(dataRequest: urlRequest, completion: completion)
+            }
+        }
+
+        if delay > 0 {
+            DispatchQueue.global(qos: .default).asyncAfter(deadline: .now() + delay) {
+                stubInvocation()
+            }
+        } else {
+            stubInvocation()
         }
     }
 

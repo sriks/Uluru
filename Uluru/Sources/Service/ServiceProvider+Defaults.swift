@@ -8,11 +8,11 @@ public extension ServiceProvider {
         let resolver: APIDefinitionResolver = { apiDef in
             // TODO: use extension on URL to cleanly create this.
             return APITarget(url: apiDef.baseURL.appendingPathComponent(apiDef.path),
-                                         path: apiDef.path,
-                                         method: apiDef.method,
-                                         encoding: apiDef.encoding,
-                                         headers: apiDef.headers,
-                                         authorizationType: apiDef.authorizationType)
+                             path: apiDef.path,
+                             method: apiDef.method,
+                             encoding: apiDef.encoding,
+                             headers: apiDef.headers,
+                             authorizationType: apiDef.authorizationType)
 
         }
         return resolver

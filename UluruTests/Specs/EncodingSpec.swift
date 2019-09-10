@@ -10,11 +10,11 @@ class EncodingSpec: QuickSpec {
 
     func sampleResolvedDefinition(encoding: EncodingStrategy, method: TargetMethod = .GET, headers: [String: String]? = nil) -> APITarget {
         return APITarget(url: URL(string: "https://example.com")!,
-                                     path: "/some-path",
-                                     method: method,
-                                     encoding: encoding,
-                                     headers: headers,
-                                     authorizationType: .none)
+                         path: "/some-path",
+                         method: method,
+                         encoding: encoding,
+                         headers: headers,
+                         authorizationType: .none)
     }
 
     override func spec() {
