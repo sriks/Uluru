@@ -2,13 +2,13 @@
 
 import Foundation
 
-/// Represents a success response hot and fresh right way from the network.
+/// Represents a success response hot and fresh.
 public struct DataSuccessResponse {
     let data: Data
     let urlResponse: HTTPURLResponse
 }
 
-/// Represents a network error response hot and fresh right way from the network.
+/// Represents a network error response hot and fresh.
 public struct DataErrorResponse: Error {
     let error: Error
     let data: Data?

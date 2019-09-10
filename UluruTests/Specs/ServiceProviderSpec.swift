@@ -17,10 +17,9 @@ class ServiceProvderSpec: QuickSpec {
 
         // Custom JSONDecoder
         context("Custom JSONDecoder") {
-            var customDecoder: CustomDecoder!
             beforeEach {
-                customDecoder = CustomDecoder()
-                service = ServiceProvider(jsonDecoder: customDecoder)
+                CustomParser.isInvoked = false
+                service = ServiceProvider(parser: CustomParser.self)
             }
 
             it("uses the provided json decoder") {
@@ -30,7 +29,7 @@ class ServiceProvderSpec: QuickSpec {
                     })
                 }
 
-                expect(customDecoder.isInvoked).to( beTrue() )
+                expect(CustomParser.isInvoked).to( beTrue() )
             }
         }
 

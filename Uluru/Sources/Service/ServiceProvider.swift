@@ -2,6 +2,12 @@
 
 import Foundation
 
+/// A JSON response parser.
+public protocol ResponseParser {
+    func parse<T: Decodable>(_ response: DataSuccessResponse) throws -> Result<T, ServiceError>
+    init()
+}
+
 public class ServiceProvider<API: APIDefinition>: Service {
 
     // Maps an APIDefinition to a resolved Definition
@@ -16,18 +22,18 @@ public class ServiceProvider<API: APIDefinition>: Service {
 
     public let plugins: [ServicePluginType]
 
-    public let jsonDecoder: JSONDecoder
+    public let parser: ResponseParser.Type
 
     private let serviceExecutor: ServiceExecutable
 
     public init(apiDefinitionResolver: @escaping APIDefinitionResolver = ServiceProvider.defaultAPIDefinitionResolver,
                 requestMapper: @escaping RequestMapper = ServiceProvider.defaultRequestMapper(),
                 plugins: [ServicePluginType] = [],
-                jsonDecoder: JSONDecoder = JSONDecoder(),
+                parser: ResponseParser.Type = ServiceProvider.defaultParser,
                 serviceExecutor: ServiceExecutable = ExecutorURLSession.make()) {
         self.apiDefinitionResolver = apiDefinitionResolver
         self.requestMapper = requestMapper
-        self.jsonDecoder = jsonDecoder
+        self.parser = parser
         self.serviceExecutor = serviceExecutor
         self.plugins = plugins
     }
@@ -42,7 +48,7 @@ public class ServiceProvider<API: APIDefinition>: Service {
             case let .success(successResponse):
                 DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                     guard let self = self else { return }
-                    completion(self.decode(successResponse, using: self.jsonDecoder))
+                    completion(self.decode(successResponse, using: self.parser.init()))
                 }
                 break
             case let .failure(errorResponse):
@@ -120,10 +126,9 @@ public class ServiceProvider<API: APIDefinition>: Service {
         }
     }
 
-    private func decode<T: Decodable>(_ response: DataSuccessResponse, using decoder: JSONDecoder) -> Result<T, ServiceError> {
+    private func decode<T: Decodable>(_ response: DataSuccessResponse, using parser: ResponseParser) -> Result<T, ServiceError> {
         do {
-            let decoded: T = try decoder.decode(T.self, from: response.data)
-            return .success(decoded)
+            return try parser.parse(response)
         } catch {
             return .failure(.decodingFailed(response, error))
         }

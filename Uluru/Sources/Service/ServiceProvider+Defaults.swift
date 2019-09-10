@@ -32,6 +32,13 @@ public extension ServiceProvider {
 
 }
 
+public extension ServiceProvider {
+    // Essentially a pass through parser using vanilla JSONEncoder. 
+    static var defaultParser: ResponseParser.Type {
+        return DefaultJSONDecoder.self
+    }
+}
+
 extension APITarget {
     func urlRequest() throws -> URLRequest {
         var ourRequest = URLRequest(url: url)
@@ -68,3 +75,16 @@ public extension JSONRepresentable where Self: Encodable {
     }
 }
 
+public class DefaultJSONDecoder: ResponseParser {
+    public required init() {}
+
+    public func parse<T>(_ response: DataSuccessResponse) throws -> Result<T, ServiceError> where T : Decodable {
+        do {
+            let decoder = JSONDecoder()
+            let decoded: T = try decoder.decode(T.self, from: response.data)
+            return .success(decoded)
+        } catch {
+            return .failure(.decodingFailed(response, error))
+        }
+    }
+}
