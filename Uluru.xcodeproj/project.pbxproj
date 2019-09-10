@@ -15,7 +15,6 @@
 		AD00E2DF2326326000A228F5 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00E2DE2326326000A228F5 /* ServiceError.swift */; };
 		AD804B0D230FA8130033C7B0 /* Uluru.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD804B03230FA8130033C7B0 /* Uluru.framework */; };
 		AD804B14230FA8130033C7B0 /* Uluru.h in Headers */ = {isa = PBXBuildFile; fileRef = AD804B06230FA8130033C7B0 /* Uluru.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ADA0F1DC2314C213001ED542 /* AHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1DB2314C213001ED542 /* AHeader.swift */; };
 		ADA0F1EA2314C860001ED542 /* ServiceExecutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1E82314C860001ED542 /* ServiceExecutable.swift */; };
 		ADA0F1EB2314C860001ED542 /* ExecutorURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1E92314C860001ED542 /* ExecutorURLSession.swift */; };
 		ADA0F1F12314CC96001ED542 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1EC2314CC96001ED542 /* Service.swift */; };
@@ -67,7 +66,6 @@
 		AD804B07230FA8130033C7B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD804B0C230FA8130033C7B0 /* UluruTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UluruTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD804B13230FA8130033C7B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ADA0F1DB2314C213001ED542 /* AHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AHeader.swift; sourceTree = "<group>"; };
 		ADA0F1DE2314C607001ED542 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		ADA0F1DF2314C607001ED542 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		ADA0F1E82314C860001ED542 /* ServiceExecutable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceExecutable.swift; sourceTree = "<group>"; };
@@ -155,7 +153,6 @@
 				ADA0F1E52314C804001ED542 /* Sources */,
 				AD804B06230FA8130033C7B0 /* Uluru.h */,
 				AD804B07230FA8130033C7B0 /* Info.plist */,
-				ADA0F1DB2314C213001ED542 /* AHeader.swift */,
 			);
 			path = Uluru;
 			sourceTree = "<group>";
@@ -425,7 +422,6 @@
 				ADA0F1F32314CC96001ED542 /* ServiceProvider.swift in Sources */,
 				ADA0F1F52314CC96001ED542 /* APIDefinition.swift in Sources */,
 				ADA0F1F42314CC96001ED542 /* AccessAuthorizable.swift in Sources */,
-				ADA0F1DC2314C213001ED542 /* AHeader.swift in Sources */,
 				ADA0F1F22314CC96001ED542 /* ServicePluginType.swift in Sources */,
 				ADA0F1F12314CC96001ED542 /* Service.swift in Sources */,
 				ADA0F1EA2314C860001ED542 /* ServiceExecutable.swift in Sources */,

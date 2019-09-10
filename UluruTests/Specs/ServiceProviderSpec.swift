@@ -63,7 +63,7 @@ class ServiceProvderSpec: QuickSpec {
         }
 
         // MARK: Stub Strategies
-        fcontext("Stub Strategies") {
+        context("Stub Strategies") {
             var service: ServiceProvider<TestAPIDefinition>!
 
             it("should match with provided stub response") {
