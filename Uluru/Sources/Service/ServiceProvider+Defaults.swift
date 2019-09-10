@@ -76,7 +76,9 @@ public extension JSONRepresentable where Self: Encodable {
 }
 
 public class DefaultJSONDecoder: ResponseParser {
-    public required init() {}
+    public static func make() -> ResponseParser {
+        return DefaultJSONDecoder()
+    }
 
     public func parse<T>(_ response: DataSuccessResponse) throws -> Result<T, ServiceError> where T : Decodable {
         do {

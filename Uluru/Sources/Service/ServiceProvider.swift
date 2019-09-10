@@ -5,7 +5,7 @@ import Foundation
 /// A JSON response parser.
 public protocol ResponseParser {
     func parse<T: Decodable>(_ response: DataSuccessResponse) throws -> Result<T, ServiceError>
-    init()
+    static func make() -> ResponseParser
 }
 
 public class ServiceProvider<API: APIDefinition>: Service {
@@ -48,7 +48,7 @@ public class ServiceProvider<API: APIDefinition>: Service {
             case let .success(successResponse):
                 DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                     guard let self = self else { return }
-                    completion(self.decode(successResponse, using: self.parser.init()))
+                    completion(self.decode(successResponse, using: self.parser.make()))
                 }
                 break
             case let .failure(errorResponse):

@@ -9,7 +9,6 @@ enum TestAPIDefinition {
     case postWithBody(body: JSONRepresentable)
     case postBodyWithCustomEncoder(body: JSONRepresentable)
     case postWithoutBody
-
     case justGetWithPlaceholderData
 }
 
