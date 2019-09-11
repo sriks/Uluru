@@ -50,27 +50,6 @@ extension URLRequest {
     }
 }
 
-extension URLRequest {
-    @discardableResult
-    mutating func applyingHTTPMethod(_ theHTTPMethod: String) -> URLRequest {
-        httpMethod = theHTTPMethod
-        return self
-    }
-
-    @discardableResult
-    mutating func addingApplicationJSONHeader() -> URLRequest {
-        addValue("application/json", forHTTPHeaderField: "Content-Type")
-        return self
-    }
-
-    @discardableResult
-    mutating func adding(value: String, headerField: String) -> URLRequest {
-        addValue(value, forHTTPHeaderField: headerField)
-        return self
-    }
-
-}
-
 extension EncodingStrategy {
     var expectsApplicationJSONHeader: Bool {
         switch self {

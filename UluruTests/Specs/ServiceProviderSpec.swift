@@ -1,7 +1,6 @@
 //Copyright © 2019 Tabcorp. All rights reserved.
 
 import Foundation
-import Foundation
 import Quick
 import Nimble
 @testable import Uluru

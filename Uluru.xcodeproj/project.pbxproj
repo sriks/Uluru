@@ -13,6 +13,8 @@
 		AD00E2DA2321FA5000A228F5 /* TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00E2D92321FA5000A228F5 /* TestHelper.swift */; };
 		AD00E2DC2321FB7500A228F5 /* EncoderDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00E2DB2321FB7500A228F5 /* EncoderDecoder.swift */; };
 		AD00E2DF2326326000A228F5 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00E2DE2326326000A228F5 /* ServiceError.swift */; };
+		AD036C8223287A230057FBB6 /* AuthenticationPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD036C8123287A230057FBB6 /* AuthenticationPlugin.swift */; };
+		AD036C8423288B1B0057FBB6 /* AuthenticationPluginSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD036C8323288B1B0057FBB6 /* AuthenticationPluginSpec.swift */; };
 		AD804B0D230FA8130033C7B0 /* Uluru.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD804B03230FA8130033C7B0 /* Uluru.framework */; };
 		AD804B14230FA8130033C7B0 /* Uluru.h in Headers */ = {isa = PBXBuildFile; fileRef = AD804B06230FA8130033C7B0 /* Uluru.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ADA0F1EA2314C860001ED542 /* ServiceExecutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1E82314C860001ED542 /* ServiceExecutable.swift */; };
@@ -61,6 +63,8 @@
 		AD00E2D92321FA5000A228F5 /* TestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelper.swift; sourceTree = "<group>"; };
 		AD00E2DB2321FB7500A228F5 /* EncoderDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncoderDecoder.swift; sourceTree = "<group>"; };
 		AD00E2DE2326326000A228F5 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
+		AD036C8123287A230057FBB6 /* AuthenticationPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationPlugin.swift; sourceTree = "<group>"; };
+		AD036C8323288B1B0057FBB6 /* AuthenticationPluginSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationPluginSpec.swift; sourceTree = "<group>"; };
 		AD804B03230FA8130033C7B0 /* Uluru.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Uluru.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD804B06230FA8130033C7B0 /* Uluru.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Uluru.h; sourceTree = "<group>"; };
 		AD804B07230FA8130033C7B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -125,6 +129,14 @@
 				AD00E2D92321FA5000A228F5 /* TestHelper.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		AD036C80232879FE0057FBB6 /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				AD036C8123287A230057FBB6 /* AuthenticationPlugin.swift */,
+			);
+			path = Plugins;
 			sourceTree = "<group>";
 		};
 		AD804AF9230FA8130033C7B0 = {
@@ -198,6 +210,7 @@
 		ADA0F1E72314C819001ED542 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				AD036C80232879FE0057FBB6 /* Plugins */,
 				ADA0F20023179F32001ED542 /* URLRequest */,
 				ADA0F1EF2314CC96001ED542 /* AccessAuthorizable.swift */,
 				ADA0F1F02314CC96001ED542 /* APIDefinition.swift */,
@@ -219,6 +232,7 @@
 				ADA0F1F82314D173001ED542 /* EncodingSpec.swift */,
 				ADE9DF582321E4BA00195774 /* PluginsSpec.swift */,
 				AD00E2D42321F56D00A228F5 /* ServiceProviderSpec.swift */,
+				AD036C8323288B1B0057FBB6 /* AuthenticationPluginSpec.swift */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -418,6 +432,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD036C8223287A230057FBB6 /* AuthenticationPlugin.swift in Sources */,
 				AD00E2DF2326326000A228F5 /* ServiceError.swift in Sources */,
 				ADA0F1F32314CC96001ED542 /* ServiceProvider.swift in Sources */,
 				ADA0F1F52314CC96001ED542 /* APIDefinition.swift in Sources */,
@@ -442,6 +457,7 @@
 				ADE9DF592321E4BA00195774 /* PluginsSpec.swift in Sources */,
 				AD00E2DA2321FA5000A228F5 /* TestHelper.swift in Sources */,
 				ADA0F2022317CD10001ED542 /* PostmanEcho.swift in Sources */,
+				AD036C8423288B1B0057FBB6 /* AuthenticationPluginSpec.swift in Sources */,
 				ADE9DF5C2321E56900195774 /* TestPlugin.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

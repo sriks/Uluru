@@ -13,8 +13,7 @@ class EncodingSpec: QuickSpec {
                          path: "/some-path",
                          method: method,
                          encoding: encoding,
-                         headers: headers,
-                         authorizationType: .none)
+                         headers: headers)
     }
 
     override func spec() {
@@ -232,7 +231,7 @@ extension SampleAPI: APIDefinition {
         return nil
     }
 
-    var authorizationType: TypeOfAuthorization {
+    var authorizationType: AuthenticationStrategy {
         return .none
     }
 

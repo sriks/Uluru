@@ -14,8 +14,6 @@ public struct APITarget {
     public let encoding: EncodingStrategy
 
     public var headers: [String : String]?
-
-    public let authorizationType: TypeOfAuthorization
 }
 
 extension APITarget {

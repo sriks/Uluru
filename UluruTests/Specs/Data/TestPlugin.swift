@@ -10,7 +10,7 @@ class TestPlugin: ServicePluginType {
 
     func mutate(_ request: URLRequest, api: APIDefinition) -> URLRequest {
         var ourRequest = request
-        ourRequest.adding(value: "godzilla", headerField: "animal")
+        ourRequest.addValue("godzilla", forHTTPHeaderField: "animal")
         return ourRequest
     }
 

@@ -34,7 +34,7 @@ public enum EncodingStrategy {
     case jsonBodyUsingCustomEncoder(parameters: JSONRepresentable, encoder: JSONEncoder)
 }
 
-public protocol APIDefinition: AccessAuthorizable {
+public protocol APIDefinition {
     var baseURL: URL { get }
     var path: String { get }
     var method: TargetMethod { get }

@@ -11,8 +11,7 @@ public extension ServiceProvider {
                              path: apiDef.path,
                              method: apiDef.method,
                              encoding: apiDef.encoding,
-                             headers: apiDef.headers,
-                             authorizationType: apiDef.authorizationType)
+                             headers: apiDef.headers)
 
         }
         return resolver
@@ -43,18 +42,18 @@ extension APITarget {
     func urlRequest() throws -> URLRequest {
         var ourRequest = URLRequest(url: url)
         try ourRequest.encoded(encoding)
-        ourRequest.applyingHTTPMethod(method.methodName)
+        ourRequest.httpMethod = method.methodName
 
         // Firstly apply supplied headers
         if let suppliedHeaders = headers {
             suppliedHeaders.forEach { key, value in
-                ourRequest.adding(value: value, headerField: key)
+                ourRequest.addValue(value, forHTTPHeaderField: key)
             }
         }
 
         // Then apply expected json header
         if encoding.expectsApplicationJSONHeader, headers?["Content-Type"] == nil {
-            ourRequest.adding(value: "application/json", headerField: "Content-Type")
+            ourRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         }
         return ourRequest
     }
