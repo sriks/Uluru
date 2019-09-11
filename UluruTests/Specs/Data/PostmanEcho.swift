@@ -3,7 +3,7 @@
 import Foundation
 @testable import Uluru
 
-enum TestAPIDefinition {
+enum PostmanEcho {
     case justGet
     case getWithParams(params: JSONRepresentable)
     case postWithBody(body: JSONRepresentable)
@@ -12,7 +12,7 @@ enum TestAPIDefinition {
     case justGetWithPlaceholderData
 }
 
-extension TestAPIDefinition: APIDefinition {
+extension PostmanEcho: APIDefinition {
     var baseURL: URL {
         return URL(string: "https://postman-echo.com")!
     }
@@ -78,4 +78,4 @@ struct MockPlaceholder: Codable, Equatable {
     let name = "This is placeholder data."
 }
 
-struct TestDecodableModel: Decodable {}
+struct EmptyDecodableModel: Decodable {}

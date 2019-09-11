@@ -19,7 +19,7 @@ class EncodingSpec: QuickSpec {
 
     override func spec() {
 
-        var requestMapper: ServiceProvider<TestAPIDefinition>.RequestMapper  { return ServiceProvider<TestAPIDefinition>.defaultRequestMapper() }
+        var requestMapper: ServiceProvider<PostmanEcho>.RequestMapper  { return ServiceProvider<PostmanEcho>.defaultRequestMapper() }
 
         context("when encoding strategy is .queryParameters") {
             

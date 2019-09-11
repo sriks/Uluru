@@ -9,7 +9,7 @@ import Nimble
 class PluginsSpec: QuickSpec {
     override func spec() {
         TestHelper.markWaitExpecationAsAPIRequest()
-        var service: ServiceProvider<TestAPIDefinition>!
+        var service: ServiceProvider<PostmanEcho>!
         var plugin: TestPlugin!
 
         beforeEach {
@@ -19,7 +19,7 @@ class PluginsSpec: QuickSpec {
 
         it("will let plugin mutate request before sending") {
             waitUntil { done in
-                let _ = service.request(.justGet, expecting: TestDecodableModel.self) { result in
+                let _ = service.request(.justGet, expecting: EmptyDecodableModel.self) { result in
                     done()
                 }
             }
@@ -30,7 +30,7 @@ class PluginsSpec: QuickSpec {
 
         it("informs plugin that response recieved") {
             waitUntil { done in
-                let _ = service.request(.justGet, expecting: TestDecodableModel.self) { result in
+                let _ = service.request(.justGet, expecting: EmptyDecodableModel.self) { result in
                     done()
                 }
             }
@@ -41,7 +41,7 @@ class PluginsSpec: QuickSpec {
         it("will let plugin to mutate response before invoking completion on caller") {
             var theError: NSError!
             waitUntil { done in
-                let _ = service.request(TestAPIDefinition.justGet, expecting: TestDecodableModel.self) { result in
+                let _ = service.request(PostmanEcho.justGet, expecting: EmptyDecodableModel.self) { result in
                     if case let .failure(serviceError) = result, case .requestFailed(let errorResponse) = serviceError {
                         theError = errorResponse.error as NSError
                     }

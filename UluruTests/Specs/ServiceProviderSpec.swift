@@ -12,7 +12,7 @@ class ServiceProvderSpec: QuickSpec {
 
         // MARK: Custom JSONDecoder
         context("Custom JSONDecoder") {
-            var service: ServiceProvider<TestAPIDefinition>!
+            var service: ServiceProvider<PostmanEcho>!
             beforeEach {
                 CustomParser.isInvoked = false
                 service = ServiceProvider(parser: CustomParser.self)
@@ -20,7 +20,7 @@ class ServiceProvderSpec: QuickSpec {
 
             it("uses the provided json decoder") {
                 waitUntil { done in
-                    let _ = service.request(.justGet, expecting: TestDecodableModel.self, completion: { (result) in
+                    let _ = service.request(.justGet, expecting: EmptyDecodableModel.self, completion: { (result) in
                         done()
                     })
                 }
@@ -31,7 +31,7 @@ class ServiceProvderSpec: QuickSpec {
 
         // MARK: Placeholder data
         context("Placeholder data") {
-            var service: ServiceProvider<TestAPIDefinition>!
+            var service: ServiceProvider<PostmanEcho>!
 
             beforeEach {
                 service = ServiceProvider()
@@ -64,7 +64,7 @@ class ServiceProvderSpec: QuickSpec {
 
         // MARK: Stub Strategies
         context("Stub Strategies") {
-            var service: ServiceProvider<TestAPIDefinition>!
+            var service: ServiceProvider<PostmanEcho>!
 
             it("should match with provided stub response") {
                 struct StubSuccessResponse: Codable, Equatable, JSONRepresentable {
@@ -91,7 +91,7 @@ class ServiceProvderSpec: QuickSpec {
                 service = ServiceProvider(stubStrategy: stubStrategy)
                 var expectedError: NSError?
                 waitUntil { done in
-                    let _ = service.request(.justGet, expecting: TestDecodableModel.self, completion: { (result) in
+                    let _ = service.request(.justGet, expecting: EmptyDecodableModel.self, completion: { (result) in
                         if case .failure(let error) = result, case .requestFailed(let networkError) = error {
                             expectedError = networkError.error as NSError
                         }
@@ -110,9 +110,9 @@ class ServiceProvderSpec: QuickSpec {
                 })
 
                 service = ServiceProvider(stubStrategy: stubStrategy)
-                var model: TestDecodableModel?
+                var model: EmptyDecodableModel?
                 waitUntil { done in
-                    let _ = service.request(.justGet, expecting: TestDecodableModel.self, completion: { (result) in
+                    let _ = service.request(.justGet, expecting: EmptyDecodableModel.self, completion: { (result) in
                         model = try! result.get()
                         done()
                     })
@@ -124,9 +124,9 @@ class ServiceProvderSpec: QuickSpec {
 
             it("should make real network call when strategy is .dontStub") {
                 service = ServiceProvider(stubStrategy: .dontStub)
-                var model: TestDecodableModel?
+                var model: EmptyDecodableModel?
                 waitUntil { done in
-                    let _ = service.request(.justGet, expecting: TestDecodableModel.self, completion: { (result) in
+                    let _ = service.request(.justGet, expecting: EmptyDecodableModel.self, completion: { (result) in
                         model = try! result.get()
                         done()
                     })

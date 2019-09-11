@@ -25,7 +25,7 @@
 		ADA0F1F92314D173001ED542 /* EncodingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1F82314D173001ED542 /* EncodingSpec.swift */; };
 		ADA0F1FB2314D611001ED542 /* ServiceProvider+Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1FA2314D611001ED542 /* ServiceProvider+Defaults.swift */; };
 		ADA0F1FD231634FC001ED542 /* URLRequest+Encoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1FC231634FC001ED542 /* URLRequest+Encoding.swift */; };
-		ADA0F2022317CD10001ED542 /* TestAPIDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F2012317CD10001ED542 /* TestAPIDefinition.swift */; };
+		ADA0F2022317CD10001ED542 /* PostmanEcho.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F2012317CD10001ED542 /* PostmanEcho.swift */; };
 		ADA0F2042317D9CA001ED542 /* APITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F2032317D9CA001ED542 /* APITarget.swift */; };
 		ADE9DF592321E4BA00195774 /* PluginsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE9DF582321E4BA00195774 /* PluginsSpec.swift */; };
 		ADE9DF5C2321E56900195774 /* TestPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE9DF5B2321E56900195774 /* TestPlugin.swift */; };
@@ -78,7 +78,7 @@
 		ADA0F1F82314D173001ED542 /* EncodingSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodingSpec.swift; sourceTree = "<group>"; };
 		ADA0F1FA2314D611001ED542 /* ServiceProvider+Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ServiceProvider+Defaults.swift"; sourceTree = "<group>"; };
 		ADA0F1FC231634FC001ED542 /* URLRequest+Encoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Encoding.swift"; sourceTree = "<group>"; };
-		ADA0F2012317CD10001ED542 /* TestAPIDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAPIDefinition.swift; sourceTree = "<group>"; };
+		ADA0F2012317CD10001ED542 /* PostmanEcho.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostmanEcho.swift; sourceTree = "<group>"; };
 		ADA0F2032317D9CA001ED542 /* APITarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITarget.swift; sourceTree = "<group>"; };
 		ADE9DF582321E4BA00195774 /* PluginsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginsSpec.swift; sourceTree = "<group>"; };
 		ADE9DF5B2321E56900195774 /* TestPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPlugin.swift; sourceTree = "<group>"; };
@@ -234,7 +234,7 @@
 		ADE9DF5A2321E55900195774 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				ADA0F2012317CD10001ED542 /* TestAPIDefinition.swift */,
+				ADA0F2012317CD10001ED542 /* PostmanEcho.swift */,
 				ADE9DF5B2321E56900195774 /* TestPlugin.swift */,
 				AD00E2DB2321FB7500A228F5 /* EncoderDecoder.swift */,
 			);
@@ -441,7 +441,7 @@
 				AD00E2D52321F56D00A228F5 /* ServiceProviderSpec.swift in Sources */,
 				ADE9DF592321E4BA00195774 /* PluginsSpec.swift in Sources */,
 				AD00E2DA2321FA5000A228F5 /* TestHelper.swift in Sources */,
-				ADA0F2022317CD10001ED542 /* TestAPIDefinition.swift in Sources */,
+				ADA0F2022317CD10001ED542 /* PostmanEcho.swift in Sources */,
 				ADE9DF5C2321E56900195774 /* TestPlugin.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
