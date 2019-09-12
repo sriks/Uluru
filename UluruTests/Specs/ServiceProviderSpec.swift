@@ -134,7 +134,45 @@ class ServiceProvderSpec: QuickSpec {
                 expect(model).notTo( beNil() )
             }
         }
-
     }
 }
 
+class MockCompletionStrategyProvider: RequestCompletionStrategyProvidable {
+    private(set) var isInvoked: Bool = false
+    let fixed: RequestCompletionStrategy
+
+    init(_ fixed: RequestCompletionStrategy) {
+        self.fixed = fixed
+    }
+
+    func shouldFinish(_ result: DataResult, api: APIDefinition, decision: @escaping ShouldFinishDecision) {
+        isInvoked = true
+        decision(fixed)
+    }
+}
+
+class MockRetryCompletionStrategyProvider: RequestCompletionStrategyProvidable {
+    private(set) var isInvoked: Bool = false
+    let maxRetries: Int
+    let delay: TimeInterval
+    private(set) var attemptedRetries: Int = 0
+
+    init(maxRetries: Int, delay: TimeInterval = 0) {
+        self.maxRetries = maxRetries
+        self.delay = delay
+    }
+
+    func shouldFinish(_ result: DataResult, api: APIDefinition, decision: @escaping ShouldFinishDecision) {
+        isInvoked = true
+        guard attemptedRetries < maxRetries else {
+            decision(.goahead)
+            return
+        }
+
+        DispatchQueue.global(qos: .default).asyncAfter(deadline: .now() + delay) { [weak self] in
+            guard let self = self else { return }
+            decision(.retry)
+            self.attemptedRetries += 1
+        }
+    }
+}

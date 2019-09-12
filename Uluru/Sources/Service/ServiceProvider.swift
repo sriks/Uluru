@@ -25,6 +25,17 @@ public enum StubStrategy {
     case stub(delay: TimeInterval, response: StubReponseProvider)
 }
 
+
+public enum RequestCompletionStrategy {
+    case goahead
+    case retry
+}
+
+public typealias ShouldFinishDecision = (_ decision: RequestCompletionStrategy) -> Void
+public protocol RequestCompletionStrategyProvidable {
+    func shouldFinish(_ result: DataResult, api: APIDefinition, decision: @escaping ShouldFinishDecision)
+}
+
 public class ServiceProvider<API: APIDefinition>: Service {
 
     // Maps an APIDefinition to a resolved Definition
@@ -43,6 +54,8 @@ public class ServiceProvider<API: APIDefinition>: Service {
 
     public let parser: ResponseParser.Type
 
+    public let completionStrategy: RequestCompletionStrategyProvidable
+
     private let serviceExecutor: ServiceExecutable
 
     public init(apiDefinitionResolver: @escaping APIDefinitionResolver = ServiceProvider.defaultAPIDefinitionResolver,
@@ -50,11 +63,13 @@ public class ServiceProvider<API: APIDefinition>: Service {
                 plugins: [ServicePluginType] = [],
                 stubStrategy: StubStrategy = .dontStub,
                 parser: ResponseParser.Type = ServiceProvider.defaultParser,
+                completionStrategy: RequestCompletionStrategyProvidable = ServiceProvider.defaultCompletionStrategyProvider(),
                 serviceExecutor: ServiceExecutable = ExecutorURLSession.make()) {
         self.apiDefinitionResolver = apiDefinitionResolver
         self.requestMapper = requestMapper
         self.stubStrategy = stubStrategy
         self.parser = parser
+        self.completionStrategy = completionStrategy
         self.serviceExecutor = serviceExecutor
         self.plugins = plugins
     }
@@ -99,20 +114,34 @@ public class ServiceProvider<API: APIDefinition>: Service {
         let mutatedRequest = plugins.reduce(urlRequest) { $1.mutate($0, api: api) }
 
         // Invoke plugins to inform we are about to send the request.
-        self.plugins.forEach { $0.willSend(mutatedRequest, api: api) }
+        self.plugins.forEach { $0.willSubmit(mutatedRequest, api: api) }
 
         let postRequestPlugins = plugins
-        let onRequestCompletion: ServiceExecutionDataTaskCompletion = { (data, urlResponse, error) in
+        let onRequestCompletion: ServiceExecutionDataTaskCompletion = { [weak self] (data, urlResponse, error) in
+            guard let self = self else { return }
+
             let responseResult = self.map(data: data, urlResponse: urlResponse, error: error)
 
             // Invoke plugins to inform we did receive result.
             postRequestPlugins.forEach { $0.didReceive(responseResult, api: api) }
 
-            // Invoke plugins to mutate result before sending off to caller.
-            let mutatedResult = postRequestPlugins.reduce(responseResult) { $1.willFinish($0, api: api) }
+            // Invoke plugins to mutate receieved result.
+            let mutatedResult = postRequestPlugins.reduce(responseResult) { $1.mutate($0, api: api) }
 
-            // Invoke completion
-            completion(mutatedResult)
+            // Invoke decision maker
+            self.completionStrategy.shouldFinish(mutatedResult, api: api, decision: { [weak self] decision in
+                guard let self = self else { return }
+
+                switch decision {
+                case .goahead:
+                    // Invoke completion
+                    completion(mutatedResult)
+                case .retry:
+                    // Retry the request
+                    // TODO: We need to keep a hold of cancellable to resuse it.
+                    let _ = self.perform(urlRequest: urlRequest, api: api, target: target, completion: completion)
+                }
+            })
         }
 
         if let placeholderData = api.placeholderData {

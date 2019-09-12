@@ -10,10 +10,10 @@ class PluginsSpec: QuickSpec {
     override func spec() {
         TestHelper.markWaitExpecationAsAPIRequest()
         var service: ServiceProvider<PostmanEcho>!
-        var plugin: TestPlugin!
+        var plugin: TestErrorPlugin!
 
         beforeEach {
-            plugin = TestPlugin()
+            plugin = TestErrorPlugin()
             service = ServiceProvider(plugins: [plugin])
         }
 
@@ -38,7 +38,7 @@ class PluginsSpec: QuickSpec {
             expect(plugin.didRecieveResponse).to( beTrue() )
         }
 
-        it("will let plugin to mutate response before invoking completion on caller") {
+        it("will let plugin to mutate response") {
             var theError: NSError!
             waitUntil { done in
                 let _ = service.request(PostmanEcho.justGet, expecting: EmptyDecodableModel.self) { result in

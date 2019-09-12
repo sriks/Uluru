@@ -13,22 +13,22 @@ public protocol ServicePluginType {
     func mutate(_ request: URLRequest, api: APIDefinition) -> URLRequest
     
     /// Called before the request is sent over.
-    func willSend(_ request: URLRequest, api: APIDefinition)
+    func willSubmit(_ request: URLRequest, api: APIDefinition)
     
     /// Called after receiving response.
     func didReceive(_ result: DataResult, api: APIDefinition)
 
     /// Called to modify a result before sending it to caller.
-    func willFinish(_ result: DataResult, api: APIDefinition) -> DataResult
+    func mutate(_ result: DataResult, api: APIDefinition) -> DataResult
 }
 
 // MARK: - Default implementation
 public extension ServicePluginType {
     func mutate(_ request: URLRequest, api: APIDefinition) -> URLRequest { return request }
 
-    func willSend(_ request: URLRequest, api: APIDefinition) {}
+    func willSubmit(_ request: URLRequest, api: APIDefinition) {}
     
     func didReceive(_ result: DataResult, api: APIDefinition) {}
 
-    func willFinish(_ result: DataResult, api: APIDefinition) -> DataResult { return result }
+    func mutate(_ result: DataResult, api: APIDefinition) -> DataResult { return result }
 }

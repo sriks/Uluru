@@ -15,6 +15,8 @@
 		AD00E2DF2326326000A228F5 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00E2DE2326326000A228F5 /* ServiceError.swift */; };
 		AD036C8223287A230057FBB6 /* AuthenticationPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD036C8123287A230057FBB6 /* AuthenticationPlugin.swift */; };
 		AD036C8423288B1B0057FBB6 /* AuthenticationPluginSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD036C8323288B1B0057FBB6 /* AuthenticationPluginSpec.swift */; };
+		AD394C842328F3C800BEA019 /* CompletionStrategySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD394C832328F3C800BEA019 /* CompletionStrategySpec.swift */; };
+		AD394C862329C65700BEA019 /* TestPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD394C852329C65700BEA019 /* TestPlugin.swift */; };
 		AD804B0D230FA8130033C7B0 /* Uluru.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD804B03230FA8130033C7B0 /* Uluru.framework */; };
 		AD804B14230FA8130033C7B0 /* Uluru.h in Headers */ = {isa = PBXBuildFile; fileRef = AD804B06230FA8130033C7B0 /* Uluru.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ADA0F1EA2314C860001ED542 /* ServiceExecutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1E82314C860001ED542 /* ServiceExecutable.swift */; };
@@ -30,7 +32,6 @@
 		ADA0F2022317CD10001ED542 /* PostmanEcho.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F2012317CD10001ED542 /* PostmanEcho.swift */; };
 		ADA0F2042317D9CA001ED542 /* APITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F2032317D9CA001ED542 /* APITarget.swift */; };
 		ADE9DF592321E4BA00195774 /* PluginsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE9DF582321E4BA00195774 /* PluginsSpec.swift */; };
-		ADE9DF5C2321E56900195774 /* TestPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE9DF5B2321E56900195774 /* TestPlugin.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,8 @@
 		AD00E2DE2326326000A228F5 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
 		AD036C8123287A230057FBB6 /* AuthenticationPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationPlugin.swift; sourceTree = "<group>"; };
 		AD036C8323288B1B0057FBB6 /* AuthenticationPluginSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationPluginSpec.swift; sourceTree = "<group>"; };
+		AD394C832328F3C800BEA019 /* CompletionStrategySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionStrategySpec.swift; sourceTree = "<group>"; };
+		AD394C852329C65700BEA019 /* TestPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestPlugin.swift; sourceTree = "<group>"; };
 		AD804B03230FA8130033C7B0 /* Uluru.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Uluru.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD804B06230FA8130033C7B0 /* Uluru.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Uluru.h; sourceTree = "<group>"; };
 		AD804B07230FA8130033C7B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -85,7 +88,6 @@
 		ADA0F2012317CD10001ED542 /* PostmanEcho.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostmanEcho.swift; sourceTree = "<group>"; };
 		ADA0F2032317D9CA001ED542 /* APITarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITarget.swift; sourceTree = "<group>"; };
 		ADE9DF582321E4BA00195774 /* PluginsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginsSpec.swift; sourceTree = "<group>"; };
-		ADE9DF5B2321E56900195774 /* TestPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPlugin.swift; sourceTree = "<group>"; };
 		BA2134552B8F8991A0A4FC2D /* Pods_Uluru.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Uluru.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAD080F4B49C9556E4CEE1FD /* Pods-Uluru.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uluru.debug.xcconfig"; path = "Target Support Files/Pods-Uluru/Pods-Uluru.debug.xcconfig"; sourceTree = "<group>"; };
 		D306E63C7298CF6C3536AE70 /* Pods_UluruTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UluruTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -233,6 +235,7 @@
 				ADE9DF582321E4BA00195774 /* PluginsSpec.swift */,
 				AD00E2D42321F56D00A228F5 /* ServiceProviderSpec.swift */,
 				AD036C8323288B1B0057FBB6 /* AuthenticationPluginSpec.swift */,
+				AD394C832328F3C800BEA019 /* CompletionStrategySpec.swift */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -248,8 +251,8 @@
 		ADE9DF5A2321E55900195774 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				AD394C852329C65700BEA019 /* TestPlugin.swift */,
 				ADA0F2012317CD10001ED542 /* PostmanEcho.swift */,
-				ADE9DF5B2321E56900195774 /* TestPlugin.swift */,
 				AD00E2DB2321FB7500A228F5 /* EncoderDecoder.swift */,
 			);
 			path = Data;
@@ -455,10 +458,11 @@
 				AD00E2DC2321FB7500A228F5 /* EncoderDecoder.swift in Sources */,
 				AD00E2D52321F56D00A228F5 /* ServiceProviderSpec.swift in Sources */,
 				ADE9DF592321E4BA00195774 /* PluginsSpec.swift in Sources */,
+				AD394C862329C65700BEA019 /* TestPlugin.swift in Sources */,
 				AD00E2DA2321FA5000A228F5 /* TestHelper.swift in Sources */,
 				ADA0F2022317CD10001ED542 /* PostmanEcho.swift in Sources */,
 				AD036C8423288B1B0057FBB6 /* AuthenticationPluginSpec.swift in Sources */,
-				ADE9DF5C2321E56900195774 /* TestPlugin.swift in Sources */,
+				AD394C842328F3C800BEA019 /* CompletionStrategySpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

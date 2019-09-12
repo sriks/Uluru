@@ -38,6 +38,12 @@ public extension ServiceProvider {
     }
 }
 
+public extension ServiceProvider {
+    static func defaultCompletionStrategyProvider() -> RequestCompletionStrategyProvidable {
+        return DefaultContinueDecisionMaker()
+    }
+}
+
 extension APITarget {
     func urlRequest() throws -> URLRequest {
         var ourRequest = URLRequest(url: url)
@@ -87,5 +93,11 @@ public class DefaultJSONDecoder: ResponseParser {
         } catch {
             return .failure(.decodingFailed(response, error))
         }
+    }
+}
+
+public class DefaultContinueDecisionMaker: RequestCompletionStrategyProvidable {
+    public func shouldFinish(_ result: DataResult, api: APIDefinition, decision: @escaping ShouldFinishDecision) {
+        decision(.goahead)
     }
 }
