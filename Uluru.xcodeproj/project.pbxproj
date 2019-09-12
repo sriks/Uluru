@@ -32,6 +32,7 @@
 		ADA0F2022317CD10001ED542 /* PostmanEcho.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F2012317CD10001ED542 /* PostmanEcho.swift */; };
 		ADA0F2042317D9CA001ED542 /* APITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F2032317D9CA001ED542 /* APITarget.swift */; };
 		ADE9DF592321E4BA00195774 /* PluginsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE9DF582321E4BA00195774 /* PluginsSpec.swift */; };
+		CDE465552329CEF30062C71C /* RequestCompletionStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE465542329CEF30062C71C /* RequestCompletionStrategy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		ADE9DF582321E4BA00195774 /* PluginsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginsSpec.swift; sourceTree = "<group>"; };
 		BA2134552B8F8991A0A4FC2D /* Pods_Uluru.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Uluru.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAD080F4B49C9556E4CEE1FD /* Pods-Uluru.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uluru.debug.xcconfig"; path = "Target Support Files/Pods-Uluru/Pods-Uluru.debug.xcconfig"; sourceTree = "<group>"; };
+		CDE465542329CEF30062C71C /* RequestCompletionStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCompletionStrategy.swift; sourceTree = "<group>"; };
 		D306E63C7298CF6C3536AE70 /* Pods_UluruTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UluruTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -222,6 +224,7 @@
 				ADA0F1FA2314D611001ED542 /* ServiceProvider+Defaults.swift */,
 				ADA0F2032317D9CA001ED542 /* APITarget.swift */,
 				AD00E2DE2326326000A228F5 /* ServiceError.swift */,
+				CDE465542329CEF30062C71C /* RequestCompletionStrategy.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 				ADA0F1F22314CC96001ED542 /* ServicePluginType.swift in Sources */,
 				ADA0F1F12314CC96001ED542 /* Service.swift in Sources */,
 				ADA0F1EA2314C860001ED542 /* ServiceExecutable.swift in Sources */,
+				CDE465552329CEF30062C71C /* RequestCompletionStrategy.swift in Sources */,
 				ADA0F2042317D9CA001ED542 /* APITarget.swift in Sources */,
 				ADA0F1EB2314C860001ED542 /* ExecutorURLSession.swift in Sources */,
 				ADA0F1FD231634FC001ED542 /* URLRequest+Encoding.swift in Sources */,

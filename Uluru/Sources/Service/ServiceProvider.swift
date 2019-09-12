@@ -25,17 +25,6 @@ public enum StubStrategy {
     case stub(delay: TimeInterval, response: StubReponseProvider)
 }
 
-
-public enum RequestCompletionStrategy {
-    case goahead
-    case retry
-}
-
-public typealias ShouldFinishDecision = (_ decision: RequestCompletionStrategy) -> Void
-public protocol RequestCompletionStrategyProvidable {
-    func shouldFinish(_ result: DataResult, api: APIDefinition, decision: @escaping ShouldFinishDecision)
-}
-
 public class ServiceProvider<API: APIDefinition>: Service {
 
     // Maps an APIDefinition to a resolved Definition
