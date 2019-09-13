@@ -16,6 +16,7 @@
 		AD036C8223287A230057FBB6 /* AuthenticationPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD036C8123287A230057FBB6 /* AuthenticationPlugin.swift */; };
 		AD036C8423288B1B0057FBB6 /* AuthenticationPluginSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD036C8323288B1B0057FBB6 /* AuthenticationPluginSpec.swift */; };
 		AD390DC9232A465400442BFB /* ErrorsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD390DC8232A465400442BFB /* ErrorsSpec.swift */; };
+		AD390DCD232C573E00442BFB /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD390DCC232C573E00442BFB /* HTTPStatusCode.swift */; };
 		AD394C842328F3C800BEA019 /* CompletionStrategySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD394C832328F3C800BEA019 /* CompletionStrategySpec.swift */; };
 		AD394C862329C65700BEA019 /* TestPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD394C852329C65700BEA019 /* TestPlugin.swift */; };
 		AD804B0D230FA8130033C7B0 /* Uluru.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD804B03230FA8130033C7B0 /* Uluru.framework */; };
@@ -69,6 +70,7 @@
 		AD036C8123287A230057FBB6 /* AuthenticationPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationPlugin.swift; sourceTree = "<group>"; };
 		AD036C8323288B1B0057FBB6 /* AuthenticationPluginSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationPluginSpec.swift; sourceTree = "<group>"; };
 		AD390DC8232A465400442BFB /* ErrorsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorsSpec.swift; sourceTree = "<group>"; };
+		AD390DCC232C573E00442BFB /* HTTPStatusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
 		AD394C832328F3C800BEA019 /* CompletionStrategySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionStrategySpec.swift; sourceTree = "<group>"; };
 		AD394C852329C65700BEA019 /* TestPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestPlugin.swift; sourceTree = "<group>"; };
 		AD804B03230FA8130033C7B0 /* Uluru.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Uluru.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -227,6 +229,7 @@
 				ADA0F2032317D9CA001ED542 /* APITarget.swift */,
 				AD00E2DE2326326000A228F5 /* ServiceError.swift */,
 				CDE465542329CEF30062C71C /* RequestCompletionStrategy.swift */,
+				AD390DCC232C573E00442BFB /* HTTPStatusCode.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 				ADA0F1F52314CC96001ED542 /* APIDefinition.swift in Sources */,
 				ADA0F1F42314CC96001ED542 /* AccessAuthorizable.swift in Sources */,
 				ADA0F1F22314CC96001ED542 /* ServicePluginType.swift in Sources */,
+				AD390DCD232C573E00442BFB /* HTTPStatusCode.swift in Sources */,
 				ADA0F1F12314CC96001ED542 /* Service.swift in Sources */,
 				ADA0F1EA2314C860001ED542 /* ServiceExecutable.swift in Sources */,
 				CDE465552329CEF30062C71C /* RequestCompletionStrategy.swift in Sources */,
