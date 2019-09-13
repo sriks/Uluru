@@ -2,25 +2,26 @@
 
 import Foundation
 
-/// Represents a success response hot and fresh.
-public struct DataSuccessResponse {
+/// Represents a data response.
+public struct DataResponse {
     let data: Data
-    let urlResponse: HTTPURLResponse
-}
-
-/// Represents a network error response hot and fresh.
-public struct DataErrorResponse: Error {
-    let error: Error
-    let data: Data?
+    let request: URLRequest
     let urlResponse: HTTPURLResponse?
 }
 
 // Raw Data Requests
-public typealias DataResult = Result<DataSuccessResponse, DataErrorResponse>
+public typealias DataResult = Result<DataResponse, ServiceError>
 public typealias DataRequestCompletion = (_ completion: DataResult) -> Void
 
-// JSON requests
-public typealias APIRequestCompletion<T: Decodable> = (_ result: Result<T, ServiceError>) -> Void
+/// Represents a parsed data request.
+public struct ParsedDataResponse<T: Decodable> {
+    let parsed: T
+    let underlying: DataResponse
+}
+
+// Parsed requests
+public typealias ParsedDataResponseResult<T: Decodable> = Result<ParsedDataResponse<T>, ServiceError>
+public typealias APIRequestCompletion<T: Decodable> = (_ result: Result<ParsedDataResponse<T>, ServiceError>) -> Void
 
 public protocol Service {
     associatedtype API: APIDefinition

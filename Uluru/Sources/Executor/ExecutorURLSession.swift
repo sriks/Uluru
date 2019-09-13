@@ -6,7 +6,7 @@ public class ExecutorURLSession: ServiceExecutable {
 
     public func execute(dataRequest request: URLRequest, completion: @escaping ServiceExecutionDataTaskCompletion) -> ServiceCancellable {
         let task = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
-            completion(data, response as! HTTPURLResponse, error) //swiftlint:disable:this force_cast
+            completion(data, response as? HTTPURLResponse, error)
         }
         task.resume()
         return URLSessionDataTaskCancellableWrapper(dataTask: task)

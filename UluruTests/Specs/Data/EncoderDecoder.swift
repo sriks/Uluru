@@ -29,34 +29,13 @@ class CustomParser: ResponseParser {
         return CustomParser()
     }
 
-    func parse<T>(_ response: DataSuccessResponse) throws -> Result<T, ServiceError> where T : Decodable {
+    func parse<T>(_ response: DataResponse) -> Result<T, ParsingError> where T : Decodable {
         CustomParser.isInvoked = true
         do {
             let parsed = try JSONDecoder().decode(T.self, from: response.data)
             return .success(parsed)
         } catch {
-            return .failure(.decodingFailed(response, error))
-        }
-    }
-}
-
-class CustomKeyedResponseParser: ResponseParser {
-    static func make() -> ResponseParser {
-        return CustomKeyedResponseParser()
-    }
-
-    func parse<T>(_ response: DataSuccessResponse) throws -> Result<T, ServiceError> where T : Decodable {
-
-        if let json = try? JSONSerialization.jsonObject(with: response.data, options: .allowFragments) as? JSON,
-            let responseError = json["error"] as? JSON {
-            return .failure(.responseError(response, responseError))
-        }
-        do {
-            let decoder = JSONDecoder()
-            let decoded: T = try decoder.decode(T.self, from: response.data)
-            return .success(decoded)
-        } catch {
-            return .failure(.decodingFailed(response, error))
+            return .failure(.parsing(error))
         }
     }
 }

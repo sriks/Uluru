@@ -36,7 +36,7 @@ class TestErrorPlugin: ServicePluginType {
 
     func mutate(_ result: DataResult, api: APIDefinition) -> DataResult {
         invocationCount.mutateResult += 1
-        return .failure(DataErrorResponse(error: errorWithLove, data: nil, urlResponse: nil))
+        return .failure(.underlying(errorWithLove, nil))
     }
 }
 

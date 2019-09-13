@@ -4,7 +4,7 @@ import Foundation
 
 /// A JSON response parser.
 public protocol ResponseParser {
-    func parse<T: Decodable>(_ response: DataSuccessResponse) throws -> Result<T, ServiceError>
+    func parse<T: Decodable>(_ response: DataResponse) -> Result<T, ParsingError>
     static func make() -> ResponseParser
 }
 
@@ -27,11 +27,11 @@ public enum StubStrategy {
 
 public class ServiceProvider<API: APIDefinition>: Service {
 
-    // Maps an APIDefinition to a resolved Definition
-    public typealias APIDefinitionResolver = (_ apiDefinition: API) -> APITarget
+    // Maps an APIDefinition to an APITarget with a resolved URL.
+    public typealias APIDefinitionResolver = (_ api: API) -> Result<APITarget, ServiceError>
 
-    // Maps a resolved definition to an URLRequest
-    public typealias RequestMapper = (_ resolvedAPIDefinition: APITarget) -> Result<URLRequest, Error>
+    // Maps a resolved definition to an URLRequest.  
+    public typealias RequestMapper = (_ resolvedAPIDefinition: APITarget) -> Result<URLRequest, ServiceError>
 
     public let apiDefinitionResolver: APIDefinitionResolver
 
@@ -73,24 +73,33 @@ public class ServiceProvider<API: APIDefinition>: Service {
             case let .success(successResponse):
                 DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                     guard let self = self else { return }
-                    completion(self.decode(successResponse, using: self.parser.make()))
+                    self.performParsing(successResponse, using: self.parser.make(), completion: completion)
                 }
-                break
-            case let .failure(errorResponse):
-                completion(.failure(.requestFailed(errorResponse)))
-                break
+            case let .failure(error):
+                completion(.failure(error))
             }
         }
     }
 
     public func requestData(_ api: API,
                         completion: @escaping DataRequestCompletion) -> ServiceCancellable {
-        let target = apiDefinitionResolver(api)
+        // Get a target representation
+        let targetResult = apiDefinitionResolver(api)
+        var target: APITarget!
+        switch targetResult {
+        case .success(let ourTarget):
+            target = ourTarget
+        case .failure(let error):
+            completion(.failure(error))
+            return DummyCancellable()
+        }
+
+        // Map target to an urlrequest.
         switch requestMapper(target) {
         case let .success(urlRequest):
             return perform(urlRequest: urlRequest, api: api, target: target, completion: completion)
         case let .failure(error):
-            completion(.failure(DataErrorResponse(error: error, data: nil, urlResponse: nil)))
+            completion(.failure(error))
             return DummyCancellable()
         }
     }
@@ -109,7 +118,7 @@ public class ServiceProvider<API: APIDefinition>: Service {
         let onRequestCompletion: ServiceExecutionDataTaskCompletion = { [weak self] (data, urlResponse, error) in
             guard let self = self else { return }
 
-            let responseResult = self.map(data: data, urlResponse: urlResponse, error: error)
+            let responseResult = self.map(data: data, urlResponse: urlResponse, error: error, request: mutatedRequest)
 
             // Invoke plugins to inform we did receive result.
             postRequestPlugins.forEach { $0.didReceive(responseResult, api: api) }
@@ -136,7 +145,7 @@ public class ServiceProvider<API: APIDefinition>: Service {
         if let placeholderData = api.placeholderData {
             // Placeholder data
             let ourResponse = HTTPURLResponse(url: mutatedRequest.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
-            completion(.success(DataSuccessResponse(data: placeholderData, urlResponse: ourResponse)))
+            completion(.success(DataResponse(data: placeholderData, request: mutatedRequest, urlResponse: ourResponse)))
             return DummyCancellable()
         } else {
             // Execute request
@@ -182,32 +191,54 @@ public class ServiceProvider<API: APIDefinition>: Service {
         }
     }
 
-    private func map(data: Data?, urlResponse: HTTPURLResponse?, error: Error?) -> DataResult {
-        switch (urlResponse, data, error) {
-
-            // All good
+    private func map(data: Data?, urlResponse: HTTPURLResponse?, error: Error?, request: URLRequest) ->
+        DataResult {
+            switch (urlResponse, data, error) {
+            // All good - request went through successfully.
             case let (.some(urlResponse), data, .none):
-                return .success(DataSuccessResponse(data: data ?? Data(), urlResponse: urlResponse))
+                let theResponse = DataResponse(data: data ?? Data(), request: request, urlResponse: urlResponse)
+                return .success(theResponse)
 
-            // Errored out but with some data.
-            case let (.some(urlResponse), data, .some(error)):
-                return .failure(DataErrorResponse(error: error, data: data, urlResponse: urlResponse))
+            // Request failed with error
+            case let (.some(urlResponse), _, .some(error)):
+                let theResponse = DataResponse(data: data ?? Data(), request: request, urlResponse: urlResponse)
+                let theError = ServiceError.underlying(error, theResponse)
+                return .failure(theError)
 
             // Error without data
             case let (_, _, .some(error)):
-                return .failure(DataErrorResponse(error: error, data: nil, urlResponse: nil))
+                let theError = ServiceError.underlying(error, nil)
+                return .failure(theError)
 
-            // Something wierd so falling back to nsurlerror.
+            // Something wierd - fallback to unknown error.
             default:
-                return .failure(DataErrorResponse(error: NSError(domain: NSURLErrorDomain, code: NSURLErrorUnknown, userInfo: nil), data: nil, urlResponse: nil))
+                let theError = ServiceError.underlying(NSError(domain: NSURLErrorDomain, code: NSURLErrorUnknown, userInfo: nil), nil)
+                return .failure(theError)
+            }
+    }
+
+    private func performParsing<T: Decodable>(_ response: DataResponse, using parser: ResponseParser, completion: @escaping APIRequestCompletion<T>) {
+        let result: Result<T, ServiceError> = self.decode(response, using: parser)
+        switch result {
+        case .success(let decoded):
+            completion(.success(.init(parsed: decoded, underlying: response)))
+        case .failure(let error):
+            completion(.failure(error))
         }
     }
 
-    private func decode<T: Decodable>(_ response: DataSuccessResponse, using parser: ResponseParser) -> Result<T, ServiceError> {
-        do {
-            return try parser.parse(response)
-        } catch {
-            return .failure(.decodingFailed(response, error))
+    private func decode<T>(_ response: DataResponse, using parser: ResponseParser) -> Result<T, ServiceError> where T: Decodable {
+        let result: Result<T, ParsingError> = parser.parse(response)
+        switch result {
+        case .success(let parsed):
+            return .success(parsed)
+        case .failure(let error):
+            switch error {
+            case .parsing(let theError):
+                return .failure(.parsing(theError, response))
+            case .response(let obj):
+                return .failure(.response(response, obj))
+            }
         }
     }
 }

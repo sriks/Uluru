@@ -40,7 +40,7 @@ class ServiceProvderSpec: QuickSpec {
                 var decoded: MockPlaceholder!
                 waitUntil { done in
                     let _  = service.request(.justGetWithPlaceholderData, expecting: MockPlaceholder.self) { result in
-                        decoded = try! result.get()
+                        decoded = result.forceGetParsed(MockPlaceholder.self)
                         done()
                     }
                 }
@@ -49,15 +49,15 @@ class ServiceProvderSpec: QuickSpec {
             }
 
             it("statusCode of placeholder data response is 200") {
-                var dataSuccessResponse: DataSuccessResponse!
+                var dataSuccessResponse: DataResponse!
                 waitUntil { done in
-                    let _ = service.requestData(.justGetWithPlaceholderData) { result in
-                        dataSuccessResponse = try! result.get()
+                    let _ = service.request(.justGetWithPlaceholderData, expecting: EmptyDecodableModel.self, completion: { (result) in
+                        dataSuccessResponse = try! result.get().underlying
                         done()
-                    }
+                    })
                 }
 
-                expect(dataSuccessResponse.urlResponse.statusCode).to( equal(200) )
+                expect(dataSuccessResponse.urlResponse?.statusCode).to( equal(200) )
             }
         }
 
@@ -76,13 +76,13 @@ class ServiceProvderSpec: QuickSpec {
 
                 waitUntil { done in
                     let _ = service.request(.justGet, expecting: StubSuccessResponse.self, completion: { (result) in
-                        expect(try! result.get()).to( equal(StubSuccessResponse()) )
+                        expect(result.forceGetParsed(StubSuccessResponse.self)).to( equal(StubSuccessResponse()) )
                         done()
                     })
                 }
             }
 
-            it("should error") {
+            it("should match to .underlying error when stub returns a network error") {
                 let stubedError = NSError(domain: "Godzilla Error", code: 8086, userInfo: nil)
                 let stubStrategy: StubStrategy = .stub(delay: 0, response: { (target) -> StubResponse in
                     return .error(error: stubedError)
@@ -91,8 +91,8 @@ class ServiceProvderSpec: QuickSpec {
                 var expectedError: NSError?
                 waitUntil { done in
                     let _ = service.request(.justGet, expecting: EmptyDecodableModel.self, completion: { (result) in
-                        if case .failure(let error) = result, case .requestFailed(let networkError) = error {
-                            expectedError = networkError.error as NSError
+                        if case .failure(let error) = result, case .underlying(let networkError, _) = error {
+                            expectedError = networkError as NSError
                         }
                         done()
                     })
@@ -112,7 +112,7 @@ class ServiceProvderSpec: QuickSpec {
                 var model: EmptyDecodableModel?
                 waitUntil { done in
                     let _ = service.request(.justGet, expecting: EmptyDecodableModel.self, completion: { (result) in
-                        model = try! result.get()
+                        model = result.forceGetParsed(EmptyDecodableModel.self)
                         done()
                     })
                 }
@@ -126,7 +126,7 @@ class ServiceProvderSpec: QuickSpec {
                 var model: EmptyDecodableModel?
                 waitUntil { done in
                     let _ = service.request(.justGet, expecting: EmptyDecodableModel.self, completion: { (result) in
-                        model = try! result.get()
+                        model = result.forceGetParsed(EmptyDecodableModel.self)
                         done()
                     })
                 }

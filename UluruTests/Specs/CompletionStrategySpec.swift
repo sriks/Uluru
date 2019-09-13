@@ -18,7 +18,7 @@ class CompletionStrategySpec: QuickSpec {
                 var model: EmptyDecodableModel?
                 waitUntil { done in
                     let _ = service.request(.justGet, expecting: EmptyDecodableModel.self, completion: { (result) in
-                        model = try! result.get()
+                        model = result.forceGetParsed(EmptyDecodableModel.self)
                         done()
                     })
                 }
@@ -34,10 +34,10 @@ class CompletionStrategySpec: QuickSpec {
             it("should retry request as expected") {
                 let completionProvider = MockRetryCompletionStrategyProvider(maxRetries: 2,delay: 2)
                 service = ServiceProvider(completionStrategy: completionProvider)
-                var model: EmptyDecodableModel?
+                var model: EmptyDecodableModel!
                 waitUntil { done in
                     let _ = service.request(.justGet, expecting: EmptyDecodableModel.self, completion: { (result) in
-                        model = try! result.get()
+                        model = result.forceGetParsed(EmptyDecodableModel.self)
                         done()
                     })
                 }
@@ -56,11 +56,11 @@ class CompletionStrategySpec: QuickSpec {
 
                 let aPlugin = TestSuccessPlugin()
                 service = ServiceProvider(plugins: [aPlugin], completionStrategy: completionProvider)
-                var model: EmptyDecodableModel?
+                var model: EmptyDecodableModel!
 
                 waitUntil { done in
                     let _ = service.request(.justGet, expecting: EmptyDecodableModel.self, completion: { (result) in
-                        model = try! result.get()
+                        model = result.forceGetParsed(EmptyDecodableModel.self)
                         done()
                     })
                 }

@@ -6,13 +6,12 @@ public extension ServiceProvider {
 
     static var defaultAPIDefinitionResolver: APIDefinitionResolver {
         let resolver: APIDefinitionResolver = { apiDef in
-            // TODO: use extension on URL to cleanly create this.
-            return APITarget(url: apiDef.baseURL.appendingPathComponent(apiDef.path),
-                             path: apiDef.path,
-                             method: apiDef.method,
-                             encoding: apiDef.encoding,
-                             headers: apiDef.headers)
-
+            let target = APITarget(url: URL(api: apiDef),
+                                   path: apiDef.path,
+                                   method: apiDef.method,
+                                   encoding: apiDef.encoding,
+                                   headers: apiDef.headers)
+            return .success(target)
         }
         return resolver
     }
@@ -23,13 +22,27 @@ public extension ServiceProvider {
                 let urlRequest = try resolvedAPIDefinition.urlRequest()
                 return .success(urlRequest)
             } catch {
-                return .failure(error)
+                guard let serviceError = error as? ServiceError else {
+                    return .failure(.requestMapping(resolvedAPIDefinition))
+                }
+                return .failure(serviceError)
             }
         }
         return mapper
     }
 
 }
+
+public extension URL {
+    init<API: APIDefinition>(api: API) {
+        if api.path.isEmpty {
+            self = api.baseURL
+        } else {
+            self = api.baseURL.appendingPathComponent(api.path)
+        }
+    }
+}
+
 
 public extension ServiceProvider {
     // Essentially a pass through parser using vanilla JSONEncoder. 
@@ -85,13 +98,12 @@ public class DefaultJSONDecoder: ResponseParser {
         return DefaultJSONDecoder()
     }
 
-    public func parse<T>(_ response: DataSuccessResponse) throws -> Result<T, ServiceError> where T : Decodable {
+    public func parse<T: Decodable>(_ response: DataResponse) -> Result<T, ParsingError> {
         do {
-            let decoder = JSONDecoder()
-            let decoded: T = try decoder.decode(T.self, from: response.data)
+            let decoded: T = try JSONDecoder().decode(T.self, from: response.data)
             return .success(decoded)
         } catch {
-            return .failure(.decodingFailed(response, error))
+            return .failure(.parsing(error))
         }
     }
 }

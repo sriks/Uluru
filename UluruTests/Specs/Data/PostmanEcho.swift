@@ -13,6 +13,8 @@ enum PostmanEcho {
     // returns supplied headers in response.
     case echoBearerAuth
     case echoCustomHeaderAuth(headerName: String)
+    // dont exists
+    case invalidRoute
 }
 
 extension PostmanEcho: APIDefinition, AccessAuthorizable {
@@ -31,12 +33,15 @@ extension PostmanEcho: APIDefinition, AccessAuthorizable {
 
         case .postWithBody, .postBodyWithCustomEncoder, .postWithoutBody:
             return "/post"
+
+        case .invalidRoute:
+            return "/godzillaIsAlive"
         }
     }
 
     var method: TargetMethod {
         switch self {
-        case .getWithParams, .justGet, .justGetWithPlaceholderData, .echoBearerAuth, .echoCustomHeaderAuth:
+        case .getWithParams, .justGet, .justGetWithPlaceholderData, .echoBearerAuth, .echoCustomHeaderAuth, .invalidRoute:
             return .GET
 
         case .postWithBody, .postBodyWithCustomEncoder, .postWithoutBody:
@@ -46,7 +51,7 @@ extension PostmanEcho: APIDefinition, AccessAuthorizable {
 
     var encoding: EncodingStrategy {
         switch self {
-        case .justGet, .justGetWithPlaceholderData, .echoBearerAuth, .echoCustomHeaderAuth:
+        case .justGet, .justGetWithPlaceholderData, .echoBearerAuth, .echoCustomHeaderAuth, .invalidRoute:
             return .ignore
             
         case let .getWithParams(params):
@@ -98,4 +103,58 @@ struct EmptyDecodableModel: Decodable {}
 /// https://docs.postman-echo.com/?version=latest#da16c006-6293-c1fe-ea42-e9ba8a5e68b1
 struct EchoHeaders: Codable, Equatable, JSONRepresentable {
     let headers: [String: String]
+}
+
+struct EchoParams: Codable, Equatable, JSONRepresentable {
+    let foo: String
+    let bar: String
+
+    static func make() -> EchoParams {
+        return EchoParams(foo: "here", bar: "there")
+    }
+}
+
+enum ErrorAPIDefinition {
+    case thisDontExist
+    case failParsing(params: JSONRepresentable)
+    case invalidRoute
+}
+
+extension ErrorAPIDefinition: APIDefinition {
+    var baseURL: URL {
+        switch self {
+        case .thisDontExist:
+            return URL(string: "https://this-server-dont-exist.com")!
+        default:
+            return URL(string: "https://postman-echo.com")!
+        }
+    }
+
+    var path: String {
+        switch self {
+        case .thisDontExist:
+            return "/findMe"
+        case .invalidRoute:
+            return "anInvalidRoute"
+        default:
+            return "/get"
+        }
+    }
+
+    var method: TargetMethod {
+        return .GET
+    }
+
+    var encoding: EncodingStrategy {
+        switch self {
+        case .thisDontExist, .invalidRoute:
+            return .ignore
+        case .failParsing(let params):
+            return .queryParameters(parameters: params)
+        }
+    }
+
+    var headers: [String : String]? {
+        return nil
+    }
 }

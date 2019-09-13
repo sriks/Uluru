@@ -15,6 +15,7 @@
 		AD00E2DF2326326000A228F5 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00E2DE2326326000A228F5 /* ServiceError.swift */; };
 		AD036C8223287A230057FBB6 /* AuthenticationPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD036C8123287A230057FBB6 /* AuthenticationPlugin.swift */; };
 		AD036C8423288B1B0057FBB6 /* AuthenticationPluginSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD036C8323288B1B0057FBB6 /* AuthenticationPluginSpec.swift */; };
+		AD390DC9232A465400442BFB /* ErrorsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD390DC8232A465400442BFB /* ErrorsSpec.swift */; };
 		AD394C842328F3C800BEA019 /* CompletionStrategySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD394C832328F3C800BEA019 /* CompletionStrategySpec.swift */; };
 		AD394C862329C65700BEA019 /* TestPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD394C852329C65700BEA019 /* TestPlugin.swift */; };
 		AD804B0D230FA8130033C7B0 /* Uluru.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD804B03230FA8130033C7B0 /* Uluru.framework */; };
@@ -67,6 +68,7 @@
 		AD00E2DE2326326000A228F5 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
 		AD036C8123287A230057FBB6 /* AuthenticationPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationPlugin.swift; sourceTree = "<group>"; };
 		AD036C8323288B1B0057FBB6 /* AuthenticationPluginSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationPluginSpec.swift; sourceTree = "<group>"; };
+		AD390DC8232A465400442BFB /* ErrorsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorsSpec.swift; sourceTree = "<group>"; };
 		AD394C832328F3C800BEA019 /* CompletionStrategySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionStrategySpec.swift; sourceTree = "<group>"; };
 		AD394C852329C65700BEA019 /* TestPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestPlugin.swift; sourceTree = "<group>"; };
 		AD804B03230FA8130033C7B0 /* Uluru.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Uluru.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -239,6 +241,7 @@
 				AD00E2D42321F56D00A228F5 /* ServiceProviderSpec.swift */,
 				AD036C8323288B1B0057FBB6 /* AuthenticationPluginSpec.swift */,
 				AD394C832328F3C800BEA019 /* CompletionStrategySpec.swift */,
+				AD390DC8232A465400442BFB /* ErrorsSpec.swift */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADA0F1F92314D173001ED542 /* EncodingSpec.swift in Sources */,
+				AD390DC9232A465400442BFB /* ErrorsSpec.swift in Sources */,
 				AD00E2DC2321FB7500A228F5 /* EncoderDecoder.swift in Sources */,
 				AD00E2D52321F56D00A228F5 /* ServiceProviderSpec.swift in Sources */,
 				ADE9DF592321E4BA00195774 /* PluginsSpec.swift in Sources */,

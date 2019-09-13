@@ -42,8 +42,8 @@ class PluginsSpec: QuickSpec {
             var theError: NSError!
             waitUntil { done in
                 let _ = service.request(PostmanEcho.justGet, expecting: EmptyDecodableModel.self) { result in
-                    if case let .failure(serviceError) = result, case .requestFailed(let errorResponse) = serviceError {
-                        theError = errorResponse.error as NSError
+                    if case let .failure(serviceError) = result, case .underlying(let error, _) = serviceError {
+                        theError = error as NSError
                     }
                     done()
                 }

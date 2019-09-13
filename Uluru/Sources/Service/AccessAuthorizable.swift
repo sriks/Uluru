@@ -21,8 +21,10 @@ public enum AuthenticationStrategy {
     
     var scheme: String? {
         switch self {
-        case .none, .customHeaderField: return nil
-        case .bearer: return "Bearer"
+        case .none, .customHeaderField:
+            return nil
+        case .bearer:
+            return "Bearer"
         }
     }
 }

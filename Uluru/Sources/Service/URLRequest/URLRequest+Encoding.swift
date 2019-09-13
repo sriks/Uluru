@@ -2,12 +2,6 @@
 
 import Foundation
 
-enum EncodingError: Error {
-    case invalidResolvedUrl
-    case failedToConstructUrlWithQueryParameters
-    case jsonSerialization(error: Error)
-}
-
 extension URLRequest {
     @discardableResult
     mutating func encoded(_ encodingTask: EncodingStrategy) throws -> URLRequest {
@@ -18,11 +12,11 @@ extension URLRequest {
 
         case .queryParameters(let parameters):
             guard var comps = URLComponents(string: ourUrl.absoluteString) else {
-                throw EncodingError.invalidResolvedUrl
+                throw ServiceError.invalidResolvedUrl(ourUrl)
             }
             comps.queryItems = try parameters.jsonObject().map { return URLQueryItem(name: $0.key, value: "\($0.value)")}
             guard let urlWithQueryParams = comps.url else {
-                throw EncodingError.failedToConstructUrlWithQueryParameters
+                throw ServiceError.parameterEncoding(ourUrl, parameters)
             }
             url = urlWithQueryParams
             return self
@@ -45,7 +39,7 @@ extension URLRequest {
             #if DEBUG
             print("Setting HTTP boday failed for \(self) with JSONSerialization error \(error)")
             #endif
-            throw EncodingError.jsonSerialization(error: error)
+            throw ServiceError.applyingBody(parameters, encoder, error)
         }
     }
 }

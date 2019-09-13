@@ -21,7 +21,7 @@ class AuthenticationPluginSpec: QuickSpec {
             it("should not add any auth headers") {
                 waitUntil { done in
                     let _ = service.request(.justGet, expecting: EchoHeaders.self, completion: { (result) in
-                        actual = try! result.get()
+                        actual = try! result.get().parsed
                         done()
                     })
                 }
@@ -36,7 +36,7 @@ class AuthenticationPluginSpec: QuickSpec {
             it("should add Authorization header with provided token") {
                 waitUntil { done in
                     let _ = service.request(.echoBearerAuth, expecting: EchoHeaders.self, completion: { (result) in
-                        actual = try! result.get()
+                        actual = result.forceGetParsed(EchoHeaders.self)
                         done()
                     })
                 }
@@ -52,7 +52,7 @@ class AuthenticationPluginSpec: QuickSpec {
             it("request header contains custom header field with provided token value") {
                 waitUntil { done in
                     let _ = service.request(.echoCustomHeaderAuth(headerName: ourCustomHeader), expecting: EchoHeaders.self, completion: { (result) in
-                        actual = try! result.get()
+                        actual = result.forceGetParsed(EchoHeaders.self)
                         done()
                     })
                 }
