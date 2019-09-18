@@ -121,6 +121,32 @@ class ServiceProvderSpec: QuickSpec {
                 expect(model).notTo( beNil() )
             }
 
+            it("should cancel a real network request when using .continueCourse") {
+                var isStubProviderInvoked: Bool = false
+                let stubStrategy: StubStrategy = .stub(delay: 0, response: { (target) -> StubResponse in
+                    isStubProviderInvoked = true
+                    return .continueCourse
+                })
+
+                service = ServiceProvider(stubStrategy: stubStrategy)
+                var model: EmptyDecodableModel?
+                var canceller: ServiceCancellable!
+                waitUntil { done in
+                    canceller = service.request(.justGet, expecting: EmptyDecodableModel.self, completion: { (result) in
+                        if case let .success(res) = result {
+                            model = res.parsed
+                        }
+                        done()
+                    })
+                    canceller.cancel()
+                }
+
+                expect(isStubProviderInvoked).to( beTrue() )
+                expect(canceller.isCancelled).to( beTrue() )
+                expect(model).to( beNil() )
+            }
+
+
             it("should make real network call when strategy is .dontStub") {
                 service = ServiceProvider(stubStrategy: .dontStub)
                 var model: EmptyDecodableModel?
@@ -132,6 +158,34 @@ class ServiceProvderSpec: QuickSpec {
                 }
 
                 expect(model).notTo( beNil() )
+            }
+        }
+
+        // MARK: Request cancellation
+        describe("ServiceCancellable") {
+            var service: ServiceProvider<PostmanEcho>!
+
+            it("should return with NSURLErrorCancelled as underlying error") {
+                service = ServiceProvider()
+                var error: ServiceError?
+                var cancellable: ServiceCancellable!
+                waitUntil { done in
+                    cancellable = service.request(.justGet, expecting: EmptyDecodableModel.self, completion: { (result) in
+                        if case let .failure(err) = result {
+                            error = err
+                        }
+                        done()
+                    })
+                    cancellable.cancel()
+                }
+
+                expect(error).notTo( beNil() )
+                expect(cancellable.isCancelled).to( beTrue() )
+                var isCancelled = false
+                if let ourError = error, case let .underlying(underlyingError, _) = ourError  {
+                    isCancelled = (underlyingError as NSError).code == NSURLErrorCancelled
+                }
+                expect(isCancelled).to( beTrue() )
             }
         }
     }

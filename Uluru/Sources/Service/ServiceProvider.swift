@@ -83,31 +83,36 @@ public class ServiceProvider<API: APIDefinition>: Service {
 
     public func requestData(_ api: API,
                         completion: @escaping DataRequestCompletion) -> ServiceCancellable {
+        let cancellable = ServiceCancellableWrapper()
+
         // Get a target representation
         let targetResult = apiDefinitionResolver(api)
-        var target: APITarget!
+        var target: APITarget?
         switch targetResult {
         case .success(let ourTarget):
             target = ourTarget
         case .failure(let error):
             completion(.failure(error))
-            return DummyCancellable()
         }
 
-        // Map target to an urlrequest.
-        switch requestMapper(target) {
-        case let .success(urlRequest):
-            return perform(urlRequest: urlRequest, api: api, target: target, completion: completion)
-        case let .failure(error):
-            completion(.failure(error))
-            return DummyCancellable()
+        if let ourTarget = target {
+            // Map target to an urlrequest.
+            switch requestMapper(ourTarget) {
+            case let .success(urlRequest):
+                cancellable.inner = perform(urlRequest: urlRequest, api: api, target: ourTarget, completion: completion)
+            case let .failure(error):
+                completion(.failure(error))
+            }
         }
+        return cancellable
     }
 
     private func perform(urlRequest: URLRequest,
                          api: API,
                          target: APITarget,
                          completion: @escaping DataRequestCompletion) -> ServiceCancellable {
+        let canceller = ServiceCancellableWrapper()
+
         // Let plugins mutate request
         let mutatedRequest = plugins.reduce(urlRequest) { $1.mutate($0, api: api) }
 
@@ -136,8 +141,8 @@ public class ServiceProvider<API: APIDefinition>: Service {
                     completion(mutatedResult)
                 case .retry:
                     // Retry the request
-                    // TODO: We need to keep a hold of cancellable to resuse it.
-                    let _ = self.perform(urlRequest: urlRequest, api: api, target: target, completion: completion)
+                    // We need to keep a hold of cancellable since this is a new request.
+                    canceller.inner = self.perform(urlRequest: urlRequest, api: api, target: target, completion: completion)
                 }
             })
         }
@@ -146,39 +151,45 @@ public class ServiceProvider<API: APIDefinition>: Service {
             // Placeholder data
             let ourResponse = HTTPURLResponse(url: mutatedRequest.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
             completion(.success(DataResponse(data: placeholderData, request: mutatedRequest, urlResponse: ourResponse)))
-            return DummyCancellable()
+            return ServiceCancellableWrapper()
         } else {
             // Execute request
-            return execute(target, request: mutatedRequest, stubStrategy: stubStrategy, completion: onRequestCompletion)
+            canceller.inner = execute(target, request: mutatedRequest, stubStrategy: stubStrategy, completion: onRequestCompletion)
         }
+        return canceller
     }
 
-    private func execute(_ target: APITarget, request: URLRequest, stubStrategy: StubStrategy, completion: @escaping ServiceExecutionDataTaskCompletion) -> ServiceCancellable {
+    private func execute(_ target: APITarget,
+                         request: URLRequest,
+                         stubStrategy: StubStrategy,
+                         completion: @escaping ServiceExecutionDataTaskCompletion) -> ServiceCancellable {
         switch stubStrategy {
         case .dontStub:
             return serviceExecutor.execute(dataRequest: request, completion: completion)
         case .stub(let delay, let response):
-            executeStub(target, urlRequest: request, delay: delay, responseProvider: response, completion: completion)
-            // Here we have to send a wrapper canceller which works for .continueCourse
-            return DummyCancellable()
+            return executeStub(target, urlRequest: request, delay: delay, stubResponseProvider: response, completion: completion)
         }
     }
 
     private func executeStub(_ target: APITarget,
                              urlRequest: URLRequest,
                              delay: TimeInterval,
-                             responseProvider: @escaping StubReponseProvider,
-                             completion: @escaping ServiceExecutionDataTaskCompletion) {
+                             stubResponseProvider: @escaping StubReponseProvider,
+                             completion: @escaping ServiceExecutionDataTaskCompletion) -> ServiceCancellable {
+        // Here we have to send a wrapper canceller which works for .continueCourse
+        let canceller = ServiceCancellableWrapper()
+
         let stubInvocation = { [weak self] in
             guard let self = self else { return }
-            let stubResponse = responseProvider(target)
+            let stubResponse = stubResponseProvider(target)
             switch stubResponse {
             case .network(let response, let data):
                 completion(data, response, nil)
             case .error(let error):
                 completion(nil, nil, error)
             case .continueCourse:
-                let _ = self.serviceExecutor.execute(dataRequest: urlRequest, completion: completion)
+                // Since this request goes to executor we need to update the inner canceller.
+                canceller.inner = self.serviceExecutor.execute(dataRequest: urlRequest, completion: completion)
             }
         }
 
@@ -189,6 +200,8 @@ public class ServiceProvider<API: APIDefinition>: Service {
         } else {
             stubInvocation()
         }
+
+        return canceller
     }
 
     private func map(data: Data?, urlResponse: HTTPURLResponse?, error: Error?, request: URLRequest) ->
@@ -242,9 +255,3 @@ public class ServiceProvider<API: APIDefinition>: Service {
         }
     }
 }
-
-struct DummyCancellable: ServiceCancellable {
-    let isCancelled: Bool = false
-    func cancel() {}
-}
-

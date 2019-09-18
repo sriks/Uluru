@@ -20,14 +20,17 @@ public extension ExecutorURLSession {
 }
 
 public class URLSessionDataTaskCancellableWrapper: ServiceCancellable {
-    let dataTask: URLSessionDataTask
-    public var isCancelled: Bool { return self.dataTask.state == .canceling }
+    private let dataTask: URLSessionDataTask
+    private var markCancelled = false
+    public var isCancelled: Bool { return markCancelled }
 
     init(dataTask: URLSessionDataTask) {
         self.dataTask = dataTask
     }
 
     public func cancel() {
+        // task state cannot be used here since it takes time to reflect.
+        markCancelled = true
         self.dataTask.cancel()
     }
 }

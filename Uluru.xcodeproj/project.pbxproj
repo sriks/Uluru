@@ -15,6 +15,7 @@
 		AD00E2DF2326326000A228F5 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00E2DE2326326000A228F5 /* ServiceError.swift */; };
 		AD036C8223287A230057FBB6 /* AuthenticationPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD036C8123287A230057FBB6 /* AuthenticationPlugin.swift */; };
 		AD036C8423288B1B0057FBB6 /* AuthenticationPluginSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD036C8323288B1B0057FBB6 /* AuthenticationPluginSpec.swift */; };
+		AD39099B2332077D004452A7 /* ServiceCancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39099A2332077D004452A7 /* ServiceCancellable.swift */; };
 		AD390DC9232A465400442BFB /* ErrorsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD390DC8232A465400442BFB /* ErrorsSpec.swift */; };
 		AD390DCD232C573E00442BFB /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD390DCC232C573E00442BFB /* HTTPStatusCode.swift */; };
 		AD394C842328F3C800BEA019 /* CompletionStrategySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD394C832328F3C800BEA019 /* CompletionStrategySpec.swift */; };
@@ -69,6 +70,7 @@
 		AD00E2DE2326326000A228F5 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
 		AD036C8123287A230057FBB6 /* AuthenticationPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationPlugin.swift; sourceTree = "<group>"; };
 		AD036C8323288B1B0057FBB6 /* AuthenticationPluginSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationPluginSpec.swift; sourceTree = "<group>"; };
+		AD39099A2332077D004452A7 /* ServiceCancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCancellable.swift; sourceTree = "<group>"; };
 		AD390DC8232A465400442BFB /* ErrorsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorsSpec.swift; sourceTree = "<group>"; };
 		AD390DCC232C573E00442BFB /* HTTPStatusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
 		AD394C832328F3C800BEA019 /* CompletionStrategySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionStrategySpec.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				AD00E2DE2326326000A228F5 /* ServiceError.swift */,
 				CDE465542329CEF30062C71C /* RequestCompletionStrategy.swift */,
 				AD390DCC232C573E00442BFB /* HTTPStatusCode.swift */,
+				AD39099A2332077D004452A7 /* ServiceCancellable.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				ADA0F1EB2314C860001ED542 /* ExecutorURLSession.swift in Sources */,
 				ADA0F1FD231634FC001ED542 /* URLRequest+Encoding.swift in Sources */,
 				ADA0F1FB2314D611001ED542 /* ServiceProvider+Defaults.swift in Sources */,
+				AD39099B2332077D004452A7 /* ServiceCancellable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
