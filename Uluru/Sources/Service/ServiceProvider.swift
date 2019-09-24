@@ -234,7 +234,7 @@ public class ServiceProvider<API: APIDefinition>: Service {
         let result: Result<T, ServiceError> = self.decode(response, using: parser)
         switch result {
         case .success(let decoded):
-            completion(.success(.init(parsed: decoded, underlying: response)))
+            completion(.success(.init(parsed: decoded, dataResponse: response)))
         case .failure(let error):
             completion(.failure(error))
         }

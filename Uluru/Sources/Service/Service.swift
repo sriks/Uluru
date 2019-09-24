@@ -15,8 +15,8 @@ public typealias DataRequestCompletion = (_ completion: DataResult) -> Void
 
 /// Represents a parsed data request.
 public struct ParsedDataResponse<T: Decodable> {
-    let parsed: T
-    let underlying: DataResponse
+    public let parsed: T
+    public let dataResponse: DataResponse
 }
 
 // Parsed requests

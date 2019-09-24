@@ -52,7 +52,7 @@ class ServiceProvderSpec: QuickSpec {
                 var dataSuccessResponse: DataResponse!
                 waitUntil { done in
                     let _ = service.request(.justGetWithPlaceholderData, expecting: EmptyDecodableModel.self, completion: { (result) in
-                        dataSuccessResponse = try! result.get().underlying
+                        dataSuccessResponse = try! result.get().dataResponse
                         done()
                     })
                 }

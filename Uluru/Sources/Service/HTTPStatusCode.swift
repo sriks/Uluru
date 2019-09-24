@@ -284,6 +284,6 @@ public extension HTTPURLResponse {
 
 public extension ParsedDataResponse {
     var httpStatusCode: HTTPStatusCode? {
-        return underlying.urlResponse?.status
+        return dataResponse.urlResponse?.status
     }
 }
