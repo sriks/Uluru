@@ -14,12 +14,14 @@
 # update_fastlane
 
 default_platform(:ios)
-
 platform :ios do
   scheme = ENV['SCHEME']
+  workspace = ENV['WORKSPACE']
+
   desc "Description of what the lane does"
   lane :do_release do
-    # TODO: add bumping version number.
+    # TODO: Tag release on git
+    puts get_version_number
     prepare_build
     upload_prebuilt_binary
   end
@@ -33,20 +35,29 @@ platform :ios do
   private_lane :prepare_build do 
     xcclean(scheme: scheme)
     cocoapods
-    scan(scheme: scheme, code_coverage: true)
+    scan(scheme: scheme, code_coverage: true) 
+    # provides test coverage report
+    xcov(
+      workspace: workspace,
+      scheme: scheme
+    )
     build_app(clean: true, scheme: scheme, skip_package_ipa: true)
     carthage(command: "build", no_skip_current: true)
     carthage(command: "archive", frameworks: "Uluru")
+    # Publish to slack
+    # TODO: Publish test coverage report
+    # TODO: Publish release availablity or error message=
   end
 
   desc "Uploads prebuilt binary for carthage"
-  private_lane :upload_prebuilt_binary do 
+  private_lane :upload_prebuilt_binary do
+    # We pick the version as the release version tag.
     github_release = set_github_release(
       repository_name: ENV['GITHUB_RELEASE_REPO'],
       api_token: ENV['GITHUB_TOKEN'],
-      name: "WIP",
-      tag_name: "1.0.0",
-      commitish: "master",
+      name: "WIP Beta build",
+      tag_name: get_version_number,
+      commitish: "beta",
       description: "WIP description",
       upload_assets: ["Uluru.framework.zip"]
     )

@@ -6,6 +6,12 @@
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
+## Prebuild framework for carthage 
+Uluru.framework.zip
+
+## Fastlane
+fastlane/xcov_report/
+
 ## Build generated
 build/
 DerivedData/
