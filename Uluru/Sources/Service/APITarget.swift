@@ -14,13 +14,36 @@ public struct APITarget {
     public let encoding: EncodingStrategy
 
     public var headers: [String : String]?
+
+    public init(url: URL, path: String, method: TargetMethod, encoding: EncodingStrategy, headers: [String : String]?) {
+        self.url = url
+        self.path = path
+        self.method = method
+        self.encoding = encoding
+        self.headers = headers
+    }
 }
 
-extension APITarget {
+public extension APITarget {
+
+    /// Handy make to create an APITarget from a resolved URL and APIDefinition.
+    ///
+    /// - Parameters:
+    ///   - apiDefinition: The pass through APIDefinition.
+    ///   - resolvedURL: A resolved URL.
+    static func makeFrom(_ apiDefinition: APIDefinition, resolvedURL: URL) -> APITarget {
+        return .init(url: resolvedURL,
+                     path: apiDefinition.path,
+                     method: apiDefinition.method,
+                     encoding: apiDefinition.encoding,
+                     headers: apiDefinition.headers)
+    }
+}
+
+public extension APITarget {
     mutating func add(httpHeader key: String, value: String) {
         var ourHeaders = headers ?? [:]
         ourHeaders[key] = value
         headers = ourHeaders
     }
 }
-

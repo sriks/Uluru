@@ -6,11 +6,7 @@ public extension ServiceProvider {
 
     static var defaultAPIDefinitionResolver: APIDefinitionResolver {
         let resolver: APIDefinitionResolver = { apiDef in
-            let target = APITarget(url: URL(api: apiDef),
-                                   path: apiDef.path,
-                                   method: apiDef.method,
-                                   encoding: apiDef.encoding,
-                                   headers: apiDef.headers)
+            let target = APITarget.makeFrom(apiDef, resolvedURL: URL(api: apiDef))
             return .success(target)
         }
         return resolver

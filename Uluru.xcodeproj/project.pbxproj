@@ -34,6 +34,7 @@
 		ADA0F1FD231634FC001ED542 /* URLRequest+Encoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1FC231634FC001ED542 /* URLRequest+Encoding.swift */; };
 		ADA0F2022317CD10001ED542 /* PostmanEcho.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F2012317CD10001ED542 /* PostmanEcho.swift */; };
 		ADA0F2042317D9CA001ED542 /* APITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F2032317D9CA001ED542 /* APITarget.swift */; };
+		ADD567E4233B2973005939E4 /* APITargetSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD567E3233B2973005939E4 /* APITargetSpec.swift */; };
 		ADE9DF592321E4BA00195774 /* PluginsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE9DF582321E4BA00195774 /* PluginsSpec.swift */; };
 		CDE465552329CEF30062C71C /* RequestCompletionStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE465542329CEF30062C71C /* RequestCompletionStrategy.swift */; };
 /* End PBXBuildFile section */
@@ -94,6 +95,7 @@
 		ADA0F1FC231634FC001ED542 /* URLRequest+Encoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Encoding.swift"; sourceTree = "<group>"; };
 		ADA0F2012317CD10001ED542 /* PostmanEcho.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostmanEcho.swift; sourceTree = "<group>"; };
 		ADA0F2032317D9CA001ED542 /* APITarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITarget.swift; sourceTree = "<group>"; };
+		ADD567E3233B2973005939E4 /* APITargetSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITargetSpec.swift; sourceTree = "<group>"; };
 		ADE9DF582321E4BA00195774 /* PluginsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginsSpec.swift; sourceTree = "<group>"; };
 		BA2134552B8F8991A0A4FC2D /* Pods_Uluru.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Uluru.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAD080F4B49C9556E4CEE1FD /* Pods-Uluru.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uluru.debug.xcconfig"; path = "Target Support Files/Pods-Uluru/Pods-Uluru.debug.xcconfig"; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				AD036C8323288B1B0057FBB6 /* AuthenticationPluginSpec.swift */,
 				AD394C832328F3C800BEA019 /* CompletionStrategySpec.swift */,
 				AD390DC8232A465400442BFB /* ErrorsSpec.swift */,
+				ADD567E3233B2973005939E4 /* APITargetSpec.swift */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 				ADA0F1F92314D173001ED542 /* EncodingSpec.swift in Sources */,
 				AD390DC9232A465400442BFB /* ErrorsSpec.swift in Sources */,
 				AD00E2DC2321FB7500A228F5 /* EncoderDecoder.swift in Sources */,
+				ADD567E4233B2973005939E4 /* APITargetSpec.swift in Sources */,
 				AD00E2D52321F56D00A228F5 /* ServiceProviderSpec.swift in Sources */,
 				ADE9DF592321E4BA00195774 /* PluginsSpec.swift in Sources */,
 				AD394C862329C65700BEA019 /* TestPlugin.swift in Sources */,
