@@ -8,7 +8,7 @@ import Nimble
 // Tests default encoding strategies.
 class EncodingSpec: QuickSpec {
 
-    func sampleResolvedDefinition(encoding: EncodingStrategy, method: TargetMethod = .GET, headers: [String: String]? = nil) -> APITarget {
+    func sampleResolvedDefinition(encoding: EncodingStrategy, method: HTTPMethod = .GET, headers: [String: String]? = nil) -> APITarget {
         return APITarget(url: URL(string: "https://example.com")!,
                          path: "/some-path",
                          method: method,
@@ -110,7 +110,7 @@ class EncodingSpec: QuickSpec {
 
         context("HTTP Methods") {
 
-            func ourMappedUrlRequest(_ method: TargetMethod) -> URLRequest {
+            func ourMappedUrlRequest(_ method: HTTPMethod) -> URLRequest {
                 let api = self.sampleResolvedDefinition(encoding: .ignore, method: method)
                 return try! requestMapper(api).get()
             }
@@ -139,7 +139,7 @@ class EncodingSpec: QuickSpec {
 
         context("HTTP Headers") {
 
-            func ourMappedUrlRequest(_ method: TargetMethod, headers: [String: String]?) -> URLRequest {
+            func ourMappedUrlRequest(_ method: HTTPMethod, headers: [String: String]?) -> URLRequest {
                 let api = self.sampleResolvedDefinition(encoding: .ignore, method: method, headers: headers)
                 return try! requestMapper(api).get()
             }
@@ -208,7 +208,7 @@ extension SampleAPI: APIDefinition {
         }
     }
 
-    var method: TargetMethod {
+    var method: HTTPMethod {
         switch self {
         case .simpleGET, .getWithParams:
             return .GET

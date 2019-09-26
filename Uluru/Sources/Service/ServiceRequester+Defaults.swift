@@ -57,7 +57,7 @@ extension APITarget {
     func urlRequest() throws -> URLRequest {
         var ourRequest = URLRequest(url: url)
         try ourRequest.encoded(encoding)
-        ourRequest.httpMethod = method.methodName
+        ourRequest.httpMethod = method.name
 
         // Firstly apply supplied headers
         if let suppliedHeaders = headers {

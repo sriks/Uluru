@@ -9,13 +9,13 @@ public struct APITarget {
 
     public let path: String
 
-    public let method: TargetMethod
+    public let method: HTTPMethod
 
     public let encoding: EncodingStrategy
 
     public var headers: [String : String]?
 
-    public init(url: URL, path: String, method: TargetMethod, encoding: EncodingStrategy, headers: [String : String]?) {
+    public init(url: URL, path: String, method: HTTPMethod, encoding: EncodingStrategy, headers: [String : String]?) {
         self.url = url
         self.path = path
         self.method = method

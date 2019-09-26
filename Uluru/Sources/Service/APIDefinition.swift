@@ -2,15 +2,15 @@
 
 import Foundation
 
-public enum TargetMethod: String {
+public enum HTTPMethod: String {
     case GET
     case POST
     case PUT
     case DELETE
 }
 
-public extension TargetMethod {
-    var methodName: String { return self.rawValue.uppercased() }
+public extension HTTPMethod {
+    var name: String { return self.rawValue.uppercased() }
 }
 
 public typealias JSON = [String: Any]
@@ -37,7 +37,7 @@ public enum EncodingStrategy {
 public protocol APIDefinition {
     var baseURL: URL { get }
     var path: String { get }
-    var method: TargetMethod { get }
+    var method: HTTPMethod { get }
     var encoding: EncodingStrategy { get }
     var headers: [String: String]? { get }
     var placeholderData: Data? { get }

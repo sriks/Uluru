@@ -39,7 +39,7 @@ extension PostmanEcho: APIDefinition, AccessAuthorizable {
         }
     }
 
-    var method: TargetMethod {
+    var method: HTTPMethod {
         switch self {
         case .getWithParams, .justGet, .justGetWithPlaceholderData, .echoBearerAuth, .echoCustomHeaderAuth, .invalidRoute:
             return .GET
@@ -141,7 +141,7 @@ extension ErrorAPIDefinition: APIDefinition {
         }
     }
 
-    var method: TargetMethod {
+    var method: HTTPMethod {
         return .GET
     }
 
