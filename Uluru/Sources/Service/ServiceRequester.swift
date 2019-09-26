@@ -81,8 +81,8 @@ public class ServiceRequester<API: APIDefinition>: Service {
         }
     }
 
-    public func requestData(_ api: API,
-                        completion: @escaping DataRequestCompletion) -> ServiceCancellable {
+    func requestData(_ api: API,
+                    completion: @escaping DataRequestCompletion) -> ServiceCancellable {
         let cancellable = ServiceCancellableWrapper()
 
         // Get a target representation

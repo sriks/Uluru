@@ -26,13 +26,9 @@ public typealias APIRequestCompletion<T: Decodable> = (_ result: Result<ParsedDa
 public protocol Service {
     associatedtype API: APIDefinition
 
-    func requestData(_ api: API,
-                     completion: @escaping DataRequestCompletion) -> ServiceCancellable
-
     func request<T: Decodable>(_ api: API,
                                expecting: T.Type,
                                completion: @escaping APIRequestCompletion<T>) -> ServiceCancellable
-
 }
 
 
