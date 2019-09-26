@@ -28,12 +28,12 @@ public enum StubStrategy {
 public class ServiceProvider<API: APIDefinition>: Service {
 
     // Maps an APIDefinition to an APITarget with a resolved URL.
-    public typealias APIDefinitionResolver = (_ api: API) -> Result<APITarget, ServiceError>
+    public typealias APITargetResolver = (_ api: API) -> Result<APITarget, ServiceError>
 
     // Maps a resolved definition to an URLRequest.  
     public typealias RequestMapper = (_ resolvedAPIDefinition: APITarget) -> Result<URLRequest, ServiceError>
 
-    public let apiDefinitionResolver: APIDefinitionResolver
+    public let apiTargetResolver: APITargetResolver
 
     public let requestMapper: RequestMapper
 
@@ -47,20 +47,20 @@ public class ServiceProvider<API: APIDefinition>: Service {
 
     private let serviceExecutor: ServiceExecutable
 
-    public init(apiDefinitionResolver: @escaping APIDefinitionResolver = ServiceProvider.defaultAPIDefinitionResolver,
+    public init(apiTargetResolver: @escaping APITargetResolver = ServiceProvider.defaultAPITargetResolver(),
                 requestMapper: @escaping RequestMapper = ServiceProvider.defaultRequestMapper(),
                 plugins: [ServicePluginType] = [],
                 stubStrategy: StubStrategy = .dontStub,
-                parser: ResponseParser.Type = ServiceProvider.defaultParser,
+                parser: ResponseParser.Type = ServiceProvider.defaultParser(),
                 completionStrategy: RequestCompletionStrategyProvidable = ServiceProvider.defaultCompletionStrategyProvider(),
                 serviceExecutor: ServiceExecutable = ExecutorURLSession.make()) {
-        self.apiDefinitionResolver = apiDefinitionResolver
+        self.apiTargetResolver = apiTargetResolver
         self.requestMapper = requestMapper
+        self.plugins = plugins
         self.stubStrategy = stubStrategy
         self.parser = parser
         self.completionStrategy = completionStrategy
         self.serviceExecutor = serviceExecutor
-        self.plugins = plugins
     }
 
     public func request<T: Decodable>(_ api: API,
@@ -86,7 +86,7 @@ public class ServiceProvider<API: APIDefinition>: Service {
         let cancellable = ServiceCancellableWrapper()
 
         // Get a target representation
-        let targetResult = apiDefinitionResolver(api)
+        let targetResult = apiTargetResolver(api)
         var target: APITarget?
         switch targetResult {
         case .success(let ourTarget):

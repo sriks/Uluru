@@ -4,8 +4,8 @@ import Foundation
 
 public extension ServiceProvider {
 
-    static var defaultAPIDefinitionResolver: APIDefinitionResolver {
-        let resolver: APIDefinitionResolver = { apiDef in
+    static func defaultAPITargetResolver() -> APITargetResolver {
+        let resolver: APITargetResolver = { apiDef in
             let target = APITarget.makeFrom(apiDef, resolvedURL: URL(api: apiDef))
             return .success(target)
         }
@@ -42,7 +42,7 @@ public extension URL {
 
 public extension ServiceProvider {
     // Essentially a pass through parser using vanilla JSONEncoder. 
-    static var defaultParser: ResponseParser.Type {
+    static func defaultParser() -> ResponseParser.Type {
         return DefaultJSONDecoder.self
     }
 }
