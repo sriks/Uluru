@@ -49,7 +49,7 @@ public class ServiceRequester<API: APIDefinition>: Service {
 
     public init(apiTargetResolver: @escaping APITargetResolver = ServiceRequester.defaultAPITargetResolver(),
                 requestMapper: @escaping RequestMapper = ServiceRequester.defaultRequestMapper(),
-                plugins: [ServicePluginType] = [],
+                plugins: [ServicePluginType] = [JSONAPILogger()],
                 stubStrategy: StubStrategy = .dontStub,
                 parser: ResponseParser.Type = ServiceRequester.defaultParser(),
                 completionStrategy: RequestCompletionStrategyProvidable = ServiceRequester.defaultCompletionStrategyProvider(),
