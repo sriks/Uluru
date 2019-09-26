@@ -5,16 +5,16 @@ import Quick
 import Nimble
 @testable import Uluru
 
-class ServiceProvderSpec: QuickSpec {
+class ServiceRequesterSpec: QuickSpec {
     override func spec() {
         TestHelper.markWaitExpecationAsAPIRequest()
 
         // MARK: Custom JSONDecoder
         context("Custom JSONDecoder") {
-            var service: ServiceProvider<PostmanEcho>!
+            var service: ServiceRequester<PostmanEcho>!
             beforeEach {
                 CustomParser.isInvoked = false
-                service = ServiceProvider(parser: CustomParser.self)
+                service = ServiceRequester(parser: CustomParser.self)
             }
 
             it("uses the provided json decoder") {
@@ -30,10 +30,10 @@ class ServiceProvderSpec: QuickSpec {
 
         // MARK: Placeholder data
         context("Placeholder data") {
-            var service: ServiceProvider<PostmanEcho>!
+            var service: ServiceRequester<PostmanEcho>!
 
             beforeEach {
-                service = ServiceProvider()
+                service = ServiceRequester()
             }
 
             it("should return placeholder data when provided") {
@@ -63,13 +63,13 @@ class ServiceProvderSpec: QuickSpec {
 
         // MARK: Stub Strategies
         context("Stub Strategies") {
-            var service: ServiceProvider<PostmanEcho>!
+            var service: ServiceRequester<PostmanEcho>!
 
             it("should match with provided stub response") {
                 struct StubSuccessResponse: Codable, Equatable, JSONRepresentable {
                     let animal = "Godzilla"
                 }
-                service = ServiceProvider(stubStrategy: .stub(delay: 0, response: { (target) -> StubResponse in
+                service = ServiceRequester(stubStrategy: .stub(delay: 0, response: { (target) -> StubResponse in
                     let urlResponse = HTTPURLResponse(url: target.url, statusCode: 200, httpVersion: nil, headerFields: nil)
                     return .network(response: urlResponse!, data: try! StubSuccessResponse().jsonData())
                 }))
@@ -87,7 +87,7 @@ class ServiceProvderSpec: QuickSpec {
                 let stubStrategy: StubStrategy = .stub(delay: 0, response: { (target) -> StubResponse in
                     return .error(error: stubedError)
                 })
-                service = ServiceProvider(stubStrategy: stubStrategy)
+                service = ServiceRequester(stubStrategy: stubStrategy)
                 var expectedError: NSError?
                 waitUntil { done in
                     let _ = service.request(.justGet, expecting: EmptyDecodableModel.self, completion: { (result) in
@@ -108,7 +108,7 @@ class ServiceProvderSpec: QuickSpec {
                     return .continueCourse
                 })
 
-                service = ServiceProvider(stubStrategy: stubStrategy)
+                service = ServiceRequester(stubStrategy: stubStrategy)
                 var model: EmptyDecodableModel?
                 waitUntil { done in
                     let _ = service.request(.justGet, expecting: EmptyDecodableModel.self, completion: { (result) in
@@ -128,7 +128,7 @@ class ServiceProvderSpec: QuickSpec {
                     return .continueCourse
                 })
 
-                service = ServiceProvider(stubStrategy: stubStrategy)
+                service = ServiceRequester(stubStrategy: stubStrategy)
                 var model: EmptyDecodableModel?
                 var canceller: ServiceCancellable!
                 waitUntil { done in
@@ -148,7 +148,7 @@ class ServiceProvderSpec: QuickSpec {
 
 
             it("should make real network call when strategy is .dontStub") {
-                service = ServiceProvider(stubStrategy: .dontStub)
+                service = ServiceRequester(stubStrategy: .dontStub)
                 var model: EmptyDecodableModel?
                 waitUntil { done in
                     let _ = service.request(.justGet, expecting: EmptyDecodableModel.self, completion: { (result) in
@@ -163,10 +163,10 @@ class ServiceProvderSpec: QuickSpec {
 
         // MARK: Request cancellation
         describe("ServiceCancellable") {
-            var service: ServiceProvider<PostmanEcho>!
+            var service: ServiceRequester<PostmanEcho>!
 
             it("should return with NSURLErrorCancelled as underlying error") {
-                service = ServiceProvider()
+                service = ServiceRequester()
                 var error: ServiceError?
                 var cancellable: ServiceCancellable!
                 waitUntil { done in

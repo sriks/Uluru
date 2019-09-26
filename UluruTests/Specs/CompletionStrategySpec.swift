@@ -10,11 +10,11 @@ class CompletionStrategySpec: QuickSpec {
         TestHelper.markWaitExpecationAsAPIRequest()
         
         context("When completion strategy is .goahead") {
-            var service: ServiceProvider<PostmanEcho>!
+            var service: ServiceRequester<PostmanEcho>!
 
             it("should return the expected result") {
                 let completionProvider = MockCompletionStrategyProvider(.goahead)
-                service = ServiceProvider(completionStrategy: completionProvider)
+                service = ServiceRequester(completionStrategy: completionProvider)
                 var model: EmptyDecodableModel?
                 waitUntil { done in
                     let _ = service.request(.justGet, expecting: EmptyDecodableModel.self, completion: { (result) in
@@ -29,11 +29,11 @@ class CompletionStrategySpec: QuickSpec {
         }
 
         context("When completion strategy is .retry") {
-            var service: ServiceProvider<PostmanEcho>!
+            var service: ServiceRequester<PostmanEcho>!
 
             it("should retry request as expected") {
                 let completionProvider = MockRetryCompletionStrategyProvider(maxRetries: 2,delay: 2)
-                service = ServiceProvider(completionStrategy: completionProvider)
+                service = ServiceRequester(completionStrategy: completionProvider)
                 var model: EmptyDecodableModel!
                 waitUntil { done in
                     let _ = service.request(.justGet, expecting: EmptyDecodableModel.self, completion: { (result) in
@@ -55,7 +55,7 @@ class CompletionStrategySpec: QuickSpec {
                 let expectedInvocations = completionProvider.maxRetries + 1
 
                 let aPlugin = TestSuccessPlugin()
-                service = ServiceProvider(plugins: [aPlugin], completionStrategy: completionProvider)
+                service = ServiceRequester(plugins: [aPlugin], completionStrategy: completionProvider)
                 var model: EmptyDecodableModel!
 
                 waitUntil { done in
@@ -74,7 +74,7 @@ class CompletionStrategySpec: QuickSpec {
 
             it("should invoke completion handler only once irrespective of retries") {
                 let completionProvider = MockRetryCompletionStrategyProvider(maxRetries: 2)
-                service = ServiceProvider(completionStrategy: completionProvider)
+                service = ServiceRequester(completionStrategy: completionProvider)
                 var actualCompletionInvocations = 0
                 waitUntil { done in
                     let _ = service.request(.justGet, expecting: EmptyDecodableModel.self, completion: { (result) in

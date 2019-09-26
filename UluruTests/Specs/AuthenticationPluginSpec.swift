@@ -15,7 +15,7 @@ class AuthenticationPluginSpec: QuickSpec {
         }
 
         context("When using .none strategy") {
-            let service = ServiceProvider<PostmanEcho>(plugins: [AuthenticationPlugin(authProvider)])
+            let service = ServiceRequester<PostmanEcho>(plugins: [AuthenticationPlugin(authProvider)])
             var actual: EchoHeaders!
 
             it("should not add any auth headers") {
@@ -30,7 +30,7 @@ class AuthenticationPluginSpec: QuickSpec {
         }
 
         context("When using .bearer strategy") {
-            let service = ServiceProvider<PostmanEcho>(plugins: [AuthenticationPlugin(authProvider)])
+            let service = ServiceRequester<PostmanEcho>(plugins: [AuthenticationPlugin(authProvider)])
             var actual: EchoHeaders!
 
             it("should add Authorization header with provided token") {
@@ -46,7 +46,7 @@ class AuthenticationPluginSpec: QuickSpec {
 
         context("When using .customHeaderField strategy") {
             let ourCustomHeader = "our-custom-header"
-            let service = ServiceProvider<PostmanEcho>(plugins: [AuthenticationPlugin(authProvider)])
+            let service = ServiceRequester<PostmanEcho>(plugins: [AuthenticationPlugin(authProvider)])
             var actual: EchoHeaders!
 
             it("request header contains custom header field with provided token value") {

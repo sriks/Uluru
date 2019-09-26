@@ -9,12 +9,12 @@ import Nimble
 class PluginsSpec: QuickSpec {
     override func spec() {
         TestHelper.markWaitExpecationAsAPIRequest()
-        var service: ServiceProvider<PostmanEcho>!
+        var service: ServiceRequester<PostmanEcho>!
         var plugin: TestErrorPlugin!
 
         beforeEach {
             plugin = TestErrorPlugin()
-            service = ServiceProvider(plugins: [plugin])
+            service = ServiceRequester(plugins: [plugin])
         }
 
         it("will let plugin mutate request before sending") {

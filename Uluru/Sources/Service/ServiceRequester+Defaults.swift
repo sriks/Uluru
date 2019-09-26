@@ -2,7 +2,7 @@
 
 import Foundation
 
-public extension ServiceProvider {
+public extension ServiceRequester {
 
     static func defaultAPITargetResolver() -> APITargetResolver {
         let resolver: APITargetResolver = { apiDef in
@@ -40,14 +40,14 @@ public extension URL {
 }
 
 
-public extension ServiceProvider {
+public extension ServiceRequester {
     // Essentially a pass through parser using vanilla JSONEncoder. 
     static func defaultParser() -> ResponseParser.Type {
         return DefaultJSONDecoder.self
     }
 }
 
-public extension ServiceProvider {
+public extension ServiceRequester {
     static func defaultCompletionStrategyProvider() -> RequestCompletionStrategyProvidable {
         return DefaultContinueDecisionMaker()
     }

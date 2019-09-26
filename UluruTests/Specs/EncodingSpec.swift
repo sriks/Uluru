@@ -18,7 +18,7 @@ class EncodingSpec: QuickSpec {
 
     override func spec() {
 
-        var requestMapper: ServiceProvider<PostmanEcho>.RequestMapper  { return ServiceProvider<PostmanEcho>.defaultRequestMapper() }
+        var requestMapper: ServiceRequester<PostmanEcho>.RequestMapper  { return ServiceRequester<PostmanEcho>.defaultRequestMapper() }
 
         context("when encoding strategy is .queryParameters") {
             
@@ -162,7 +162,7 @@ class EncodingSpec: QuickSpec {
 
 
 
-            let service = ServiceProvider<SampleAPI>()
+            let service = ServiceRequester<SampleAPI>()
 
             waitUntil(timeout: 1200) { done in
 

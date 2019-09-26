@@ -25,7 +25,7 @@ public enum StubStrategy {
     case stub(delay: TimeInterval, response: StubReponseProvider)
 }
 
-public class ServiceProvider<API: APIDefinition>: Service {
+public class ServiceRequester<API: APIDefinition>: Service {
 
     // Maps an APIDefinition to an APITarget with a resolved URL.
     public typealias APITargetResolver = (_ api: API) -> Result<APITarget, ServiceError>
@@ -47,12 +47,12 @@ public class ServiceProvider<API: APIDefinition>: Service {
 
     private let serviceExecutor: ServiceExecutable
 
-    public init(apiTargetResolver: @escaping APITargetResolver = ServiceProvider.defaultAPITargetResolver(),
-                requestMapper: @escaping RequestMapper = ServiceProvider.defaultRequestMapper(),
+    public init(apiTargetResolver: @escaping APITargetResolver = ServiceRequester.defaultAPITargetResolver(),
+                requestMapper: @escaping RequestMapper = ServiceRequester.defaultRequestMapper(),
                 plugins: [ServicePluginType] = [],
                 stubStrategy: StubStrategy = .dontStub,
-                parser: ResponseParser.Type = ServiceProvider.defaultParser(),
-                completionStrategy: RequestCompletionStrategyProvidable = ServiceProvider.defaultCompletionStrategyProvider(),
+                parser: ResponseParser.Type = ServiceRequester.defaultParser(),
+                completionStrategy: RequestCompletionStrategyProvidable = ServiceRequester.defaultCompletionStrategyProvider(),
                 serviceExecutor: ServiceExecutable = ExecutorURLSession.make()) {
         self.apiTargetResolver = apiTargetResolver
         self.requestMapper = requestMapper
