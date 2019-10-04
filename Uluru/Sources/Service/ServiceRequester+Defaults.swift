@@ -90,7 +90,8 @@ public extension JSONRepresentable where Self: Encodable {
 }
 
 public class DefaultJSONDecoder: ResponseParser {
-    public static func make() -> ResponseParser {
+
+    public static func make<API>(_ api: API) -> ResponseParser where API : APIDefinition {
         return DefaultJSONDecoder()
     }
 

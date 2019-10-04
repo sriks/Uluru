@@ -24,10 +24,11 @@ class CustomDecoder: JSONDecoder {
 }
 
 class CustomParser: ResponseParser {
-    static var isInvoked = false
-    static func make() -> ResponseParser {
+    static func make<API>(_ api: API) -> ResponseParser where API : APIDefinition {
         return CustomParser()
     }
+
+    static var isInvoked = false
 
     func parse<T>(_ response: DataResponse) -> Result<T, ParsingError> where T : Decodable {
         CustomParser.isInvoked = true

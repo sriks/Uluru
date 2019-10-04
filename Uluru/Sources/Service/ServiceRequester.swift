@@ -2,10 +2,19 @@
 
 import Foundation
 
-/// A JSON response parser.
+/// JSON response parser conformance protocol.
 public protocol ResponseParser {
+
+    /// Creates a parser for the supplied API definition. If all APIs share the same response then the same parser type can be returned.
+    /// This is invoked for every API request.
+    ///
+    /// - Parameter api: The API's response for which parsing is requested.
+    static func make<API>(_ api: API) -> ResponseParser where API: APIDefinition
+
+    /// Invoked to parse the response. This is the raw response from API.
+    /// - Parameter response: The raw API response
+    /// - Returns: Parsing result.
     func parse<T: Decodable>(_ response: DataResponse) -> Result<T, ParsingError>
-    static func make() -> ResponseParser
 }
 
 public enum StubResponse {
@@ -73,7 +82,7 @@ public class ServiceRequester<API: APIDefinition>: Service {
             case let .success(successResponse):
                 DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                     guard let self = self else { return }
-                    self.performParsing(successResponse, using: self.parser.make(), completion: completion)
+                    self.performParsing(successResponse, using: self.parser.make(api), completion: completion)
                 }
             case let .failure(error):
                 completion(.failure(error))
