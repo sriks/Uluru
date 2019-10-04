@@ -3,7 +3,7 @@
 import Foundation
 
 /// A conformance to represent an error response. For example API returned an error response stating missing mandatory fields.
-public typealias ErrorResponse = Error & Decodable
+public typealias ErrorResponse = Error
 
 // MARK: ServiceError
 /// Service Error. Collection of all possible errors that can result when performing a request.
