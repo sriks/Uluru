@@ -4,9 +4,9 @@ import Foundation
 
 /// Represents a data response.
 public struct DataResponse {
-    let data: Data
-    let request: URLRequest
-    let urlResponse: HTTPURLResponse?
+    public let data: Data
+    public let request: URLRequest
+    public let urlResponse: HTTPURLResponse?
 }
 
 // Raw Data Requests

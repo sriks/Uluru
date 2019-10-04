@@ -17,18 +17,27 @@ default_platform(:ios)
 platform :ios do
   scheme = ENV['SCHEME']
   workspace = ENV['WORKSPACE']
+  versionTag = ""
 
   desc "Description of what the lane does"
   lane :do_release do
     # TODO: Tag release on git
-    puts get_version_number
     prepare_build
     upload_prebuilt_binary
   end
 
   desc "Release dry run, all steps expect uploading release."
   lane :release_dry_run do 
+    prepare_version_tag
+    puts "version tag " + versionTag
     prepare_build
+  end
+
+  desc "Prepared a version tag"
+  private_lane :prepare_version_tag do
+    commit = last_git_commit
+    versionTag = get_version_number + '.' + commit[:abbreviated_commit_hash]
+    puts versionTag
   end
 
   desc "Prepares build"
@@ -51,12 +60,14 @@ platform :ios do
 
   desc "Uploads prebuilt binary for carthage"
   private_lane :upload_prebuilt_binary do
+    prepare_version_tag
     # We pick the version as the release version tag.
     github_release = set_github_release(
+      is_prerelease: true,
       repository_name: ENV['GITHUB_RELEASE_REPO'],
       api_token: ENV['GITHUB_TOKEN'],
       name: "WIP Beta build",
-      tag_name: get_version_number,
+      tag_name: versionTag,
       commitish: "beta",
       description: "WIP description",
       upload_assets: ["Uluru.framework.zip"]
