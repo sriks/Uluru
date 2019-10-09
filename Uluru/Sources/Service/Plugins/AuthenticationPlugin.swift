@@ -2,18 +2,18 @@
 
 import Foundation
 
-typealias AuthenticationTokenProvider = (_ api: APIDefinition) -> String
+public typealias AuthenticationTokenProvider = (_ api: APIDefinition) -> String
 
 /// An authentication plugin which prepares a request as per authentication strategy.
 /// Reads token from authentication token provider.
-class AuthenticationPlugin: ServicePluginType {
+public class AuthenticationPlugin: ServicePluginType {
     let provider: AuthenticationTokenProvider
 
-    init(_ provider: @escaping AuthenticationTokenProvider) {
+    public init(_ provider: @escaping AuthenticationTokenProvider) {
         self.provider = provider
     }
 
-    func mutate(_ request: URLRequest, api: APIDefinition) -> URLRequest {
+    public func mutate(_ request: URLRequest, api: APIDefinition) -> URLRequest {
         guard let authorizable = api as? AccessAuthorizable else { return request }
         var authenticatedRequest = request
         let authStrategy = authorizable.authenticationStrategy
