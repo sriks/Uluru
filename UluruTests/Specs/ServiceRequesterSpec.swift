@@ -69,9 +69,9 @@ class ServiceRequesterSpec: QuickSpec {
                 struct StubSuccessResponse: Codable, Equatable, JSONRepresentable {
                     let animal = "Godzilla"
                 }
-                service = ServiceRequester(stubStrategy: .stub(delay: 0, response: { (target) -> StubResponse in
+                service = ServiceRequester(stubStrategy: .stub(delay: 0, response: { (api, target) -> StubResponse in
                     let urlResponse = HTTPURLResponse(url: target.url, statusCode: 200, httpVersion: nil, headerFields: nil)
-                    return .network(response: urlResponse!, data: try! StubSuccessResponse().jsonData())
+                    return .networkResponse(urlResponse!, try! StubSuccessResponse().jsonData())
                 }))
 
                 waitUntil { done in
@@ -84,8 +84,8 @@ class ServiceRequesterSpec: QuickSpec {
 
             it("should match to .underlying error when stub returns a network error") {
                 let stubedError = NSError(domain: "Godzilla Error", code: 8086, userInfo: nil)
-                let stubStrategy: StubStrategy = .stub(delay: 0, response: { (target) -> StubResponse in
-                    return .error(error: stubedError)
+                let stubStrategy: ServiceRequester<PostmanEcho>.StubStrategy = .stub(delay: 0, response: { (api, target) -> StubResponse in
+                    return .networkError(stubedError)
                 })
                 service = ServiceRequester(stubStrategy: stubStrategy)
                 var expectedError: NSError?
@@ -101,11 +101,16 @@ class ServiceRequesterSpec: QuickSpec {
                 expect(stubedError).to( equal(expectedError) )
             }
 
-            it("should invoke response provider and make a real network request when using .continueCourse") {
+            it("should conditionally invoke response provider and make a real network request when using .continueCourse") {
                 var isStubProviderInvoked: Bool = false
-                let stubStrategy: StubStrategy = .stub(delay: 0, response: { (target) -> StubResponse in
-                    isStubProviderInvoked = true
-                    return .continueCourse
+                let stubedError = NSError(domain: "Godzilla Error", code: 8086, userInfo: nil)
+                let stubStrategy: ServiceRequester<PostmanEcho>.StubStrategy = .stub(delay: 0, response: { (api, target) -> StubResponse in
+                    if case .justGet = api {
+                        isStubProviderInvoked = true
+                        return .continueCourse
+                    } else {
+                        return .networkError(stubedError)
+                    }
                 })
 
                 service = ServiceRequester(stubStrategy: stubStrategy)
@@ -123,7 +128,7 @@ class ServiceRequesterSpec: QuickSpec {
 
             it("should cancel a real network request when using .continueCourse") {
                 var isStubProviderInvoked: Bool = false
-                let stubStrategy: StubStrategy = .stub(delay: 0, response: { (target) -> StubResponse in
+                let stubStrategy: ServiceRequester<PostmanEcho>.StubStrategy = .stub(delay: 0, response: { (api, target) -> StubResponse in
                     isStubProviderInvoked = true
                     return .continueCourse
                 })
