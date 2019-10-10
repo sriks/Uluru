@@ -34,6 +34,9 @@
 		ADA0F1FD231634FC001ED542 /* URLRequest+Encoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1FC231634FC001ED542 /* URLRequest+Encoding.swift */; };
 		ADA0F2022317CD10001ED542 /* PostmanEcho.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F2012317CD10001ED542 /* PostmanEcho.swift */; };
 		ADA0F2042317D9CA001ED542 /* APITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F2032317D9CA001ED542 /* APITarget.swift */; };
+		ADB7EB33234EA47B00D65C16 /* StubSuccessResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = ADB7EB32234EA47B00D65C16 /* StubSuccessResponse.json */; };
+		ADB7EB35234EA7D700D65C16 /* StubStrategiesSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB7EB34234EA7D700D65C16 /* StubStrategiesSpec.swift */; };
+		ADB7EB37234EB4C600D65C16 /* StubResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB7EB36234EB4C600D65C16 /* StubResponse.swift */; };
 		ADD567E4233B2973005939E4 /* APITargetSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD567E3233B2973005939E4 /* APITargetSpec.swift */; };
 		ADE9DF592321E4BA00195774 /* PluginsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE9DF582321E4BA00195774 /* PluginsSpec.swift */; };
 		CDDFA3FF233C8CD900B3ABFF /* JSONAPILogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDFA3FE233C8CD900B3ABFF /* JSONAPILogger.swift */; };
@@ -96,6 +99,9 @@
 		ADA0F1FC231634FC001ED542 /* URLRequest+Encoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Encoding.swift"; sourceTree = "<group>"; };
 		ADA0F2012317CD10001ED542 /* PostmanEcho.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostmanEcho.swift; sourceTree = "<group>"; };
 		ADA0F2032317D9CA001ED542 /* APITarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITarget.swift; sourceTree = "<group>"; };
+		ADB7EB32234EA47B00D65C16 /* StubSuccessResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = StubSuccessResponse.json; sourceTree = "<group>"; };
+		ADB7EB34234EA7D700D65C16 /* StubStrategiesSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubStrategiesSpec.swift; sourceTree = "<group>"; };
+		ADB7EB36234EB4C600D65C16 /* StubResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubResponse.swift; sourceTree = "<group>"; };
 		ADD567E3233B2973005939E4 /* APITargetSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITargetSpec.swift; sourceTree = "<group>"; };
 		ADE9DF582321E4BA00195774 /* PluginsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginsSpec.swift; sourceTree = "<group>"; };
 		BA2134552B8F8991A0A4FC2D /* Pods_Uluru.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Uluru.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -238,6 +244,7 @@
 				CDE465542329CEF30062C71C /* RequestCompletionStrategy.swift */,
 				AD390DCC232C573E00442BFB /* HTTPStatusCode.swift */,
 				AD39099A2332077D004452A7 /* ServiceCancellable.swift */,
+				ADB7EB36234EB4C600D65C16 /* StubResponse.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -254,6 +261,7 @@
 				AD394C832328F3C800BEA019 /* CompletionStrategySpec.swift */,
 				AD390DC8232A465400442BFB /* ErrorsSpec.swift */,
 				ADD567E3233B2973005939E4 /* APITargetSpec.swift */,
+				ADB7EB34234EA7D700D65C16 /* StubStrategiesSpec.swift */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -272,6 +280,7 @@
 				AD394C852329C65700BEA019 /* TestPlugin.swift */,
 				ADA0F2012317CD10001ED542 /* PostmanEcho.swift */,
 				AD00E2DB2321FB7500A228F5 /* EncoderDecoder.swift */,
+				ADB7EB32234EA47B00D65C16 /* StubSuccessResponse.json */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -379,6 +388,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADB7EB33234EA47B00D65C16 /* StubSuccessResponse.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,6 +475,7 @@
 				ADA0F1EA2314C860001ED542 /* ServiceExecutable.swift in Sources */,
 				CDE465552329CEF30062C71C /* RequestCompletionStrategy.swift in Sources */,
 				ADA0F2042317D9CA001ED542 /* APITarget.swift in Sources */,
+				ADB7EB37234EB4C600D65C16 /* StubResponse.swift in Sources */,
 				ADA0F1EB2314C860001ED542 /* ExecutorURLSession.swift in Sources */,
 				ADA0F1FD231634FC001ED542 /* URLRequest+Encoding.swift in Sources */,
 				ADA0F1FB2314D611001ED542 /* ServiceRequester+Defaults.swift in Sources */,
@@ -479,6 +490,7 @@
 				ADA0F1F92314D173001ED542 /* EncodingSpec.swift in Sources */,
 				AD390DC9232A465400442BFB /* ErrorsSpec.swift in Sources */,
 				AD00E2DC2321FB7500A228F5 /* EncoderDecoder.swift in Sources */,
+				ADB7EB35234EA7D700D65C16 /* StubStrategiesSpec.swift in Sources */,
 				ADD567E4233B2973005939E4 /* APITargetSpec.swift in Sources */,
 				AD00E2D52321F56D00A228F5 /* ServiceRequesterSpec.swift in Sources */,
 				ADE9DF592321E4BA00195774 /* PluginsSpec.swift in Sources */,

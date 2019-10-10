@@ -17,17 +17,6 @@ public protocol ResponseParser {
     func parse<T: Decodable>(_ response: DataResponse) -> Result<T, ParsingError>
 }
 
-public enum StubResponse {
-    /// A network response to indicate the request went through.
-    case networkResponse(HTTPURLResponse, Data)
-
-    /// Network error like failed or timeout.
-    case networkError(NSError)
-
-    /// Continue course with executing a real network request. Use this to conditionally stub a response.
-    case continueCourse
-}
-
 public class ServiceRequester<API: APIDefinition>: Service {
     // Maps an APIDefinition to an APITarget with a resolved URL.
     public typealias APITargetResolver = (_ api: API) -> Result<APITarget, ServiceError>
