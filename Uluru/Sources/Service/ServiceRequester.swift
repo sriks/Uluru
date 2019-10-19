@@ -45,12 +45,20 @@ public class ServiceRequester<API: APIDefinition>: Service {
 
     private let serviceExecutor: ServiceExecutable
 
+    public enum LogLevel {
+        case verbose
+        case silent
+    }
+
+    public let logLevel: LogLevel
+
     public init(apiTargetResolver: @escaping APITargetResolver = ServiceRequester.defaultAPITargetResolver(),
                 requestMapper: @escaping RequestMapper = ServiceRequester.defaultRequestMapper(),
                 plugins: [ServicePluginType] = [JSONAPILogger()],
                 stubStrategy: StubStrategy = .dontStub,
                 parser: ResponseParser.Type = ServiceRequester.defaultParser(),
                 completionStrategy: RequestCompletionStrategyProvidable = ServiceRequester.defaultCompletionStrategyProvider(),
+                logLevel: LogLevel = .silent,
                 serviceExecutor: ServiceExecutable = ExecutorURLSession.make()) {
         self.apiTargetResolver = apiTargetResolver
         self.requestMapper = requestMapper
@@ -58,6 +66,7 @@ public class ServiceRequester<API: APIDefinition>: Service {
         self.stubStrategy = stubStrategy
         self.parser = parser
         self.completionStrategy = completionStrategy
+        self.logLevel = logLevel
         self.serviceExecutor = serviceExecutor
     }
 
@@ -130,9 +139,10 @@ public class ServiceRequester<API: APIDefinition>: Service {
             let mutatedResult = postRequestPlugins.reduce(responseResult) { $1.mutate($0, api: api) }
 
             // Invoke decision maker
+            self.log("will invoke completion strategy for \(target.url)")
             self.completionStrategy.shouldFinish(mutatedResult, api: api, decision: { [weak self] decision in
                 guard let self = self else { return }
-
+                self.log("completion strategy decision to *\(decision)* for \(target.url)")
                 switch decision {
                 case .goahead:
                     // Invoke completion
@@ -148,6 +158,7 @@ public class ServiceRequester<API: APIDefinition>: Service {
         if let placeholderData = api.placeholderData {
             // Placeholder data
             let ourResponse = HTTPURLResponse(url: mutatedRequest.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            self.log("found and returning place holder data \(ourResponse) for \(target.url)")
             completion(.success(DataResponse(data: placeholderData, request: mutatedRequest, urlResponse: ourResponse)))
             return ServiceCancellableWrapper()
         } else {
@@ -178,10 +189,11 @@ public class ServiceRequester<API: APIDefinition>: Service {
                              completion: @escaping ServiceExecutionDataTaskCompletion) -> ServiceCancellable {
         // Here we have to send a wrapper canceller which works for .continueCourse
         let canceller = ServiceCancellableWrapper()
-
+        log("instructed to use stub with delay \(delay) for \(target.url)")
         let stubInvocation = { [weak self] in
             guard let self = self else { return }
             let stubResponse = stubResponseProvider(api, target)
+            self.log("recieved and applying stub response \(stubResponse) for \(target.url)")
             switch stubResponse {
             case .networkResponse(let response, let data):
                 completion(data, response, nil)
@@ -254,4 +266,19 @@ public class ServiceRequester<API: APIDefinition>: Service {
             }
         }
     }
+}
+
+private extension ServiceRequester {
+    func log(_ message: String) {
+        switch logLevel {
+        case .verbose:
+            print("\(String.uluruLogTag): \(message)")
+        case .silent:
+            break
+        }
+    }
+}
+
+extension String {
+    static var uluruLogTag: String { return "UluruLogger" }
 }
