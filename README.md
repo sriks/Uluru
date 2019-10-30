@@ -2,10 +2,10 @@
 
 ![Uluru by artist Peter Taylor Tjutjatja](docs/uluru-photo.jpg)Uluru by artist Peter Taylor Tjutjatja
 
-##What is Uluru
+## What is Uluru
 Uluru is a simple and agnostic layer for REST APIs using declarative API concept and written in Swift.
 
-##How Uluru is different?
+## How Uluru is different?
 
 ### Declarative Services
 With [declarative API](https://www.twilio.com/blog/2017/05/declarative-apis.html) the service are described by **what** they want to do rather than **how** to do. The how part of the equation is handled by Uluru. This makes defining services intuitive and simple.
@@ -22,7 +22,7 @@ This has many benefits
 ### Testability in mind
 Uluru is designed with testability in mind. Every API request can be stubbed by simple closures so that developers are encouraged to write acceptance tests with ease. 
 
-##Usage
+## Usage
 
 Start by definining what an API Service wants to do by implementing `APIDefinition`. 
 
@@ -82,6 +82,7 @@ extension CatsAPIDefinition: APIDefinition {
 
 ```
 class CatsRepository {
+
     private let service: ServiceRequester<CatsAPIDefinition>
     init(_ service: ServiceRequester<CatsAPIDefinition>) {
         self.service = service
@@ -116,7 +117,6 @@ class CatsRepository {
 
 extension CatsRepository {
     static func make() -> CatsRepository {
-        // Here we have to provide a parser, else the default transparent parser is applied.
         return CatsRepository(ServiceRequester())
     }
 }
