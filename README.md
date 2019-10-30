@@ -36,7 +36,7 @@ struct Cat: Codable, JSONRepresentable {
 
 enum CatsAPIDefinition {
    case allCats
-   case registerCat(Cat)
+   case registerCat(JSONRepresentable)
 }
 
 extension CatsAPIDefinition: APIDefinition {
