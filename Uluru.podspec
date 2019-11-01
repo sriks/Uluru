@@ -28,5 +28,4 @@ Pod::Spec.new do |spec|
   spec.swift_version  = "5.1"
   spec.source         = { :git => "https://github.tabcorp.com.au/TabDigital/Uluru.git", :tag => spec.version }
   spec.source_files   = "Uluru/Sources/**/*.{h,m,swift}"
-
 end
