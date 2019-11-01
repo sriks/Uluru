@@ -10,7 +10,7 @@ Pod::Spec.new do |spec|
 
   spec.name           = "Uluru"
   # Ensure this matched the git tag
-  spec.version        = "0.0.1"
+  spec.version        = "0.0.2"
   spec.summary        = "JSON REST API module using declarative API definitions and plugins."
 
   spec.description    = <<-DESC
@@ -25,7 +25,7 @@ Pod::Spec.new do |spec|
   spec.license        = { :type => "MIT", :file => "License.md" }
   spec.author         = { "Tabcorp Digital" => "srikanth.sombhatla@tabcorp.com.au" }
   spec.ios.deployment_target = "10.0"
-  spec.swift_version  = "5.1"
+  spec.swift_version  = "5.0"
   spec.source         = { :git => "https://github.tabcorp.com.au/TabDigital/Uluru.git", :tag => spec.version }
   spec.source_files   = "Uluru/Sources/**/*.{h,m,swift}"
 end
