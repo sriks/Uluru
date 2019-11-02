@@ -38,11 +38,6 @@ fastlane ios publish_podspec
 Prepares and publishes podspec
 
 Uses git tag as the version number
-### ios test_next_tag
-```
-fastlane ios test_next_tag
-```
-test next tag number
 
 ----
 

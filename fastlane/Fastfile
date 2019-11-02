@@ -30,10 +30,11 @@ platform :ios do
   lane :do_release do
     # TODO: Tag release on git
     prepare_build
-    upload_prebuilt_binary
-    publish_podspec
     add_git_tag(tag: gitTag)
     push_git_tags
+    upload_prebuilt_binary
+    publish_podspec
+    # TODO: push to git, we updated podspec.
   end
 
   desc "Release dry run, all steps expect uploading release."
@@ -97,6 +98,7 @@ platform :ios do
   lane :publish_podspec do
     version_bump_podspec(path: podspec, version_number: gitTag, require_variable_prefix: true)
     pod_push(path: podspec, repo: 'tab-podspec')
+    # TODO: add commit to update podspec
   end
 
   def change_log_since_last_tag
