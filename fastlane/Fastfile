@@ -17,20 +17,33 @@ default_platform(:ios)
 platform :ios do
   scheme = ENV['SCHEME']
   workspace = ENV['WORKSPACE']
-  versionTag = ""
+  versionTag = ''
+  podspec = 'Uluru.podspec'
+  bumpType = 'patch'
+  gitTag = nil
+  before_all do
+    git_pull(only_tags: true)
+    gitTag = next_git_tag(bumpType)
+  end
 
   desc "Description of what the lane does"
   lane :do_release do
     # TODO: Tag release on git
     prepare_build
     upload_prebuilt_binary
+    publish_podspec
+    add_git_tag(tag: gitTag)
+    push_git_tags
   end
 
   desc "Release dry run, all steps expect uploading release."
-  lane :release_dry_run do 
+  lane :release_dry_run do
+    puts gitTag
     prepare_version_tag
     puts "version tag " + versionTag
+    puts change_log_since_last_tag
     prepare_build
+    lint_podspec
   end
 
   desc "Prepared a version tag"
@@ -38,6 +51,11 @@ platform :ios do
     commit = last_git_commit
     versionTag = get_version_number + '.' + commit[:abbreviated_commit_hash]
     puts versionTag
+  end
+
+  desc "Lint podspec"
+  lane :lint_podspec do
+    pod_lib_lint(podspec: podspec, verbose: false)
   end
 
   desc "Prepares build"
@@ -69,9 +87,51 @@ platform :ios do
       name: "WIP Beta build",
       tag_name: versionTag,
       commitish: "beta",
-      description: "WIP description",
+      description: change_log_since_last_tag,
       upload_assets: ["Uluru.framework.zip"]
     )
   end
+
+  desc "Prepares and publishes podspec"
+  desc "Uses git tag as the version number"
+  lane :publish_podspec do
+    version_bump_podspec(path: podspec, version_number: gitTag, require_variable_prefix: true)
+    pod_push(path: podspec, repo: 'tab-podspec')
+  end
+
+  def change_log_since_last_tag
+    # http://git-scm.com/docs/pretty-formats
+    # <short hash> <commit title>
+    return changelog_from_git_commits(pretty: '%h %s')
+  end
+
+  desc "Provides next tag number by applying bump type of patch or minor or major"
+  def next_git_tag(bump)
+    # calculates the new version according to
+    # the semantic version added
+    type = bump
+    old = last_git_tag
+    puts old
+    version = old
+
+    old[0] = ''
+    oldArr = old.split('.').map{|v| v.to_i}    
+
+    if type == "patch"
+        version = "#{oldArr[0]}.#{oldArr[1]}.#{oldArr[2] + 1}"
+    elsif type == "minor"
+        version = "#{oldArr[0]}.#{oldArr[1] + 1}.0"
+    elsif type == "major"
+        version = "#{oldArr[0] + 1}.0.0"
+    end   
+
+    puts version
+    if version == old
+        UI.user_error!("Wrong release type parameter. Enter: patch | minor | major")
+    end
+    return version
+  end
+
+
 
 end

@@ -26,6 +26,23 @@ Description of what the lane does
 fastlane ios release_dry_run
 ```
 Release dry run, all steps expect uploading release.
+### ios lint_podspec
+```
+fastlane ios lint_podspec
+```
+Lint podspec
+### ios publish_podspec
+```
+fastlane ios publish_podspec
+```
+Prepares and publishes podspec
+
+Uses git tag as the version number
+### ios test_next_tag
+```
+fastlane ios test_next_tag
+```
+test next tag number
 
 ----
 
