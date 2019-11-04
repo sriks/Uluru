@@ -1,4 +1,8 @@
-#Documentation
+# Documentation
 
-##Core Concepts
+## Core Concepts
 [APIDefinition](APIDefinition.md)
+
+
+## Request flow
+[Flow diagram](./RequestSteps.md) of how a request is executed.

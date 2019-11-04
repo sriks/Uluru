@@ -1,4 +1,4 @@
-#APIDefintion
+# APIDefintion
 
 `APIDefinition` is a protocol by which you can express what an API wants to do. For example, the `path`, the `http method`, `headers` etc.
 
