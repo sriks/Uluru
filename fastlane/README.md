@@ -20,7 +20,7 @@ or alternatively using `brew cask install fastlane`
 ```
 fastlane ios do_release
 ```
-Description of what the lane does
+Releases and publishes new version to github releases and podspec.
 ### ios release_dry_run
 ```
 fastlane ios release_dry_run

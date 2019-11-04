@@ -17,41 +17,32 @@ default_platform(:ios)
 platform :ios do
   scheme = ENV['SCHEME']
   workspace = ENV['WORKSPACE']
-  versionTag = ''
   podspec = 'Uluru.podspec'
   bumpType = 'patch'
   gitTag = nil
+
   before_all do
     git_pull(only_tags: true)
     gitTag = next_git_tag(bumpType)
   end
 
-  desc "Description of what the lane does"
+  desc "Releases and publishes new version to github releases and podspec."
   lane :do_release do
-    # TODO: Tag release on git
     prepare_build
+    # tag release on git
     add_git_tag(tag: gitTag)
     push_git_tags
+    # publish to github release and podspec
     upload_prebuilt_binary
     publish_podspec
-    # TODO: push to git, we updated podspec.
   end
 
   desc "Release dry run, all steps expect uploading release."
   lane :release_dry_run do
     puts gitTag
-    prepare_version_tag
-    puts "version tag " + versionTag
     puts change_log_since_last_tag
     prepare_build
     lint_podspec
-  end
-
-  desc "Prepared a version tag"
-  private_lane :prepare_version_tag do
-    commit = last_git_commit
-    versionTag = get_version_number + '.' + commit[:abbreviated_commit_hash]
-    puts versionTag
   end
 
   desc "Lint podspec"
@@ -79,14 +70,13 @@ platform :ios do
 
   desc "Uploads prebuilt binary for carthage"
   private_lane :upload_prebuilt_binary do
-    prepare_version_tag
     # We pick the version as the release version tag.
     github_release = set_github_release(
       is_prerelease: true,
       repository_name: ENV['GITHUB_RELEASE_REPO'],
       api_token: ENV['GITHUB_TOKEN'],
       name: "WIP Beta build",
-      tag_name: versionTag,
+      tag_name: gitTag,
       commitish: "beta",
       description: change_log_since_last_tag,
       upload_assets: ["Uluru.framework.zip"]
@@ -96,9 +86,8 @@ platform :ios do
   desc "Prepares and publishes podspec"
   desc "Uses git tag as the version number"
   lane :publish_podspec do
-    version_bump_podspec(path: podspec, version_number: gitTag, require_variable_prefix: true)
+    # podspec version update is a seperate developer commit
     pod_push(path: podspec, repo: 'tab-podspec')
-    # TODO: add commit to update podspec
   end
 
   def change_log_since_last_tag
