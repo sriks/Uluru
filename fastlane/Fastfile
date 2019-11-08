@@ -59,13 +59,14 @@ platform :ios do
   lane :prepare_build do 
     puts workspace
     puts scheme
-    cocoapods
+    # Enable on CI.
+    # cocoapods
     scan(scheme: scheme, code_coverage: true, clean: true) 
     # provides test coverage report
-    xcov(
-     workspace: workspace,
-     scheme: scheme
-    )
+    # xcov(
+    #  workspace: workspace,
+    #  scheme: scheme
+    # )
     # This build necessarily dont have any significance.
     gym(clean: true, scheme: scheme, skip_package_ipa: true)
     # Prepare carthage build and archive.

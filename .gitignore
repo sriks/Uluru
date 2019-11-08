@@ -8,6 +8,7 @@
 
 ## Prebuild framework for carthage 
 Uluru.framework.zip
+HALUluru.framework.zip
 
 ## Fastlane
 fastlane/xcov_report/
