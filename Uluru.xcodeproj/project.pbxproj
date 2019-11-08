@@ -22,6 +22,23 @@
 		AD394C862329C65700BEA019 /* TestPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD394C852329C65700BEA019 /* TestPlugin.swift */; };
 		AD79AF672373F07C00F96615 /* Uluru.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD804B03230FA8130033C7B0 /* Uluru.framework */; platformFilter = ios; };
 		AD79AFB72374D4E900F96615 /* HALAPIDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFB62374D4E900F96615 /* HALAPIDefinition.swift */; };
+		AD79AFD02375189D00F96615 /* ServiceDiscoveryEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFBC2375189D00F96615 /* ServiceDiscoveryEnum.swift */; };
+		AD79AFD12375189D00F96615 /* ServiceDiscoveryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFBD2375189D00F96615 /* ServiceDiscoveryProtocol.swift */; };
+		AD79AFD22375189D00F96615 /* ServiceDiscoveryPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFBF2375189D00F96615 /* ServiceDiscoveryPersistence.swift */; };
+		AD79AFD32375189D00F96615 /* ServiceDiscoveryDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFC02375189D00F96615 /* ServiceDiscoveryDataProvider.swift */; };
+		AD79AFD42375189D00F96615 /* ServiceDiscoveryNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFC12375189D00F96615 /* ServiceDiscoveryNetworking.swift */; };
+		AD79AFD52375189D00F96615 /* ServiceDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFC22375189D00F96615 /* ServiceDiscovery.swift */; };
+		AD79AFD62375189D00F96615 /* STHALResource.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFC52375189D00F96615 /* STHALResource.m */; };
+		AD79AFD72375189D00F96615 /* STHALTypeSafety.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFC62375189D00F96615 /* STHALTypeSafety.h */; };
+		AD79AFD82375189D00F96615 /* STHALEmbeddedResources.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFC72375189D00F96615 /* STHALEmbeddedResources.m */; };
+		AD79AFD92375189D00F96615 /* STHALLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFC82375189D00F96615 /* STHALLinks.m */; };
+		AD79AFDA2375189D00F96615 /* STHALResource.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFC92375189D00F96615 /* STHALResource.h */; };
+		AD79AFDB2375189D00F96615 /* STHALEmbeddedResources.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFCA2375189D00F96615 /* STHALEmbeddedResources.h */; };
+		AD79AFDC2375189D00F96615 /* STHAL.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFCB2375189D00F96615 /* STHAL.h */; };
+		AD79AFDD2375189D00F96615 /* STHALLinks.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFCC2375189D00F96615 /* STHALLinks.h */; };
+		AD79AFDE2375189D00F96615 /* STURITemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFCE2375189D00F96615 /* STURITemplate.m */; };
+		AD79AFDF2375189D00F96615 /* STURITemplate.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFCF2375189D00F96615 /* STURITemplate.h */; };
+		AD79AFE523751A7B00F96615 /* ServiceDiscovery-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFE423751A7B00F96615 /* ServiceDiscovery-Bridging-Header.h */; };
 		AD804B0D230FA8130033C7B0 /* Uluru.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD804B03230FA8130033C7B0 /* Uluru.framework */; };
 		AD804B14230FA8130033C7B0 /* Uluru.h in Headers */ = {isa = PBXBuildFile; fileRef = AD804B06230FA8130033C7B0 /* Uluru.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ADA0F1EA2314C860001ED542 /* ServiceExecutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1E82314C860001ED542 /* ServiceExecutable.swift */; };
@@ -92,6 +109,23 @@
 		AD79AF5F2373F05600F96615 /* HALUluru.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HALUluru.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD79AF612373F05600F96615 /* HALUluru.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HALUluru.h; sourceTree = "<group>"; };
 		AD79AFB62374D4E900F96615 /* HALAPIDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HALAPIDefinition.swift; sourceTree = "<group>"; };
+		AD79AFBC2375189D00F96615 /* ServiceDiscoveryEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDiscoveryEnum.swift; sourceTree = "<group>"; };
+		AD79AFBD2375189D00F96615 /* ServiceDiscoveryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDiscoveryProtocol.swift; sourceTree = "<group>"; };
+		AD79AFBF2375189D00F96615 /* ServiceDiscoveryPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDiscoveryPersistence.swift; sourceTree = "<group>"; };
+		AD79AFC02375189D00F96615 /* ServiceDiscoveryDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDiscoveryDataProvider.swift; sourceTree = "<group>"; };
+		AD79AFC12375189D00F96615 /* ServiceDiscoveryNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDiscoveryNetworking.swift; sourceTree = "<group>"; };
+		AD79AFC22375189D00F96615 /* ServiceDiscovery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDiscovery.swift; sourceTree = "<group>"; };
+		AD79AFC52375189D00F96615 /* STHALResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHALResource.m; sourceTree = "<group>"; };
+		AD79AFC62375189D00F96615 /* STHALTypeSafety.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHALTypeSafety.h; sourceTree = "<group>"; };
+		AD79AFC72375189D00F96615 /* STHALEmbeddedResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHALEmbeddedResources.m; sourceTree = "<group>"; };
+		AD79AFC82375189D00F96615 /* STHALLinks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHALLinks.m; sourceTree = "<group>"; };
+		AD79AFC92375189D00F96615 /* STHALResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHALResource.h; sourceTree = "<group>"; };
+		AD79AFCA2375189D00F96615 /* STHALEmbeddedResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHALEmbeddedResources.h; sourceTree = "<group>"; };
+		AD79AFCB2375189D00F96615 /* STHAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHAL.h; sourceTree = "<group>"; };
+		AD79AFCC2375189D00F96615 /* STHALLinks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHALLinks.h; sourceTree = "<group>"; };
+		AD79AFCE2375189D00F96615 /* STURITemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STURITemplate.m; sourceTree = "<group>"; };
+		AD79AFCF2375189D00F96615 /* STURITemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STURITemplate.h; sourceTree = "<group>"; };
+		AD79AFE423751A7B00F96615 /* ServiceDiscovery-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ServiceDiscovery-Bridging-Header.h"; sourceTree = "<group>"; };
 		AD804B03230FA8130033C7B0 /* Uluru.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Uluru.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD804B06230FA8130033C7B0 /* Uluru.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Uluru.h; sourceTree = "<group>"; };
 		AD804B07230FA8130033C7B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -184,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				AD79AFB62374D4E900F96615 /* HALAPIDefinition.swift */,
+				AD79AFBA2375189D00F96615 /* ServiceDiscovery */,
 			);
 			path = HALUluru;
 			sourceTree = "<group>";
@@ -205,6 +240,78 @@
 				AD804B07230FA8130033C7B0 /* Info.plist */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AD79AFBA2375189D00F96615 /* ServiceDiscovery */ = {
+			isa = PBXGroup;
+			children = (
+				AD79AFE32375197000F96615 /* Resources */,
+				AD79AFBB2375189D00F96615 /* Source */,
+				AD79AFC32375189D00F96615 /* lib */,
+			);
+			path = ServiceDiscovery;
+			sourceTree = "<group>";
+		};
+		AD79AFBB2375189D00F96615 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				AD79AFBC2375189D00F96615 /* ServiceDiscoveryEnum.swift */,
+				AD79AFBD2375189D00F96615 /* ServiceDiscoveryProtocol.swift */,
+				AD79AFC22375189D00F96615 /* ServiceDiscovery.swift */,
+				AD79AFBE2375189D00F96615 /* Internal */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		AD79AFBE2375189D00F96615 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				AD79AFBF2375189D00F96615 /* ServiceDiscoveryPersistence.swift */,
+				AD79AFC02375189D00F96615 /* ServiceDiscoveryDataProvider.swift */,
+				AD79AFC12375189D00F96615 /* ServiceDiscoveryNetworking.swift */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
+		AD79AFC32375189D00F96615 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				AD79AFC42375189D00F96615 /* STHAL */,
+				AD79AFCD2375189D00F96615 /* STURITemplate */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		AD79AFC42375189D00F96615 /* STHAL */ = {
+			isa = PBXGroup;
+			children = (
+				AD79AFC52375189D00F96615 /* STHALResource.m */,
+				AD79AFC62375189D00F96615 /* STHALTypeSafety.h */,
+				AD79AFC72375189D00F96615 /* STHALEmbeddedResources.m */,
+				AD79AFC82375189D00F96615 /* STHALLinks.m */,
+				AD79AFC92375189D00F96615 /* STHALResource.h */,
+				AD79AFCA2375189D00F96615 /* STHALEmbeddedResources.h */,
+				AD79AFCB2375189D00F96615 /* STHAL.h */,
+				AD79AFCC2375189D00F96615 /* STHALLinks.h */,
+			);
+			path = STHAL;
+			sourceTree = "<group>";
+		};
+		AD79AFCD2375189D00F96615 /* STURITemplate */ = {
+			isa = PBXGroup;
+			children = (
+				AD79AFCE2375189D00F96615 /* STURITemplate.m */,
+				AD79AFCF2375189D00F96615 /* STURITemplate.h */,
+			);
+			path = STURITemplate;
+			sourceTree = "<group>";
+		};
+		AD79AFE32375197000F96615 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AD79AFE423751A7B00F96615 /* ServiceDiscovery-Bridging-Header.h */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		AD804AF9230FA8130033C7B0 = {
@@ -331,6 +438,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD79AFD72375189D00F96615 /* STHALTypeSafety.h in Headers */,
+				AD79AFE523751A7B00F96615 /* ServiceDiscovery-Bridging-Header.h in Headers */,
+				AD79AFDD2375189D00F96615 /* STHALLinks.h in Headers */,
+				AD79AFDC2375189D00F96615 /* STHAL.h in Headers */,
+				AD79AFDA2375189D00F96615 /* STHALResource.h in Headers */,
+				AD79AFDF2375189D00F96615 /* STURITemplate.h in Headers */,
+				AD79AFDB2375189D00F96615 /* STHALEmbeddedResources.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,6 +655,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD79AFB72374D4E900F96615 /* HALAPIDefinition.swift in Sources */,
+				AD79AFD02375189D00F96615 /* ServiceDiscoveryEnum.swift in Sources */,
+				AD79AFD32375189D00F96615 /* ServiceDiscoveryDataProvider.swift in Sources */,
+				AD79AFDE2375189D00F96615 /* STURITemplate.m in Sources */,
+				AD79AFD82375189D00F96615 /* STHALEmbeddedResources.m in Sources */,
+				AD79AFD22375189D00F96615 /* ServiceDiscoveryPersistence.swift in Sources */,
+				AD79AFD42375189D00F96615 /* ServiceDiscoveryNetworking.swift in Sources */,
+				AD79AFD92375189D00F96615 /* STHALLinks.m in Sources */,
+				AD79AFD12375189D00F96615 /* ServiceDiscoveryProtocol.swift in Sources */,
+				AD79AFD62375189D00F96615 /* STHALResource.m in Sources */,
+				AD79AFD52375189D00F96615 /* ServiceDiscovery.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -625,6 +749,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "Sources/HALUluru/ServiceDiscovery/Resources/ServiceDiscovery-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -652,6 +777,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "Sources/HALUluru/ServiceDiscovery/Resources/ServiceDiscovery-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
