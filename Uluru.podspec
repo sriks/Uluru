@@ -28,7 +28,7 @@ Pod::Spec.new do |spec|
     ss.framework  = "Foundation"
   end
 
-  spec.subspec "HALUluru" do |ss|
+  spec.subspec "HAL" do |ss|
     ss.source_files = "Sources/HALUluru/**/*.{h,m,swift}"
     ss.dependency "Uluru/Core"
   end
