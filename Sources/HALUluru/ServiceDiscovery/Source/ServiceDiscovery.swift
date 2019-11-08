@@ -116,9 +116,9 @@ extension ServiceDiscovery: ServiceDiscoveryRefreshable {
 extension ServiceDiscovery {
 
     public static func shared() -> ServiceDiscovery {
-        guard let sharedInstance = sharedInstance else {
-            assert(false, "shared instance invoked before instantiate")
+        if let ourInstance = sharedInstance {
+            return ourInstance
         }
-        return sharedInstance
+        fatalError("shared instance invoked before instantiate")
     }
 }
