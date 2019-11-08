@@ -29,6 +29,7 @@ platform :ios do
   end
 
   desc "Releases and publishes new version to github releases and podspec."
+  desc "Before this step you should commit and push code"
   lane :do_release do
     prepare_build
     # tag release on git
@@ -36,7 +37,9 @@ platform :ios do
     push_git_tags
     # publish to github release and podspec
     upload_prebuilt_binary
-    publish_podspec
+    # We should update podspec with the git tag and push as seperate commit.
+    # TODO: if we want to do in CI, then we should provide a push msg for it.
+    #publish_podspec
   end
 
   desc "Release dry run, all steps expect uploading release."
@@ -49,7 +52,7 @@ platform :ios do
 
   desc "Lint podspec"
   lane :lint_podspec do
-    pod_lib_lint(podspec: podspec, verbose: false)
+    pod_lib_lint(podspec: podspec, verbose: false, allow_warnings: true)
   end
 
   desc "Prepares build"
@@ -93,7 +96,7 @@ platform :ios do
   desc "Uses git tag as the version number"
   lane :publish_podspec do
     # podspec version update is a seperate developer commit
-    pod_push(path: podspec, repo: 'tab-podspec')
+    pod_push(path: podspec, repo: 'tab-podspec', allow_warnings: true)
   end
 
   def change_log_since_last_tag
