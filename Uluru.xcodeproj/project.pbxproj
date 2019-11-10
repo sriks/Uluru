@@ -39,6 +39,8 @@
 		AD79AFDE2375189D00F96615 /* STURITemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFCE2375189D00F96615 /* STURITemplate.m */; };
 		AD79AFDF2375189D00F96615 /* STURITemplate.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFCF2375189D00F96615 /* STURITemplate.h */; };
 		AD79AFE523751A7B00F96615 /* ServiceDiscovery-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFE423751A7B00F96615 /* ServiceDiscovery-Bridging-Header.h */; };
+		AD79AFE7237536F100F96615 /* HALAPITargetResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFE6237536F100F96615 /* HALAPITargetResolver.swift */; };
+		AD79AFE923753C9B00F96615 /* HALAPITargetSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFE823753C9B00F96615 /* HALAPITargetSpec.swift */; };
 		AD804B0D230FA8130033C7B0 /* Uluru.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD804B03230FA8130033C7B0 /* Uluru.framework */; };
 		AD804B14230FA8130033C7B0 /* Uluru.h in Headers */ = {isa = PBXBuildFile; fileRef = AD804B06230FA8130033C7B0 /* Uluru.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ADA0F1EA2314C860001ED542 /* ServiceExecutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1E82314C860001ED542 /* ServiceExecutable.swift */; };
@@ -126,6 +128,8 @@
 		AD79AFCE2375189D00F96615 /* STURITemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STURITemplate.m; sourceTree = "<group>"; };
 		AD79AFCF2375189D00F96615 /* STURITemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STURITemplate.h; sourceTree = "<group>"; };
 		AD79AFE423751A7B00F96615 /* ServiceDiscovery-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ServiceDiscovery-Bridging-Header.h"; sourceTree = "<group>"; };
+		AD79AFE6237536F100F96615 /* HALAPITargetResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HALAPITargetResolver.swift; sourceTree = "<group>"; };
+		AD79AFE823753C9B00F96615 /* HALAPITargetSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HALAPITargetSpec.swift; sourceTree = "<group>"; };
 		AD804B03230FA8130033C7B0 /* Uluru.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Uluru.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD804B06230FA8130033C7B0 /* Uluru.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Uluru.h; sourceTree = "<group>"; };
 		AD804B07230FA8130033C7B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -218,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				AD79AFB62374D4E900F96615 /* HALAPIDefinition.swift */,
+				AD79AFE6237536F100F96615 /* HALAPITargetResolver.swift */,
 				AD79AFBA2375189D00F96615 /* ServiceDiscovery */,
 			);
 			path = HALUluru;
@@ -408,6 +413,7 @@
 				AD390DC8232A465400442BFB /* ErrorsSpec.swift */,
 				ADD567E3233B2973005939E4 /* APITargetSpec.swift */,
 				ADB7EB34234EA7D700D65C16 /* StubStrategiesSpec.swift */,
+				AD79AFE823753C9B00F96615 /* HALAPITargetSpec.swift */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -659,6 +665,7 @@
 				AD79AFD32375189D00F96615 /* ServiceDiscoveryDataProvider.swift in Sources */,
 				AD79AFDE2375189D00F96615 /* STURITemplate.m in Sources */,
 				AD79AFD82375189D00F96615 /* STHALEmbeddedResources.m in Sources */,
+				AD79AFE7237536F100F96615 /* HALAPITargetResolver.swift in Sources */,
 				AD79AFD22375189D00F96615 /* ServiceDiscoveryPersistence.swift in Sources */,
 				AD79AFD42375189D00F96615 /* ServiceDiscoveryNetworking.swift in Sources */,
 				AD79AFD92375189D00F96615 /* STHALLinks.m in Sources */,
@@ -705,6 +712,7 @@
 				ADE9DF592321E4BA00195774 /* PluginsSpec.swift in Sources */,
 				AD394C862329C65700BEA019 /* TestPlugin.swift in Sources */,
 				AD00E2DA2321FA5000A228F5 /* TestHelper.swift in Sources */,
+				AD79AFE923753C9B00F96615 /* HALAPITargetSpec.swift in Sources */,
 				ADA0F2022317CD10001ED542 /* PostmanEcho.swift in Sources */,
 				AD036C8423288B1B0057FBB6 /* AuthenticationPluginSpec.swift in Sources */,
 				AD394C842328F3C800BEA019 /* CompletionStrategySpec.swift in Sources */,
@@ -739,7 +747,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Sources/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -767,7 +775,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Sources/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
