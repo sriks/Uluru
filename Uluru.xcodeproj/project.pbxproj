@@ -96,8 +96,11 @@
 
 /* Begin PBXFileReference section */
 		0BF19BE5EA68ED2F7C10BAFE /* Pods-Uluru.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uluru.release.xcconfig"; path = "Target Support Files/Pods-Uluru/Pods-Uluru.release.xcconfig"; sourceTree = "<group>"; };
+		18FFCB38C5757E715A1D2301 /* Pods-UluruTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UluruTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UluruTests/Pods-UluruTests.release.xcconfig"; sourceTree = "<group>"; };
 		5F88F3860D06AF3B2BA80BC4 /* Pods-UluruTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UluruTests.release.xcconfig"; path = "Target Support Files/Pods-UluruTests/Pods-UluruTests.release.xcconfig"; sourceTree = "<group>"; };
+		6A93C8033F805345CEDA74DB /* Pods-Uluru.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uluru.release.xcconfig"; path = "Pods/Target Support Files/Pods-Uluru/Pods-Uluru.release.xcconfig"; sourceTree = "<group>"; };
 		8B07865935F553CC376180FE /* Pods-UluruTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UluruTests.debug.xcconfig"; path = "Target Support Files/Pods-UluruTests/Pods-UluruTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8DFBA6B3CDA057840487052D /* Pods-Uluru.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uluru.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Uluru/Pods-Uluru.debug.xcconfig"; sourceTree = "<group>"; };
 		AD00E2D42321F56D00A228F5 /* ServiceRequesterSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceRequesterSpec.swift; sourceTree = "<group>"; };
 		AD00E2D92321FA5000A228F5 /* TestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelper.swift; sourceTree = "<group>"; };
 		AD00E2DB2321FB7500A228F5 /* EncoderDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncoderDecoder.swift; sourceTree = "<group>"; };
@@ -156,6 +159,7 @@
 		ADD567E3233B2973005939E4 /* APITargetSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITargetSpec.swift; sourceTree = "<group>"; };
 		ADE9DF582321E4BA00195774 /* PluginsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginsSpec.swift; sourceTree = "<group>"; };
 		BA2134552B8F8991A0A4FC2D /* Pods_Uluru.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Uluru.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C864E06F8D930FA5E85D42FC /* Pods-UluruTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UluruTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UluruTests/Pods-UluruTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CAD080F4B49C9556E4CEE1FD /* Pods-Uluru.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uluru.debug.xcconfig"; path = "Target Support Files/Pods-Uluru/Pods-Uluru.debug.xcconfig"; sourceTree = "<group>"; };
 		CDDFA3FE233C8CD900B3ABFF /* JSONAPILogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONAPILogger.swift; sourceTree = "<group>"; };
 		CDE465542329CEF30062C71C /* RequestCompletionStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCompletionStrategy.swift; sourceTree = "<group>"; };
@@ -199,6 +203,10 @@
 				0BF19BE5EA68ED2F7C10BAFE /* Pods-Uluru.release.xcconfig */,
 				8B07865935F553CC376180FE /* Pods-UluruTests.debug.xcconfig */,
 				5F88F3860D06AF3B2BA80BC4 /* Pods-UluruTests.release.xcconfig */,
+				8DFBA6B3CDA057840487052D /* Pods-Uluru.debug.xcconfig */,
+				6A93C8033F805345CEDA74DB /* Pods-Uluru.release.xcconfig */,
+				C864E06F8D930FA5E85D42FC /* Pods-UluruTests.debug.xcconfig */,
+				18FFCB38C5757E715A1D2301 /* Pods-UluruTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -726,7 +734,6 @@
 /* Begin PBXTargetDependency section */
 		AD79AF6A2373F07C00F96615 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			platformFilter = ios;
 			target = AD804B02230FA8130033C7B0 /* Uluru */;
 			targetProxy = AD79AF692373F07C00F96615 /* PBXContainerItemProxy */;
 		};

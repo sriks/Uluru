@@ -83,7 +83,7 @@ extension ServiceDiscovery: ServiceDiscoveryQueryable {
         return nil
     }
 
-    public func urlForEntryRelationNamed(_ name: String, variables: [String: String]?) -> URL? {
+    public func urlForEntryRelationNamed(_ name: String, variables: [String: Any]?) -> URL? {
         if let overlay = serviceDiscoveryOverlayForEntryRelationNamed(name) {
             return overlay.urlByExpanding(withVariables: variables)
         }
@@ -101,7 +101,7 @@ extension ServiceDiscovery: ServiceDiscoveryQueryable {
 
 extension ServiceDiscovery: ServiceDiscoverySTHALResolvable {
 
-    public func urlForHALLink(_ link: STHALLink, variables: [String: String]?) -> URL? {
+    public func urlForHALLink(_ link: STHALLink, variables: [String: Any]?) -> URL? {
         return link.url(withVariables: variables)
     }
 }

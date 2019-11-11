@@ -16,7 +16,7 @@ public protocol ServiceDiscoveryUnderlayConfigurable {
 public protocol ServiceDiscoveryQueryable {
     @objc func hasURLForEntryRelationNamed(_ name: String) -> Bool
     @objc func urlVariableNamesForEntryRelationNamed(_ name: String) -> [String]?
-    @objc func urlForEntryRelationNamed(_ name: String, variables: [String: String]?) -> URL?
+    @objc func urlForEntryRelationNamed(_ name: String, variables: [String: Any]?) -> URL?
 }
 
 public protocol ServiceDiscoveryRefreshable {
@@ -28,5 +28,5 @@ public protocol ServiceDiscoveryPredefinedUrlVariableUpdatable {
 }
 
 public protocol ServiceDiscoverySTHALResolvable {
-    func urlForHALLink(_ link: STHALLink, variables: [String: String]?) -> URL?
+    func urlForHALLink(_ link: STHALLink, variables: [String: Any]?) -> URL?
 }

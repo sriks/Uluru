@@ -12,15 +12,14 @@ extension ServiceRequester {
                 return .failure(.invalidResolvedUrl(apiDef.baseURL))
             }
 
-            // TODO: once service discovery accepts [String: Any] then remove the casting.
             let url: URL? = {
                 switch halAPI.entityResolution {
                 case .namedEntity(let named):
                     return ServiceDiscovery.shared().urlForEntryRelationNamed(named.name,
-                                                                              variables: try? named.variables?.jsonObject() as? [String : String])
+                                                                              variables: try? named.variables?.jsonObject())
                 case .linkedEntity(let linked):
                     return ServiceDiscovery.shared().urlForHALLink(linked.halLink,
-                                                                   variables: try? linked.variables?.jsonObject() as? [String : String])
+                                                                   variables: try? linked.variables?.jsonObject())
                 }
             }()
 
