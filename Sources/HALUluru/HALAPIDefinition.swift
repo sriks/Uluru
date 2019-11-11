@@ -29,7 +29,7 @@ public protocol RequiresHALEntityResolution {
 /// Provides HAL based APIDefinition
 public protocol HALAPIDefinition: APIDefinition, RequiresHALEntityResolution {}
 
-extension HALAPIDefinition {
+public extension HALAPIDefinition {
 
     var baseURL: URL {
         return URL(string: "hal://")!
