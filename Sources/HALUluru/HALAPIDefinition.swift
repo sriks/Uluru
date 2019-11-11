@@ -5,14 +5,14 @@ import Uluru
 
 /// HAL Entity resolved by name
 public struct NamedEntity {
-    let name: String
-    let variables: Uluru.JSONRepresentable?
+    public let name: String
+    public let variables: Uluru.JSONRepresentable?
 }
 
 /// HAL Entity resolved by URL.
 public struct LinkedEntity {
-    let halLink: STHALLink
-    let variables: Uluru.JSONRepresentable?
+    public let halLink: STHALLink
+    public let variables: Uluru.JSONRepresentable?
 }
 
 /// The type of entity resolution
