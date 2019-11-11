@@ -1,18 +1,30 @@
 //Copyright © 2019 Tabcorp. All rights reserved.
 
 import Foundation
+#if !COCOAPODS
 import Uluru
+#endif
 
 /// HAL Entity resolved by name
 public struct NamedEntity {
-    let name: String
-    let variables: Uluru.JSONRepresentable?
+    public let name: String
+    public let variables: Uluru.JSONRepresentable?
+
+    public init(name: String, variables: Uluru.JSONRepresentable? = nil) {
+        self.name = name
+        self.variables = variables
+    }
 }
 
 /// HAL Entity resolved by URL.
 public struct LinkedEntity {
-    let halLink: STHALLink
-    let variables: Uluru.JSONRepresentable?
+    public let halLink: STHALLink
+    public let variables: Uluru.JSONRepresentable?
+
+    public init(halLink: STHALLink, variables: Uluru.JSONRepresentable? = nil) {
+        self.halLink = halLink
+        self.variables = variables
+    }
 }
 
 /// The type of entity resolution
@@ -29,7 +41,7 @@ public protocol RequiresHALEntityResolution {
 /// Provides HAL based APIDefinition
 public protocol HALAPIDefinition: APIDefinition, RequiresHALEntityResolution {}
 
-extension HALAPIDefinition {
+public extension HALAPIDefinition {
 
     var baseURL: URL {
         return URL(string: "hal://")!
