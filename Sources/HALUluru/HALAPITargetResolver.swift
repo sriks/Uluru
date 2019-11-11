@@ -1,9 +1,8 @@
 //Copyright © 2019 Tabcorp. All rights reserved.
 
 import Foundation
-import Uluru
 
-extension ServiceRequester {
+public extension ServiceRequester {
 
     /// Provides target resolver which resolves an APIDefintion to an APITarget with fully formed URL using HAL entity resolution.
     static func makeHALTargetResolver() -> APITargetResolver {
