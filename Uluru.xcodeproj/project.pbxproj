@@ -60,6 +60,11 @@
 		ADB7EB37234EB4C600D65C16 /* StubResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB7EB36234EB4C600D65C16 /* StubResponse.swift */; };
 		ADD567E4233B2973005939E4 /* APITargetSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD567E3233B2973005939E4 /* APITargetSpec.swift */; };
 		ADE9DF592321E4BA00195774 /* PluginsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE9DF582321E4BA00195774 /* PluginsSpec.swift */; };
+		B1E8671B23791AF300131222 /* MockServiceDiscoveryPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E8671523791AF300131222 /* MockServiceDiscoveryPersistence.swift */; };
+		B1E8671C23791AF300131222 /* MockServiceDiscoveryNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E8671623791AF300131222 /* MockServiceDiscoveryNetworking.swift */; };
+		B1E8671D23791AF300131222 /* ServiceDiscoveryPersistenceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E8671823791AF300131222 /* ServiceDiscoveryPersistenceSpec.swift */; };
+		B1E8671E23791AF300131222 /* ServiceDiscoveryDataProviderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E8671923791AF300131222 /* ServiceDiscoveryDataProviderSpec.swift */; };
+		B1E8671F23791AF300131222 /* ServiceDiscoverySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E8671A23791AF300131222 /* ServiceDiscoverySpec.swift */; };
 		CD851E382378D43B001DCE23 /* HALUluru.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD79AF5F2373F05600F96615 /* HALUluru.framework */; };
 		CDDFA3FF233C8CD900B3ABFF /* JSONAPILogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDFA3FE233C8CD900B3ABFF /* JSONAPILogger.swift */; };
 		CDE465552329CEF30062C71C /* RequestCompletionStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE465542329CEF30062C71C /* RequestCompletionStrategy.swift */; };
@@ -158,6 +163,11 @@
 		ADB7EB36234EB4C600D65C16 /* StubResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubResponse.swift; sourceTree = "<group>"; };
 		ADD567E3233B2973005939E4 /* APITargetSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITargetSpec.swift; sourceTree = "<group>"; };
 		ADE9DF582321E4BA00195774 /* PluginsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginsSpec.swift; sourceTree = "<group>"; };
+		B1E8671523791AF300131222 /* MockServiceDiscoveryPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockServiceDiscoveryPersistence.swift; sourceTree = "<group>"; };
+		B1E8671623791AF300131222 /* MockServiceDiscoveryNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockServiceDiscoveryNetworking.swift; sourceTree = "<group>"; };
+		B1E8671823791AF300131222 /* ServiceDiscoveryPersistenceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDiscoveryPersistenceSpec.swift; sourceTree = "<group>"; };
+		B1E8671923791AF300131222 /* ServiceDiscoveryDataProviderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDiscoveryDataProviderSpec.swift; sourceTree = "<group>"; };
+		B1E8671A23791AF300131222 /* ServiceDiscoverySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDiscoverySpec.swift; sourceTree = "<group>"; };
 		BA2134552B8F8991A0A4FC2D /* Pods_Uluru.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Uluru.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C864E06F8D930FA5E85D42FC /* Pods-UluruTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UluruTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UluruTests/Pods-UluruTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CAD080F4B49C9556E4CEE1FD /* Pods-Uluru.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uluru.debug.xcconfig"; path = "Target Support Files/Pods-Uluru/Pods-Uluru.debug.xcconfig"; sourceTree = "<group>"; };
@@ -353,6 +363,7 @@
 		AD804B10230FA8130033C7B0 /* UluruTests */ = {
 			isa = PBXGroup;
 			children = (
+				B1E8671323791AA900131222 /* HALUluruSpecs */,
 				ADA0F1F72314D12B001ED542 /* Specs */,
 				AD804B13230FA8130033C7B0 /* Info.plist */,
 			);
@@ -445,6 +456,34 @@
 				ADB7EB32234EA47B00D65C16 /* StubSuccessResponse.json */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		B1E8671323791AA900131222 /* HALUluruSpecs */ = {
+			isa = PBXGroup;
+			children = (
+				B1E8671423791AF300131222 /* Mocks */,
+				B1E8671723791AF300131222 /* Specs */,
+			);
+			path = HALUluruSpecs;
+			sourceTree = "<group>";
+		};
+		B1E8671423791AF300131222 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				B1E8671523791AF300131222 /* MockServiceDiscoveryPersistence.swift */,
+				B1E8671623791AF300131222 /* MockServiceDiscoveryNetworking.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		B1E8671723791AF300131222 /* Specs */ = {
+			isa = PBXGroup;
+			children = (
+				B1E8671823791AF300131222 /* ServiceDiscoveryPersistenceSpec.swift */,
+				B1E8671923791AF300131222 /* ServiceDiscoveryDataProviderSpec.swift */,
+				B1E8671A23791AF300131222 /* ServiceDiscoverySpec.swift */,
+			);
+			path = Specs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -720,11 +759,16 @@
 				ADD567E4233B2973005939E4 /* APITargetSpec.swift in Sources */,
 				AD00E2D52321F56D00A228F5 /* ServiceRequesterSpec.swift in Sources */,
 				ADE9DF592321E4BA00195774 /* PluginsSpec.swift in Sources */,
+				B1E8671E23791AF300131222 /* ServiceDiscoveryDataProviderSpec.swift in Sources */,
 				AD394C862329C65700BEA019 /* TestPlugin.swift in Sources */,
 				AD00E2DA2321FA5000A228F5 /* TestHelper.swift in Sources */,
+				B1E8671D23791AF300131222 /* ServiceDiscoveryPersistenceSpec.swift in Sources */,
 				AD79AFE923753C9B00F96615 /* HALAPITargetSpec.swift in Sources */,
+				B1E8671C23791AF300131222 /* MockServiceDiscoveryNetworking.swift in Sources */,
+				B1E8671F23791AF300131222 /* ServiceDiscoverySpec.swift in Sources */,
 				ADA0F2022317CD10001ED542 /* PostmanEcho.swift in Sources */,
 				AD036C8423288B1B0057FBB6 /* AuthenticationPluginSpec.swift in Sources */,
+				B1E8671B23791AF300131222 /* MockServiceDiscoveryPersistence.swift in Sources */,
 				AD394C842328F3C800BEA019 /* CompletionStrategySpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
