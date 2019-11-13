@@ -12,7 +12,7 @@ class HALAPITargetSpec: QuickSpec {
 
         beforeSuite {
             waitUntil() { done in
-                ServiceDiscovery.instantiate(apiRootURL: URL(string: "https://api.beta.tab.com.au/v1")!) { result in
+                ServiceDiscovery.instantiate(apiRootURL: URL(string: "https://uat02.beta.tab.com.au/v1")!) { result in
                     print("discovery: \(result)")
                     switch result {
                     case .success:
