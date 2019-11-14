@@ -29,7 +29,7 @@ class HALAPITargetSpec: QuickSpec {
                 let closure = ServiceRequester<SampleHALAPI>.makeHALTargetResolver()
                 let result = closure(.fooBar(promoGroup: PromoGroup(promoGroupId: "12345")))
                 let apiTarget = try! result.get()
-                let expectedURL = URL(string: "https://api.beta.tab.com.au/v1/invenue-service/promo-groups/12345")!
+                let expectedURL = URL(string: "https://uat02.beta.tab.com.au/v1/invenue-service/promo-groups/12345")!
                 expect(apiTarget.url).to(equal( expectedURL ))
             }
         }
