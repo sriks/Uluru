@@ -32,13 +32,12 @@
 		AD79AFD72375189D00F96615 /* STHALTypeSafety.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFC62375189D00F96615 /* STHALTypeSafety.h */; };
 		AD79AFD82375189D00F96615 /* STHALEmbeddedResources.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFC72375189D00F96615 /* STHALEmbeddedResources.m */; };
 		AD79AFD92375189D00F96615 /* STHALLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFC82375189D00F96615 /* STHALLinks.m */; };
-		AD79AFDA2375189D00F96615 /* STHALResource.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFC92375189D00F96615 /* STHALResource.h */; };
+		AD79AFDA2375189D00F96615 /* STHALResource.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFC92375189D00F96615 /* STHALResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AD79AFDB2375189D00F96615 /* STHALEmbeddedResources.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFCA2375189D00F96615 /* STHALEmbeddedResources.h */; };
 		AD79AFDC2375189D00F96615 /* STHAL.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFCB2375189D00F96615 /* STHAL.h */; };
 		AD79AFDD2375189D00F96615 /* STHALLinks.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFCC2375189D00F96615 /* STHALLinks.h */; };
 		AD79AFDE2375189D00F96615 /* STURITemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFCE2375189D00F96615 /* STURITemplate.m */; };
-		AD79AFDF2375189D00F96615 /* STURITemplate.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFCF2375189D00F96615 /* STURITemplate.h */; };
-		AD79AFE523751A7B00F96615 /* ServiceDiscovery-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFE423751A7B00F96615 /* ServiceDiscovery-Bridging-Header.h */; };
+		AD79AFDF2375189D00F96615 /* STURITemplate.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFCF2375189D00F96615 /* STURITemplate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AD79AFE7237536F100F96615 /* HALAPITargetResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFE6237536F100F96615 /* HALAPITargetResolver.swift */; };
 		AD79AFE923753C9B00F96615 /* HALAPITargetSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFE823753C9B00F96615 /* HALAPITargetSpec.swift */; };
 		AD804B0D230FA8130033C7B0 /* Uluru.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD804B03230FA8130033C7B0 /* Uluru.framework */; };
@@ -60,6 +59,7 @@
 		ADB7EB37234EB4C600D65C16 /* StubResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB7EB36234EB4C600D65C16 /* StubResponse.swift */; };
 		ADD567E4233B2973005939E4 /* APITargetSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD567E3233B2973005939E4 /* APITargetSpec.swift */; };
 		ADE9DF592321E4BA00195774 /* PluginsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE9DF582321E4BA00195774 /* PluginsSpec.swift */; };
+		B1355065237D196100063789 /* ServiceDiscovery-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFE423751A7B00F96615 /* ServiceDiscovery-Bridging-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1E8671B23791AF300131222 /* MockServiceDiscoveryPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E8671523791AF300131222 /* MockServiceDiscoveryPersistence.swift */; };
 		B1E8671C23791AF300131222 /* MockServiceDiscoveryNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E8671623791AF300131222 /* MockServiceDiscoveryNetworking.swift */; };
 		B1E8671D23791AF300131222 /* ServiceDiscoveryPersistenceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E8671823791AF300131222 /* ServiceDiscoveryPersistenceSpec.swift */; };
@@ -494,7 +494,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD79AFD72375189D00F96615 /* STHALTypeSafety.h in Headers */,
-				AD79AFE523751A7B00F96615 /* ServiceDiscovery-Bridging-Header.h in Headers */,
+				B1355065237D196100063789 /* ServiceDiscovery-Bridging-Header.h in Headers */,
 				AD79AFDD2375189D00F96615 /* STHALLinks.h in Headers */,
 				AD79AFDC2375189D00F96615 /* STHAL.h in Headers */,
 				AD79AFDA2375189D00F96615 /* STHALResource.h in Headers */,
@@ -798,6 +798,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Sources/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -810,6 +811,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Sources/HALUluru/ServiceDiscovery/Resources/ServiceDiscovery-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -826,6 +828,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Sources/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -838,6 +841,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Sources/HALUluru/ServiceDiscovery/Resources/ServiceDiscovery-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
