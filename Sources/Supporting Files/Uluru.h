@@ -15,5 +15,4 @@ FOUNDATION_EXPORT double UluruVersionNumber;
 FOUNDATION_EXPORT const unsigned char UluruVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <Uluru/PublicHeader.h>
-
-
+#import <Uluru/ServiceDiscovery-Bridging-Header.h>

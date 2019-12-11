@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,30 +15,30 @@
 		AD00E2DF2326326000A228F5 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00E2DE2326326000A228F5 /* ServiceError.swift */; };
 		AD036C8223287A230057FBB6 /* AuthenticationPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD036C8123287A230057FBB6 /* AuthenticationPlugin.swift */; };
 		AD036C8423288B1B0057FBB6 /* AuthenticationPluginSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD036C8323288B1B0057FBB6 /* AuthenticationPluginSpec.swift */; };
+		AD25673523A052DA00B9A899 /* HALAPIDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFB62374D4E900F96615 /* HALAPIDefinition.swift */; };
+		AD25673623A052DE00B9A899 /* HALAPITargetResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFE6237536F100F96615 /* HALAPITargetResolver.swift */; };
+		AD25673723A052F200B9A899 /* ServiceDiscovery-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFE423751A7B00F96615 /* ServiceDiscovery-Bridging-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AD25673823A0530300B9A899 /* ServiceDiscoveryEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFBC2375189D00F96615 /* ServiceDiscoveryEnum.swift */; };
+		AD25673923A0530600B9A899 /* ServiceDiscoveryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFBD2375189D00F96615 /* ServiceDiscoveryProtocol.swift */; };
+		AD25673A23A0530A00B9A899 /* ServiceDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFC22375189D00F96615 /* ServiceDiscovery.swift */; };
+		AD25673B23A0531300B9A899 /* ServiceDiscoveryPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFBF2375189D00F96615 /* ServiceDiscoveryPersistence.swift */; };
+		AD25673C23A0531300B9A899 /* ServiceDiscoveryDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFC02375189D00F96615 /* ServiceDiscoveryDataProvider.swift */; };
+		AD25673D23A0531300B9A899 /* ServiceDiscoveryNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFC12375189D00F96615 /* ServiceDiscoveryNetworking.swift */; };
+		AD25673E23A0531D00B9A899 /* STHALResource.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFC52375189D00F96615 /* STHALResource.m */; };
+		AD25673F23A0531D00B9A899 /* STHALTypeSafety.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFC62375189D00F96615 /* STHALTypeSafety.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AD25674023A0531D00B9A899 /* STHALEmbeddedResources.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFC72375189D00F96615 /* STHALEmbeddedResources.m */; };
+		AD25674123A0531D00B9A899 /* STHALLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFC82375189D00F96615 /* STHALLinks.m */; };
+		AD25674223A0531D00B9A899 /* STHALResource.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFC92375189D00F96615 /* STHALResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AD25674323A0531D00B9A899 /* STHALEmbeddedResources.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFCA2375189D00F96615 /* STHALEmbeddedResources.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AD25674423A0531D00B9A899 /* STHAL.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFCB2375189D00F96615 /* STHAL.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AD25674523A0531D00B9A899 /* STHALLinks.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFCC2375189D00F96615 /* STHALLinks.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AD25674623A0532200B9A899 /* STURITemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFCE2375189D00F96615 /* STURITemplate.m */; };
+		AD25674723A0532200B9A899 /* STURITemplate.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFCF2375189D00F96615 /* STURITemplate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AD39099B2332077D004452A7 /* ServiceCancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39099A2332077D004452A7 /* ServiceCancellable.swift */; };
 		AD390DC9232A465400442BFB /* ErrorsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD390DC8232A465400442BFB /* ErrorsSpec.swift */; };
 		AD390DCD232C573E00442BFB /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD390DCC232C573E00442BFB /* HTTPStatusCode.swift */; };
 		AD394C842328F3C800BEA019 /* CompletionStrategySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD394C832328F3C800BEA019 /* CompletionStrategySpec.swift */; };
 		AD394C862329C65700BEA019 /* TestPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD394C852329C65700BEA019 /* TestPlugin.swift */; };
-		AD79AF672373F07C00F96615 /* Uluru.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD804B03230FA8130033C7B0 /* Uluru.framework */; platformFilter = ios; };
-		AD79AFB72374D4E900F96615 /* HALAPIDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFB62374D4E900F96615 /* HALAPIDefinition.swift */; };
-		AD79AFD02375189D00F96615 /* ServiceDiscoveryEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFBC2375189D00F96615 /* ServiceDiscoveryEnum.swift */; };
-		AD79AFD12375189D00F96615 /* ServiceDiscoveryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFBD2375189D00F96615 /* ServiceDiscoveryProtocol.swift */; };
-		AD79AFD22375189D00F96615 /* ServiceDiscoveryPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFBF2375189D00F96615 /* ServiceDiscoveryPersistence.swift */; };
-		AD79AFD32375189D00F96615 /* ServiceDiscoveryDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFC02375189D00F96615 /* ServiceDiscoveryDataProvider.swift */; };
-		AD79AFD42375189D00F96615 /* ServiceDiscoveryNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFC12375189D00F96615 /* ServiceDiscoveryNetworking.swift */; };
-		AD79AFD52375189D00F96615 /* ServiceDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFC22375189D00F96615 /* ServiceDiscovery.swift */; };
-		AD79AFD62375189D00F96615 /* STHALResource.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFC52375189D00F96615 /* STHALResource.m */; };
-		AD79AFD72375189D00F96615 /* STHALTypeSafety.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFC62375189D00F96615 /* STHALTypeSafety.h */; };
-		AD79AFD82375189D00F96615 /* STHALEmbeddedResources.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFC72375189D00F96615 /* STHALEmbeddedResources.m */; };
-		AD79AFD92375189D00F96615 /* STHALLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFC82375189D00F96615 /* STHALLinks.m */; };
-		AD79AFDA2375189D00F96615 /* STHALResource.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFC92375189D00F96615 /* STHALResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AD79AFDB2375189D00F96615 /* STHALEmbeddedResources.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFCA2375189D00F96615 /* STHALEmbeddedResources.h */; };
-		AD79AFDC2375189D00F96615 /* STHAL.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFCB2375189D00F96615 /* STHAL.h */; };
-		AD79AFDD2375189D00F96615 /* STHALLinks.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFCC2375189D00F96615 /* STHALLinks.h */; };
-		AD79AFDE2375189D00F96615 /* STURITemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFCE2375189D00F96615 /* STURITemplate.m */; };
-		AD79AFDF2375189D00F96615 /* STURITemplate.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFCF2375189D00F96615 /* STURITemplate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AD79AFE7237536F100F96615 /* HALAPITargetResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFE6237536F100F96615 /* HALAPITargetResolver.swift */; };
 		AD79AFE923753C9B00F96615 /* HALAPITargetSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFE823753C9B00F96615 /* HALAPITargetSpec.swift */; };
 		AD804B0D230FA8130033C7B0 /* Uluru.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD804B03230FA8130033C7B0 /* Uluru.framework */; };
 		AD804B14230FA8130033C7B0 /* Uluru.h in Headers */ = {isa = PBXBuildFile; fileRef = AD804B06230FA8130033C7B0 /* Uluru.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -59,25 +59,16 @@
 		ADB7EB37234EB4C600D65C16 /* StubResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB7EB36234EB4C600D65C16 /* StubResponse.swift */; };
 		ADD567E4233B2973005939E4 /* APITargetSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD567E3233B2973005939E4 /* APITargetSpec.swift */; };
 		ADE9DF592321E4BA00195774 /* PluginsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE9DF582321E4BA00195774 /* PluginsSpec.swift */; };
-		B1355065237D196100063789 /* ServiceDiscovery-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFE423751A7B00F96615 /* ServiceDiscovery-Bridging-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1E8671B23791AF300131222 /* MockServiceDiscoveryPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E8671523791AF300131222 /* MockServiceDiscoveryPersistence.swift */; };
 		B1E8671C23791AF300131222 /* MockServiceDiscoveryNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E8671623791AF300131222 /* MockServiceDiscoveryNetworking.swift */; };
 		B1E8671D23791AF300131222 /* ServiceDiscoveryPersistenceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E8671823791AF300131222 /* ServiceDiscoveryPersistenceSpec.swift */; };
 		B1E8671E23791AF300131222 /* ServiceDiscoveryDataProviderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E8671923791AF300131222 /* ServiceDiscoveryDataProviderSpec.swift */; };
 		B1E8671F23791AF300131222 /* ServiceDiscoverySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E8671A23791AF300131222 /* ServiceDiscoverySpec.swift */; };
-		CD851E382378D43B001DCE23 /* HALUluru.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD79AF5F2373F05600F96615 /* HALUluru.framework */; };
 		CDDFA3FF233C8CD900B3ABFF /* JSONAPILogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDFA3FE233C8CD900B3ABFF /* JSONAPILogger.swift */; };
 		CDE465552329CEF30062C71C /* RequestCompletionStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE465542329CEF30062C71C /* RequestCompletionStrategy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		AD79AF692373F07C00F96615 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AD804AFA230FA8130033C7B0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = AD804B02230FA8130033C7B0;
-			remoteInfo = Uluru;
-		};
 		AD804B0E230FA8130033C7B0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AD804AFA230FA8130033C7B0 /* Project object */;
@@ -117,8 +108,6 @@
 		AD390DCC232C573E00442BFB /* HTTPStatusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
 		AD394C832328F3C800BEA019 /* CompletionStrategySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionStrategySpec.swift; sourceTree = "<group>"; };
 		AD394C852329C65700BEA019 /* TestPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestPlugin.swift; sourceTree = "<group>"; };
-		AD79AF5F2373F05600F96615 /* HALUluru.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HALUluru.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AD79AF612373F05600F96615 /* HALUluru.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HALUluru.h; sourceTree = "<group>"; };
 		AD79AFB62374D4E900F96615 /* HALAPIDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HALAPIDefinition.swift; sourceTree = "<group>"; };
 		AD79AFBC2375189D00F96615 /* ServiceDiscoveryEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDiscoveryEnum.swift; sourceTree = "<group>"; };
 		AD79AFBD2375189D00F96615 /* ServiceDiscoveryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDiscoveryProtocol.swift; sourceTree = "<group>"; };
@@ -177,14 +166,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		AD79AF5C2373F05600F96615 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AD79AF672373F07C00F96615 /* Uluru.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		AD804B00230FA8130033C7B0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -197,7 +178,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD851E382378D43B001DCE23 /* HALUluru.framework in Frameworks */,
 				AD804B0D230FA8130033C7B0 /* Uluru.framework in Frameworks */,
 				045D3A9728F6ECE861565E61 /* Pods_UluruTests.framework in Frameworks */,
 			);
@@ -238,14 +218,14 @@
 			path = Plugins;
 			sourceTree = "<group>";
 		};
-		AD79AF602373F05600F96615 /* HALUluru */ = {
+		AD79AF602373F05600F96615 /* HAL */ = {
 			isa = PBXGroup;
 			children = (
 				AD79AFB62374D4E900F96615 /* HALAPIDefinition.swift */,
 				AD79AFE6237536F100F96615 /* HALAPITargetResolver.swift */,
 				AD79AFBA2375189D00F96615 /* ServiceDiscovery */,
 			);
-			path = HALUluru;
+			path = HAL;
 			sourceTree = "<group>";
 		};
 		AD79AFB42374BFAF00F96615 /* Uluru */ = {
@@ -260,7 +240,6 @@
 		AD79AFB52374BFCC00F96615 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				AD79AF612373F05600F96615 /* HALUluru.h */,
 				AD804B06230FA8130033C7B0 /* Uluru.h */,
 				AD804B07230FA8130033C7B0 /* Info.plist */,
 			);
@@ -355,7 +334,6 @@
 			children = (
 				AD804B03230FA8130033C7B0 /* Uluru.framework */,
 				AD804B0C230FA8130033C7B0 /* UluruTests.xctest */,
-				AD79AF5F2373F05600F96615 /* HALUluru.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -363,7 +341,7 @@
 		AD804B10230FA8130033C7B0 /* UluruTests */ = {
 			isa = PBXGroup;
 			children = (
-				B1E8671323791AA900131222 /* HALUluruSpecs */,
+				B1E8671323791AA900131222 /* HALSpecs */,
 				ADA0F1F72314D12B001ED542 /* Specs */,
 				AD804B13230FA8130033C7B0 /* Info.plist */,
 			);
@@ -386,7 +364,7 @@
 			children = (
 				AD79AFB52374BFCC00F96615 /* Supporting Files */,
 				AD79AFB42374BFAF00F96615 /* Uluru */,
-				AD79AF602373F05600F96615 /* HALUluru */,
+				AD79AF602373F05600F96615 /* HAL */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -458,13 +436,13 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
-		B1E8671323791AA900131222 /* HALUluruSpecs */ = {
+		B1E8671323791AA900131222 /* HALSpecs */ = {
 			isa = PBXGroup;
 			children = (
 				B1E8671423791AF300131222 /* Mocks */,
 				B1E8671723791AF300131222 /* Specs */,
 			);
-			path = HALUluruSpecs;
+			path = HALSpecs;
 			sourceTree = "<group>";
 		};
 		B1E8671423791AF300131222 /* Mocks */ = {
@@ -489,24 +467,17 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		AD79AF5A2373F05600F96615 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AD79AFD72375189D00F96615 /* STHALTypeSafety.h in Headers */,
-				B1355065237D196100063789 /* ServiceDiscovery-Bridging-Header.h in Headers */,
-				AD79AFDD2375189D00F96615 /* STHALLinks.h in Headers */,
-				AD79AFDC2375189D00F96615 /* STHAL.h in Headers */,
-				AD79AFDA2375189D00F96615 /* STHALResource.h in Headers */,
-				AD79AFDF2375189D00F96615 /* STURITemplate.h in Headers */,
-				AD79AFDB2375189D00F96615 /* STHALEmbeddedResources.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		AD804AFE230FA8130033C7B0 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD25674723A0532200B9A899 /* STURITemplate.h in Headers */,
+				AD25674323A0531D00B9A899 /* STHALEmbeddedResources.h in Headers */,
+				AD25674223A0531D00B9A899 /* STHALResource.h in Headers */,
+				AD25674523A0531D00B9A899 /* STHALLinks.h in Headers */,
+				AD25674423A0531D00B9A899 /* STHAL.h in Headers */,
+				AD25673F23A0531D00B9A899 /* STHALTypeSafety.h in Headers */,
+				AD25673723A052F200B9A899 /* ServiceDiscovery-Bridging-Header.h in Headers */,
 				AD804B14230FA8130033C7B0 /* Uluru.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -514,25 +485,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		AD79AF5E2373F05600F96615 /* HALUluru */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AD79AF662373F05600F96615 /* Build configuration list for PBXNativeTarget "HALUluru" */;
-			buildPhases = (
-				AD79AF5A2373F05600F96615 /* Headers */,
-				AD79AF5B2373F05600F96615 /* Sources */,
-				AD79AF5C2373F05600F96615 /* Frameworks */,
-				AD79AF5D2373F05600F96615 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				AD79AF6A2373F07C00F96615 /* PBXTargetDependency */,
-			);
-			name = HALUluru;
-			productName = HALUluru;
-			productReference = AD79AF5F2373F05600F96615 /* HALUluru.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		AD804B02230FA8130033C7B0 /* Uluru */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AD804B17230FA8130033C7B0 /* Build configuration list for PBXNativeTarget "Uluru" */;
@@ -583,10 +535,6 @@
 				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = Tabcorp;
 				TargetAttributes = {
-					AD79AF5E2373F05600F96615 = {
-						CreatedOnToolsVersion = 11.2;
-						LastSwiftMigration = 1120;
-					};
 					AD804B02230FA8130033C7B0 = {
 						CreatedOnToolsVersion = 10.3;
 						LastSwiftMigration = 1030;
@@ -609,20 +557,12 @@
 			projectRoot = "";
 			targets = (
 				AD804B02230FA8130033C7B0 /* Uluru */,
-				AD79AF5E2373F05600F96615 /* HALUluru */,
 				AD804B0B230FA8130033C7B0 /* UluruTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		AD79AF5D2373F05600F96615 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		AD804B01230FA8130033C7B0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -705,33 +645,22 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		AD79AF5B2373F05600F96615 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AD79AFB72374D4E900F96615 /* HALAPIDefinition.swift in Sources */,
-				AD79AFD02375189D00F96615 /* ServiceDiscoveryEnum.swift in Sources */,
-				AD79AFD32375189D00F96615 /* ServiceDiscoveryDataProvider.swift in Sources */,
-				AD79AFDE2375189D00F96615 /* STURITemplate.m in Sources */,
-				AD79AFD82375189D00F96615 /* STHALEmbeddedResources.m in Sources */,
-				AD79AFE7237536F100F96615 /* HALAPITargetResolver.swift in Sources */,
-				AD79AFD22375189D00F96615 /* ServiceDiscoveryPersistence.swift in Sources */,
-				AD79AFD42375189D00F96615 /* ServiceDiscoveryNetworking.swift in Sources */,
-				AD79AFD92375189D00F96615 /* STHALLinks.m in Sources */,
-				AD79AFD12375189D00F96615 /* ServiceDiscoveryProtocol.swift in Sources */,
-				AD79AFD62375189D00F96615 /* STHALResource.m in Sources */,
-				AD79AFD52375189D00F96615 /* ServiceDiscovery.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		AD804AFF230FA8130033C7B0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				AD036C8223287A230057FBB6 /* AuthenticationPlugin.swift in Sources */,
+				AD25673523A052DA00B9A899 /* HALAPIDefinition.swift in Sources */,
 				AD00E2DF2326326000A228F5 /* ServiceError.swift in Sources */,
+				AD25674023A0531D00B9A899 /* STHALEmbeddedResources.m in Sources */,
 				CDDFA3FF233C8CD900B3ABFF /* JSONAPILogger.swift in Sources */,
 				ADA0F1F32314CC96001ED542 /* ServiceRequester.swift in Sources */,
+				AD25673D23A0531300B9A899 /* ServiceDiscoveryNetworking.swift in Sources */,
+				AD25674623A0532200B9A899 /* STURITemplate.m in Sources */,
+				AD25673E23A0531D00B9A899 /* STHALResource.m in Sources */,
+				AD25673923A0530600B9A899 /* ServiceDiscoveryProtocol.swift in Sources */,
+				AD25673623A052DE00B9A899 /* HALAPITargetResolver.swift in Sources */,
+				AD25673C23A0531300B9A899 /* ServiceDiscoveryDataProvider.swift in Sources */,
 				ADA0F1F52314CC96001ED542 /* APIDefinition.swift in Sources */,
 				ADA0F1F42314CC96001ED542 /* AccessAuthorizable.swift in Sources */,
 				ADA0F1F22314CC96001ED542 /* ServicePluginType.swift in Sources */,
@@ -741,10 +670,14 @@
 				CDE465552329CEF30062C71C /* RequestCompletionStrategy.swift in Sources */,
 				ADA0F2042317D9CA001ED542 /* APITarget.swift in Sources */,
 				ADB7EB37234EB4C600D65C16 /* StubResponse.swift in Sources */,
+				AD25674123A0531D00B9A899 /* STHALLinks.m in Sources */,
+				AD25673823A0530300B9A899 /* ServiceDiscoveryEnum.swift in Sources */,
 				ADA0F1EB2314C860001ED542 /* ExecutorURLSession.swift in Sources */,
 				ADA0F1FD231634FC001ED542 /* URLRequest+Encoding.swift in Sources */,
 				ADA0F1FB2314D611001ED542 /* ServiceRequester+Defaults.swift in Sources */,
+				AD25673A23A0530A00B9A899 /* ServiceDiscovery.swift in Sources */,
 				AD39099B2332077D004452A7 /* ServiceCancellable.swift in Sources */,
+				AD25673B23A0531300B9A899 /* ServiceDiscoveryPersistence.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -776,11 +709,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		AD79AF6A2373F07C00F96615 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = AD804B02230FA8130033C7B0 /* Uluru */;
-			targetProxy = AD79AF692373F07C00F96615 /* PBXContainerItemProxy */;
-		};
 		AD804B0F230FA8130033C7B0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = AD804B02230FA8130033C7B0 /* Uluru */;
@@ -789,65 +717,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		AD79AF642373F05600F96615 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "Sources/Supporting Files/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.au.tabcorp.HALUluru;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
-				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "Sources/HALUluru/ServiceDiscovery/Resources/ServiceDiscovery-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		AD79AF652373F05600F96615 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "Sources/Supporting Files/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.au.tabcorp.HALUluru;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
-				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "Sources/HALUluru/ServiceDiscovery/Resources/ServiceDiscovery-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		AD804B15230FA8130033C7B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -997,6 +866,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1030,6 +900,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1080,15 +951,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AD79AF662373F05600F96615 /* Build configuration list for PBXNativeTarget "HALUluru" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AD79AF642373F05600F96615 /* Debug */,
-				AD79AF652373F05600F96615 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		AD804AFD230FA8130033C7B0 /* Build configuration list for PBXProject "Uluru" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
