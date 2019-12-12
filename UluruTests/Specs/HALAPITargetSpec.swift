@@ -4,7 +4,7 @@ import Foundation
 import Quick
 import Nimble
 @testable import Uluru
-@testable import HALUluru
+@testable import Uluru
 
 class HALAPITargetSpec: QuickSpec {
     override func spec() {

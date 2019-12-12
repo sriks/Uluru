@@ -3,7 +3,7 @@
 import Foundation
 import Quick
 import Nimble
-@testable import HALUluru
+@testable import Uluru
 
 class ServiceDiscoveryPersistenceSpec: QuickSpec {
 

@@ -72,7 +72,6 @@ platform :ios do
     # Prepare carthage build and archive.
     carthage(command: "build", no_skip_current: true)
     carthage(command: "archive", frameworks: "Uluru")
-    carthage(command: "archive", frameworks: "HALUluru")
     # Publish to slack
     # TODO: Publish test coverage report
     # TODO: Publish release availablity or error message=
@@ -89,7 +88,7 @@ platform :ios do
       tag_name: gitTag,
       commitish: "beta",
       description: change_log_since_last_tag,
-      upload_assets: ["Uluru.framework.zip", "HALUluru.framework.zip"]
+      upload_assets: ["Uluru.framework.zip"]
     )
   end
 

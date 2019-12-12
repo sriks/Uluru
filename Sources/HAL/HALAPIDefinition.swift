@@ -1,9 +1,6 @@
 //Copyright © 2019 Tabcorp. All rights reserved.
 
 import Foundation
-#if !COCOAPODS
-import Uluru
-#endif
 
 /// HAL Entity resolved by name
 public struct NamedEntity {

@@ -1,7 +1,7 @@
 //  Copyright © 2019 Tabcorp. All rights reserved.
 
 import Foundation
-@testable import HALUluru
+@testable import Uluru
 
 class MockServiceDiscoveryNetworking: ServiceDiscoveryRequestable {
 
