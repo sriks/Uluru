@@ -10,7 +10,7 @@ Pod::Spec.new do |spec|
 
   spec.name           = "Uluru"
   # Ensure this matched the git tag
-  spec.version        = "0.0.13"
+  spec.version        = "0.0.14"
   spec.summary        = "JSON REST API module using declarative API definitions and plugins."
   spec.description    = <<-DESC
   Uluru is a simple and agnostic layer for REST APIs using declarative API concept and written in Swift.
