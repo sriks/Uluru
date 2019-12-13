@@ -7,7 +7,7 @@ public typealias AuthenticationTokenProvider = (_ api: APIDefinition) -> String
 /// An authentication plugin which prepares a request as per authentication strategy.
 /// Reads token from authentication token provider.
 public class AuthenticationPlugin: ServicePluginType {
-    let provider: AuthenticationTokenProvider
+    public let provider: AuthenticationTokenProvider
 
     public init(_ provider: @escaping AuthenticationTokenProvider) {
         self.provider = provider

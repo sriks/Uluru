@@ -7,6 +7,12 @@ public struct DataResponse {
     public let data: Data
     public let request: URLRequest
     public let urlResponse: HTTPURLResponse?
+
+    public init(data: Data, request: URLRequest, urlResponse: HTTPURLResponse?) {
+        self.data = data
+        self.request = request
+        self.urlResponse = urlResponse
+    }
 }
 
 // Raw Data Requests
