@@ -13,20 +13,6 @@ public extension HTTPMethod {
     var name: String { return self.rawValue.uppercased() }
 }
 
-public typealias JSON = [String: Any]
-
-/// Provides a JSON representation.
-public protocol JSONRepresentable {
-    func jsonObject() throws -> JSON
-    func jsonData(using encoder: JSONEncoder) throws -> Data
-}
-
-extension JSONRepresentable {
-    func jsonData() throws -> Data {
-        return try self.jsonData(using: JSONEncoder())
-    }
-}
-
 public enum EncodingStrategy {
     case ignore
     case queryParameters(parameters: JSONRepresentable)

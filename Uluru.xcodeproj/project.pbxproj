@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,8 @@
 		AD00E2DF2326326000A228F5 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00E2DE2326326000A228F5 /* ServiceError.swift */; };
 		AD036C8223287A230057FBB6 /* AuthenticationPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD036C8123287A230057FBB6 /* AuthenticationPlugin.swift */; };
 		AD036C8423288B1B0057FBB6 /* AuthenticationPluginSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD036C8323288B1B0057FBB6 /* AuthenticationPluginSpec.swift */; };
+		AD060E5423B1E06100D37862 /* JSONRepresentableSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD060E5323B1E06100D37862 /* JSONRepresentableSpec.swift */; };
+		AD060E5623B1E81500D37862 /* JSONRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD060E5523B1E81400D37862 /* JSONRepresentable.swift */; };
 		AD25673523A052DA00B9A899 /* HALAPIDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFB62374D4E900F96615 /* HALAPIDefinition.swift */; };
 		AD25673623A052DE00B9A899 /* HALAPITargetResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFE6237536F100F96615 /* HALAPITargetResolver.swift */; };
 		AD25673723A052F200B9A899 /* ServiceDiscovery-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFE423751A7B00F96615 /* ServiceDiscovery-Bridging-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -101,6 +103,8 @@
 		AD00E2DE2326326000A228F5 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
 		AD036C8123287A230057FBB6 /* AuthenticationPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationPlugin.swift; sourceTree = "<group>"; };
 		AD036C8323288B1B0057FBB6 /* AuthenticationPluginSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationPluginSpec.swift; sourceTree = "<group>"; };
+		AD060E5323B1E06100D37862 /* JSONRepresentableSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONRepresentableSpec.swift; sourceTree = "<group>"; };
+		AD060E5523B1E81400D37862 /* JSONRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONRepresentable.swift; sourceTree = "<group>"; };
 		AD39099A2332077D004452A7 /* ServiceCancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCancellable.swift; sourceTree = "<group>"; };
 		AD390DC8232A465400442BFB /* ErrorsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorsSpec.swift; sourceTree = "<group>"; };
 		AD390DCC232C573E00442BFB /* HTTPStatusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
@@ -379,6 +383,7 @@
 				AD390DCC232C573E00442BFB /* HTTPStatusCode.swift */,
 				AD39099A2332077D004452A7 /* ServiceCancellable.swift */,
 				ADB7EB36234EB4C600D65C16 /* StubResponse.swift */,
+				AD060E5523B1E81400D37862 /* JSONRepresentable.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -397,6 +402,7 @@
 				ADD567E3233B2973005939E4 /* APITargetSpec.swift */,
 				ADB7EB34234EA7D700D65C16 /* StubStrategiesSpec.swift */,
 				AD79AFE823753C9B00F96615 /* HALAPITargetSpec.swift */,
+				AD060E5323B1E06100D37862 /* JSONRepresentableSpec.swift */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -578,6 +584,7 @@
 				AD25673923A0530600B9A899 /* ServiceDiscoveryProtocol.swift in Sources */,
 				AD25673623A052DE00B9A899 /* HALAPITargetResolver.swift in Sources */,
 				AD25673C23A0531300B9A899 /* ServiceDiscoveryDataProvider.swift in Sources */,
+				AD060E5623B1E81500D37862 /* JSONRepresentable.swift in Sources */,
 				ADA0F1F52314CC96001ED542 /* APIDefinition.swift in Sources */,
 				ADA0F1F42314CC96001ED542 /* AccessAuthorizable.swift in Sources */,
 				ADA0F1F22314CC96001ED542 /* ServicePluginType.swift in Sources */,
@@ -609,6 +616,7 @@
 				ADD567E4233B2973005939E4 /* APITargetSpec.swift in Sources */,
 				AD00E2D52321F56D00A228F5 /* ServiceRequesterSpec.swift in Sources */,
 				ADE9DF592321E4BA00195774 /* PluginsSpec.swift in Sources */,
+				AD060E5423B1E06100D37862 /* JSONRepresentableSpec.swift in Sources */,
 				B1E8671E23791AF300131222 /* ServiceDiscoveryDataProviderSpec.swift in Sources */,
 				AD394C862329C65700BEA019 /* TestPlugin.swift in Sources */,
 				AD00E2DA2321FA5000A228F5 /* TestHelper.swift in Sources */,

@@ -74,21 +74,6 @@ extension APITarget {
     }
 }
 
-// MARK: - Encodable
-// Default implementation for any type confirming to `Encodable`
-public extension JSONRepresentable where Self: Encodable {
-    func jsonObject() throws -> JSON {
-        guard let json = try JSONSerialization.jsonObject(with: self.jsonData(), options: .mutableContainers) as? JSON else {
-            fatalError("Unable to represent to expected JSON type aka [String: Any]")
-        }
-        return json
-    }
-
-    func jsonData(using encoder: JSONEncoder) throws -> Data {
-        return try encoder.encode(self)
-    }
-}
-
 public class DefaultJSONDecoder: ResponseParser {
 
     public static func make<API>(_ api: API) -> ResponseParser where API : APIDefinition {
