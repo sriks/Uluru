@@ -262,7 +262,7 @@ public class ServiceRequester<API: APIDefinition>: Service {
             case .parsing(let theError):
                 return .failure(.parsing(theError, response))
             case .response(let obj):
-                return .failure(.response(response, obj))
+                return .failure(.apiError(obj, response))
             }
         }
     }

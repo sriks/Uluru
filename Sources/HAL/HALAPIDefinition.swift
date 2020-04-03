@@ -13,7 +13,7 @@ public struct NamedEntity {
     }
 }
 
-/// HAL Entity resolved by URL.
+/// HAL Entity resolved by URL
 public struct LinkedEntity {
     public let halLink: STHALLink
     public let variables: Uluru.JSONRepresentable?
@@ -26,16 +26,21 @@ public struct LinkedEntity {
 
 /// The type of entity resolution
 public enum EntityResolution {
+    /// Resolve with a named entity and optional params
     case namedEntity(NamedEntity)
+
+    /// Resolve with a HAL link and optional params
     case linkedEntity(LinkedEntity)
 }
 
-/// A conformance protocol that expresses the type of HAL entity resolution.
+/// A conformance protocol that expresses that APIDefinition requires HAL entity resolution.
 public protocol RequiresHALEntityResolution {
+
+    /// The HAL entity resolution strategy
     var entityResolution: EntityResolution { get }
 }
 
-/// Provides HAL based APIDefinition
+/// Provides HAL based APIDefinition. Use this when you need HAL entity resolution to make API calls.
 public protocol HALAPIDefinition: APIDefinition, RequiresHALEntityResolution {}
 
 public extension HALAPIDefinition {

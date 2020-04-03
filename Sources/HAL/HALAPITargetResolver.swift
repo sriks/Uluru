@@ -11,19 +11,22 @@ public extension ServiceRequester {
                 return .failure(.invalidResolvedUrl(apiDef.baseURL))
             }
 
+            var entityName: String?
             let url: URL? = {
                 switch halAPI.entityResolution {
                 case .namedEntity(let named):
+                    entityName = named.name
                     return ServiceDiscovery.shared().urlForEntryRelationNamed(named.name,
                                                                               variables: try? named.variables?.jsonObject())
                 case .linkedEntity(let linked):
+                    entityName = linked.halLink.name
                     return ServiceDiscovery.shared().urlForHALLink(linked.halLink,
                                                                    variables: try? linked.variables?.jsonObject())
                 }
             }()
 
             guard let resolvedURL = url else {
-                return .failure(.invalidResolvedUrl(apiDef.baseURL))
+                return .failure(.halEntityNotFound(entityName ?? "unknownEntity"))
             }
 
             let target = APITarget.makeFrom(apiDef, resolvedURL: resolvedURL)
