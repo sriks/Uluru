@@ -61,7 +61,7 @@ class EncodingSpec: QuickSpec {
             }
 
             it("body is nil when no parameters are supplied") {
-                let api = self.sampleResolvedDefinition(encoding: .ignore)
+                let api = self.sampleResolvedDefinition(encoding: .dontEncode)
                 let urlRequest = try! requestMapper(api).get()
                 expect(urlRequest.httpBody).to(beNil())
             }
@@ -96,7 +96,7 @@ class EncodingSpec: QuickSpec {
             }
 
             it("body is nil when no parameters are supplied") {
-                let api = self.sampleResolvedDefinition(encoding: .ignore)
+                let api = self.sampleResolvedDefinition(encoding: .dontEncode)
                 let urlRequest = try! requestMapper(api).get()
                 expect(urlRequest.httpBody).to(beNil())
             }
@@ -111,7 +111,7 @@ class EncodingSpec: QuickSpec {
         context("HTTP Methods") {
 
             func ourMappedUrlRequest(_ method: HTTPMethod) -> URLRequest {
-                let api = self.sampleResolvedDefinition(encoding: .ignore, method: method)
+                let api = self.sampleResolvedDefinition(encoding: .dontEncode, method: method)
                 return try! requestMapper(api).get()
             }
 
@@ -140,7 +140,7 @@ class EncodingSpec: QuickSpec {
         context("HTTP Headers") {
 
             func ourMappedUrlRequest(_ method: HTTPMethod, headers: [String: String]?) -> URLRequest {
-                let api = self.sampleResolvedDefinition(encoding: .ignore, method: method, headers: headers)
+                let api = self.sampleResolvedDefinition(encoding: .dontEncode, method: method, headers: headers)
                 return try! requestMapper(api).get()
             }
 
@@ -220,7 +220,7 @@ extension SampleAPI: APIDefinition {
     var encoding: EncodingStrategy {
         switch self {
         case .simpleGET:
-            return .ignore
+            return .dontEncode
 
         case let .getWithParams(postId):
             return .queryParameters(parameters: postId)

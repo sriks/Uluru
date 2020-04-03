@@ -7,7 +7,7 @@ extension URLRequest {
     mutating func encoded(_ encodingTask: EncodingStrategy) throws -> URLRequest {
         guard let ourUrl = url else { return self }
         switch encodingTask {
-        case .ignore:
+        case .dontEncode:
             return self
 
         case .queryParameters(let parameters):
@@ -47,7 +47,7 @@ extension URLRequest {
 extension EncodingStrategy {
     var expectsApplicationJSONHeader: Bool {
         switch self {
-        case .ignore, .queryParameters:
+        case .dontEncode, .queryParameters:
             return false
         case .jsonBody, .jsonBodyUsingCustomEncoder:
             return true

@@ -52,7 +52,7 @@ extension PostmanEcho: APIDefinition, AccessAuthorizable {
     var encoding: EncodingStrategy {
         switch self {
         case .justGet, .justGetWithPlaceholderData, .echoBearerAuth, .echoCustomHeaderAuth, .invalidRoute:
-            return .ignore
+            return .dontEncode
             
         case let .getWithParams(params):
             return .queryParameters(parameters: params)
@@ -64,7 +64,7 @@ extension PostmanEcho: APIDefinition, AccessAuthorizable {
             return .jsonBodyUsingCustomEncoder(parameters: body, encoder: CustomEncoder())
 
         case .postWithoutBody:
-            return .ignore
+            return .dontEncode
         }
     }
 
@@ -148,7 +148,7 @@ extension ErrorAPIDefinition: APIDefinition {
     var encoding: EncodingStrategy {
         switch self {
         case .thisDontExist, .invalidRoute:
-            return .ignore
+            return .dontEncode
         case .failParsing(let params):
             return .queryParameters(parameters: params)
         }

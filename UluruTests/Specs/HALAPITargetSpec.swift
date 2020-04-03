@@ -59,6 +59,6 @@ extension SampleHALAPI: HALAPIDefinition, RequiresHALEntityResolution {
     }
 
     var encoding: EncodingStrategy {
-        return .ignore
+        return .dontEncode
     }
 }

@@ -70,6 +70,7 @@ public class ServiceRequester<API: APIDefinition>: Service {
         self.serviceExecutor = serviceExecutor
     }
 
+    @discardableResult
     public func request<T: Decodable>(_ api: API,
                                       expecting: T.Type,
                                       completion: @escaping APIRequestCompletion<T>) -> ServiceCancellable {
@@ -88,6 +89,7 @@ public class ServiceRequester<API: APIDefinition>: Service {
         }
     }
 
+    @discardableResult
     func requestData(_ api: API,
                     completion: @escaping DataRequestCompletion) -> ServiceCancellable {
         let cancellable = ServiceCancellableWrapper()

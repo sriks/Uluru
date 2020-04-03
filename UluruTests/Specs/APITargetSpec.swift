@@ -19,7 +19,7 @@ class APITargetSpec: QuickSpec {
                 expect(target.method).to( equal(anAPIDefintion.method) )
                 let encodingMatched: Bool = {
                     switch target.encoding {
-                    case .ignore:
+                    case .dontEncode:
                         return true
                     default:
                         return false
