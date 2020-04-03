@@ -4,10 +4,10 @@ import Foundation
 
 /// A conformance to represent an error response. For example API returned an error response stating missing mandatory fields.
 /// * Conform to this to represent the exact API error.
-/// * For example `struct MyAPIErrorResponse: ErrorResponse {}`
+/// * For example `struct MyAPIErrorResponse: APIErrorResponse {}`
 /// * The `ResponseParser` implementation is responsible to create the exact error.
-/// * Implement `localizedDescription` in `ErrorResponse` by mapping your API error response to an expected localized description.
-public typealias ErrorResponse = Error
+/// * Ensure to conform to `LocalizedError` and provide `errorDescription` so that localized error description is used when `error.localizedDescription` is invoked.
+public typealias APIErrorResponse = Error & LocalizedError
 
 // MARK: ServiceError
 /// Service Error. Collection of all possible errors that can result when performing a request.
@@ -38,14 +38,14 @@ public enum ServiceError: Error {
 
     /// An error response from API. The request went through but API returned an error response, for example missing required fields etc.
     ///
-    /// The parsed ErrorResponse as per your API contract and underlying data response.
+    /// The parsed APIErrorResponse as per your API contract and underlying data response.
     /// * The supplied `ResponseParser` is responsible to create the exact type of `ErrorResponse`
-    /// * `ErrorResponse` can be casted to the actual error response as per your API contract.
-    case apiError(ErrorResponse, DataResponse)
+    /// * `APIErrorResponse` can be casted to the actual error response as per your API contract.
+    case apiError(APIErrorResponse, DataResponse)
 }
 
 extension ServiceError: LocalizedError {
-    public var localizedDescription: String {
+    public var errorDescription: String? {
         switch self {
         case .invalidResolvedUrl:
             return  "The resolved url is invalid."
@@ -74,6 +74,6 @@ public enum ParsingError: Error {
     case parsing(Error)
 
     // Parsed successfully but got an error response from the response JSON.
-    case response(ErrorResponse)
+    case response(APIErrorResponse)
 }
 
