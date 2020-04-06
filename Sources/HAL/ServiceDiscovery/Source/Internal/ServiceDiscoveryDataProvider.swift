@@ -30,7 +30,7 @@ class ServiceDiscoveryDataProvider: DataProvidable {
         self.service = service
         self.persistence = persistence
         self.completion = completion
-        loadDiscoveryResources(from: isLocalServiceDiscoveryDated() ? .server : .localStorage)
+        startLoadingDiscovery()
     }
 
     func updateOverlay(with name: String, uriTemplate: String) {
@@ -78,6 +78,14 @@ private extension ServiceDiscoveryDataProvider {
     enum ResourceLocation {
         case localStorage
         case server
+    }
+
+    func startLoadingDiscovery() {
+        if persistence.shouldLoadFromFile {
+            loadDiscoveryResources(from: .localStorage)
+        } else {
+            loadDiscoveryResources(from: isLocalServiceDiscoveryDated() ? .server : .localStorage)
+        }
     }
 
     func isServiceDiscoveryJustUpdated() -> Bool {

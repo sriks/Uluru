@@ -13,7 +13,7 @@ public class ServiceDiscovery {
 
     public static func instantiate(apiRootURL: URL?, bearerToken: String? = nil, completion: ServiceDiscoveryCompletionBlock?) {
         let service = ServiceDiscoveryNetworking(apiRootURL: apiRootURL, bearerToken: bearerToken)
-        let persistence = ServiceDiscoveryPersistence()
+        let persistence = ServiceDiscoveryPersistence(fileURL: apiRootURL)
         let dataProvider = ServiceDiscoveryDataProvider(service: service, persistence: persistence, completion: completion)
         sharedInstance = ServiceDiscovery(apiRootURL: apiRootURL, bearerToken: bearerToken, dataProvider: dataProvider)
     }
