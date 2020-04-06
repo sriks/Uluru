@@ -5,6 +5,8 @@ import Foundation
 
 class MockServiceDiscoveryPersistence: ServiceDiscoveryPersistentable {
 
+    var shouldLoadFromFile: Bool { return false }
+
     func loadServiceDiscoveryFromPersistence(_ completion: (STHALResource?, Error?) -> Void) {
         completion(nil, nil)
     }

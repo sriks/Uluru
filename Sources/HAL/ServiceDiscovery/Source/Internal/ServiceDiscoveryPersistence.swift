@@ -13,12 +13,13 @@ class ServiceDiscoveryPersistence: ServiceDiscoveryPersistentable {
 
     private enum Constant {
         static let discoveryStorageFileName = "discovery.json"
+        static let fileScheme = "file"
     }
 
     private let fileURL: URL?
 
     var shouldLoadFromFile: Bool {
-        return isExternalFileURL
+        return isExternalFileExist
     }
 
     init(fileURL: URL?) {
@@ -27,7 +28,7 @@ class ServiceDiscoveryPersistence: ServiceDiscoveryPersistentable {
 
     func loadServiceDiscoveryFromPersistence(_ completion: (STHALResource?, Error?) -> Void) {
         do {
-            let data = try Data(contentsOf: serviceDiscoveryURL, options: .mappedIfSafe)
+            let data = try Data(contentsOf: try serviceDiscoveryURL(), options: .mappedIfSafe)
             if let jsonObj = try JSONSerialization.jsonObject(with: data) as? [String : Any] {
                 let serviceDiscoveryResource = STHALResource(dictionary: jsonObj, baseURL: nil, options: STHALResourceReadingOptions.allowSimplifiedLinks)
                 completion(serviceDiscoveryResource, nil)
@@ -43,7 +44,7 @@ class ServiceDiscoveryPersistence: ServiceDiscoveryPersistentable {
         do {
             if let dict = resource.dictionaryRepresentation(options: .writeSimplifiedLinks) {
                 let discoveryData = try JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
-                try discoveryData.write(to: serviceDiscoveryURL, options: .completeFileProtection)
+                try discoveryData.write(to: try serviceDiscoveryURL(), options: .completeFileProtection)
                 completion?(true, nil)
             }
         } catch (let error) {
@@ -60,14 +61,26 @@ private extension ServiceDiscoveryPersistence {
         return paths[0].appendingPathComponent(Constant.discoveryStorageFileName, isDirectory: false)
     }
 
-    var isExternalFileURL: Bool {
-        guard let fileURL = fileURL else { return false }
+    var isExternalFileExist: Bool {
+        guard let fileURL = fileURL,
+              fileURL.scheme == Constant.fileScheme else { return false }
 
         let fileManager = FileManager.default
-        return fileManager.fileExists(atPath: fileURL.absoluteString)
+        return fileManager.fileExists(atPath: fileURL.path)
     }
 
-    var serviceDiscoveryURL: URL {
-        return isExternalFileURL ? fileURL! : discoveryDefaultStorageURL
+    var isSavedTemplateExist: Bool {
+        let fileManager = FileManager.default
+        return fileManager.fileExists(atPath: discoveryDefaultStorageURL.path)
+    }
+
+    func serviceDiscoveryURL() throws -> URL {
+        if let fileURL = fileURL, isExternalFileExist {
+            return fileURL // loading from file
+        } else if isSavedTemplateExist {
+            return discoveryDefaultStorageURL // loading from saved template(fallback action of loading from API)
+        } else {
+            throw DiscoveryError.fileNotFound // loading from file but file not found
+        }
     }
 }
