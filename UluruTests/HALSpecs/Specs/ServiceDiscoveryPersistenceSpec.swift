@@ -7,7 +7,7 @@ import Nimble
 
 class ServiceDiscoveryPersistenceSpec: QuickSpec {
 
-    private let persistence = ServiceDiscoveryPersistence()
+    private let persistence = ServiceDiscoveryPersistence(fileURL: nil)
     private let mockDiscoveryDict: [String : Any] = [
         "homepage" : "www.tab.com.au",
         "_links" : ["account:account-number-retrieval" : "https://webapi.tab.com.au/v1/account-service/tab/accounts/account-number-retrieval",

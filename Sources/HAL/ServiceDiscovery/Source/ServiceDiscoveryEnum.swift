@@ -6,6 +6,7 @@ public enum DiscoveryError: Error {
     case discoveryIsUpToDate
     case urlLoadingFailed
     case parsingFailed
+    case fileNotFound
 }
 
 extension DiscoveryError: LocalizedError {
@@ -17,6 +18,8 @@ extension DiscoveryError: LocalizedError {
             return "Service Discovery failed to load from server"
         case .parsingFailed:
             return "Failed to parsing data"
+        case .fileNotFound:
+            return "Can't find a file as expected"
         }
     }
 }
