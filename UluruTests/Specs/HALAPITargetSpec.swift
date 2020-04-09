@@ -9,24 +9,20 @@ import Nimble
 class HALAPITargetSpec: QuickSpec {
     override func spec() {
         TestHelper.markWaitExpecationAsAPIRequest()
+        var discovery: ServiceDiscoveryType!
 
         beforeSuite {
             waitUntil() { done in
-                ServiceDiscovery.instantiate(apiRootURL: URL(string: "https://uat02.beta.tab.com.au/v1")!) { result in
-                    print("discovery: \(result)")
-                    switch result {
-                    case .success:
-                        done()
-                    case .failure(let error):
-                        fatalError(error.errorDescription ?? "unable to load discovery")
-                    }
+                ServiceDiscovery.createInstance(apiRootURL: .localDiscoveryURL) { result in
+                    discovery = try? result.get()
+                    done()
                 }
             }
         }
 
         context("HAL Target Resolver") {
             it("should resolve url as expected") {
-                let closure = ServiceRequester<SampleHALAPI>.makeHALTargetResolver()
+                let closure = ServiceRequester<SampleHALAPI>.makeHALTargetResolver(discovery)
                 let result = closure(.fooBar(promoGroup: PromoGroup(promoGroupId: "12345")))
                 let apiTarget = try! result.get()
                 let expectedURL = URL(string: "https://uat02.beta.tab.com.au/v1/invenue-service/promo-groups/12345")!

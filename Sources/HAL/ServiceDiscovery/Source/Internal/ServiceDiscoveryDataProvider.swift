@@ -13,8 +13,12 @@ protocol DataProvidable {
     func updateUnderlay(with name: String, uriTemplate: String)
     func removeUnderlay(for name: String)
     func requestServiceDiscovery(_ completion: ServiceDiscoveryCompletionBlock?)
+
+    /// Performs an initial loading of service discovery. You should invoke explicitly to start the load process.
+    func load(_ completion: @escaping ServiceDiscoveryCompletionBlock)
 }
 
+/// Responsible to provide service discovery data from a URL.
 class ServiceDiscoveryDataProvider: DataProvidable {
 
     var serviceDiscoveryResource: STHALResource?
@@ -24,13 +28,10 @@ class ServiceDiscoveryDataProvider: DataProvidable {
 
     private let service: ServiceDiscoveryRequestable
     private let persistence: ServiceDiscoveryPersistentable
-    private let completion: ServiceDiscoveryCompletionBlock?
 
-    init(service: ServiceDiscoveryRequestable, persistence: ServiceDiscoveryPersistentable, completion: ServiceDiscoveryCompletionBlock?) {
+    init(service: ServiceDiscoveryRequestable, persistence: ServiceDiscoveryPersistentable/*, completion: ServiceDiscoveryCompletionBlock?*/) {
         self.service = service
         self.persistence = persistence
-        self.completion = completion
-        startLoadingDiscovery()
     }
 
     func updateOverlay(with name: String, uriTemplate: String) {
@@ -71,6 +72,14 @@ class ServiceDiscoveryDataProvider: DataProvidable {
             completion?(result)
         }
     }
+
+    func load(_ completion: @escaping ServiceDiscoveryCompletionBlock) {
+        if persistence.shouldLoadFromFile {
+            loadDiscoveryResources(from: .localStorage, completion: completion)
+        } else {
+            loadDiscoveryResources(from: isLocalServiceDiscoveryDated() ? .server : .localStorage, completion: completion)
+        }
+    }
 }
 
 private extension ServiceDiscoveryDataProvider {
@@ -78,14 +87,6 @@ private extension ServiceDiscoveryDataProvider {
     enum ResourceLocation {
         case localStorage
         case server
-    }
-
-    func startLoadingDiscovery() {
-        if persistence.shouldLoadFromFile {
-            loadDiscoveryResources(from: .localStorage)
-        } else {
-            loadDiscoveryResources(from: isLocalServiceDiscoveryDated() ? .server : .localStorage)
-        }
     }
 
     func isServiceDiscoveryJustUpdated() -> Bool {
@@ -124,15 +125,17 @@ private extension ServiceDiscoveryDataProvider {
         }
     }
 
-    func loadDiscoveryResources(from resourceLocation: ResourceLocation) {
+    func loadDiscoveryResources(from resourceLocation: ResourceLocation, completion: @escaping ServiceDiscoveryCompletionBlock) {
         switch resourceLocation {
         case .localStorage:
             persistence.loadServiceDiscoveryFromPersistence { [weak self] (resources, error) in
+                guard let self = self else { return }
                 if let resources = resources {
-                    self?.updateServiceDiscovery(with: resources)
-                    completion?(.success)
+                    self.updateServiceDiscovery(with: resources)
+                    completion(.success)
+                } else {
+                    self.loadDiscoveryResources(from: .server, completion: completion)
                 }
-                self?.loadDiscoveryResources(from: .server)
             }
         case .server:
             requestServiceDiscovery(completion)

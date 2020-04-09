@@ -11,10 +11,20 @@ class ServiceDiscoveryDataProviderSpec: QuickSpec {
 
     override func spec() {
 
+        TestHelper.markWaitExpecationAsAPIRequest()
+
         context("init data provider at the first time") {
             let mockPersistence = MockServiceDiscoveryPersistence()
             let mockNetworkService = MockServiceDiscoveryNetworking(apiRootURL: URL(string: "Test"), bearerToken: "Test")
-            let dataProvider = ServiceDiscoveryDataProvider(service: mockNetworkService, persistence: mockPersistence, completion: nil)
+            let dataProvider = ServiceDiscoveryDataProvider(service: mockNetworkService, persistence: mockPersistence)
+
+            beforeSuite {
+                waitUntil { done in
+                    dataProvider.load { _ in
+                        done()
+                    }
+                }
+            }
 
             it("should update lastUpdateDate to now") {
                 if let lastUpdateDate = dataProvider.serviceDiscoveryLastUpdatedDate {
@@ -44,7 +54,7 @@ class ServiceDiscoveryDataProviderSpec: QuickSpec {
         context("refresh service discovery after 6 mins") {
             let persistence = MockServiceDiscoveryPersistence()
             let service = MockServiceDiscoveryNetworking(apiRootURL: URL(string: "Test"), bearerToken: "Test")
-            let dataProvider = ServiceDiscoveryDataProvider(service: service, persistence: persistence, completion: nil)
+            let dataProvider = ServiceDiscoveryDataProvider(service: service, persistence: persistence)
             let sixMinutesAgo: TimeInterval = -6*60
             dataProvider.serviceDiscoveryLastUpdatedDate = Date(timeIntervalSinceNow: sixMinutesAgo)
 
@@ -63,7 +73,7 @@ class ServiceDiscoveryDataProviderSpec: QuickSpec {
         context("refresh service discovery within 5 mins") {
             let persistence = MockServiceDiscoveryPersistence()
             let service = MockServiceDiscoveryNetworking(apiRootURL: URL(string: "Test"), bearerToken: "Test")
-            let dataProvider = ServiceDiscoveryDataProvider(service: service, persistence: persistence, completion: nil)
+            let dataProvider = ServiceDiscoveryDataProvider(service: service, persistence: persistence)
             let fourMinutesAgo: TimeInterval = -4*60
             dataProvider.serviceDiscoveryLastUpdatedDate = Date(timeIntervalSinceNow: fourMinutesAgo)
 
