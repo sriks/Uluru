@@ -10,10 +10,7 @@ class ServiceDiscoveryLoadingFileSpec: QuickSpec {
     private var serviceDiscovery: ServiceDiscoveryType!
 
     override func spec() {
-        ServiceDiscovery.createInstance(apiRootURL: .localDiscoveryURL) { result in
-            self.serviceDiscovery = try? result.get()
-        }
-
+        serviceDiscovery = ServiceDiscovery.createInstance(apiRootURL: .localDiscoveryURL)
         context("Init service discovery with baseURL") {
             it("should create properly") {
                 expect(self.serviceDiscovery).notTo( beNil() )

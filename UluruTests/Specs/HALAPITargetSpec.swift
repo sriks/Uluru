@@ -13,10 +13,8 @@ class HALAPITargetSpec: QuickSpec {
 
         beforeSuite {
             waitUntil() { done in
-                ServiceDiscovery.createInstance(apiRootURL: .localDiscoveryURL) { result in
-                    discovery = try? result.get()
-                    done()
-                }
+                discovery = ServiceDiscovery.createInstance(apiRootURL: .localDiscoveryURL)
+                done()
             }
         }
 

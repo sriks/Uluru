@@ -11,39 +11,27 @@ public class ServiceDiscovery: ServiceDiscoveryType {
     private let dataProvider: DataProvidable
     private static var sharedInstance: ServiceDiscoveryType?
 
-    /// Instantiates Service Discovery. On success you can use to query HAL entity and perform mappings using `ServiceDiscovery.shared()`
+    /// Instantiates Service Discovery. Use this before `ServiceDiscovery.shared()`
     /// - Parameters:
     ///   - apiRootURL: The API root url. For example `https://uat02.beta.tab.com.au/v1`. This will also accept a file:// url which is handy for tests.
     ///   - bearerToken: An optional bearer token.
-    ///   - completion: The completion is invoked after initialisation is completed. This informs if the discovery is sucessfully loaded. You should check the completion before using ServiceDiscovery.
-    public static func instantiate(apiRootURL: URL?, bearerToken: String? = nil, completion: ServiceDiscoveryCompletionBlock?) {
-        ServiceDiscovery.createInstance(apiRootURL: apiRootURL, bearerToken: bearerToken) { result in
-            switch result {
-            case .success(let theInstance):
-                sharedInstance = theInstance
-                completion?(.success(Void()))
-            case .failure(let error):
-                completion?(.failure(error))
-            }
-        }
+    ///   - completion: The completion to indicate if loading service discovery is success or not.
+    ///   * You should check the completion before using ServiceDiscovery. However the instance will be created either success or failure.
+    ///   * Do not access `shared()` within the completion, since this completion is only to indicate discovery loading status.
+    public static func instantiate(apiRootURL: URL?, bearerToken: String? = nil, completion: ServiceDiscoveryCompletionBlock? = nil) {
+        sharedInstance = ServiceDiscovery.createInstance(apiRootURL: apiRootURL, bearerToken: bearerToken, completion: completion)
     }
 
     /// Internal mechanism to create an instance of service discovery. This is not shared but a always creates a new instance.
-    static func createInstance(apiRootURL: URL?, bearerToken: String? = nil, completion: @escaping ServiceDiscoveryCreationCompletionBlock) {
+    static func createInstance(apiRootURL: URL?, bearerToken: String? = nil, completion: ServiceDiscoveryCompletionBlock? = nil) -> ServiceDiscovery {
         var ourInstance: ServiceDiscovery!
         let service = ServiceDiscoveryNetworking(apiRootURL: apiRootURL, bearerToken: bearerToken)
         let persistence = ServiceDiscoveryPersistence(fileURL: apiRootURL)
         let dataProvider = ServiceDiscoveryDataProvider(service: service, persistence: persistence)
         ourInstance = ServiceDiscovery(apiRootURL: apiRootURL, bearerToken: bearerToken, dataProvider: dataProvider)
         // Start loading discovery after the instance is created.
-        dataProvider.load { result in
-            switch result {
-            case .success:
-                completion(.success(ourInstance))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
+        dataProvider.load(completion ?? { _ in })
+        return ourInstance
     }
 
     init(apiRootURL: URL?, bearerToken: String?, dataProvider: DataProvidable) {

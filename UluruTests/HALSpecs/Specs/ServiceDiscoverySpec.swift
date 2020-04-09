@@ -13,11 +13,9 @@ class ServiceDiscoverySpec: QuickSpec {
     override func spec() {
         TestHelper.markWaitExpecationAsAPIRequest()
         beforeSuite {
-            waitUntil(timeout: 10.0) { done in
-                ServiceDiscovery.createInstance(apiRootURL: self.apiRootURL) { result in
-                    self.serviceDiscovery = try? result.get()
-                    done()
-                }
+            waitUntil { done in
+                self.serviceDiscovery = ServiceDiscovery.createInstance(apiRootURL: self.apiRootURL)
+                done()
             }
         }
 
@@ -25,10 +23,10 @@ class ServiceDiscoverySpec: QuickSpec {
             var sharedInstance: ServiceDiscoveryType?
             waitUntil { done in
                 ServiceDiscovery.instantiate(apiRootURL: .localDiscoveryURL) { result in
-                    sharedInstance = ServiceDiscovery.shared()
                     done()
                 }
             }
+            sharedInstance = ServiceDiscovery.shared()
 
             it("should create properly") {
                 expect(sharedInstance).notTo( beNil() )
@@ -121,17 +119,24 @@ class ServiceDiscoverySpec: QuickSpec {
         // Here we have to make a real API call to test the internal mechanics to ensure it indeed works.
         context("Should be able to fetch discovery from network") {
             var discovery: ServiceDiscoveryType!
+            var isSuccess: Bool = false
             beforeSuite {
                 waitUntil { done in
                     // Using prod url since non-prod urls can give 503 very often during nights.
-                    ServiceDiscovery.createInstance(apiRootURL: URL(string: "https://api.beta.tab.com.au/v1/")!) { result in
-                        discovery = try? result.get()
+                    discovery = ServiceDiscovery.createInstance(apiRootURL: URL(string: "https://api.beta.tab.com.au/v1/")!) { result in
+                        switch result {
+                        case .success:
+                            isSuccess = true
+                        case .failure:
+                            isSuccess = false
+                        }
                         done()
                     }
                 }
             }
 
             it("should have loaded successfully") {
+                expect(isSuccess).to( beTrue() )
                 expect(discovery).notTo( beNil() )
             }
         }
