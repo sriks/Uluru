@@ -3,19 +3,47 @@
 import Foundation
 
 public typealias ServiceDiscoveryCompletionBlock = (Result<Void, DiscoveryError>) -> Void
-
-public class ServiceDiscovery {
+typealias ServiceDiscoveryCreationCompletionBlock = (Result<ServiceDiscoveryType, DiscoveryError>) -> Void
+public class ServiceDiscovery: ServiceDiscoveryType {
 
     private let apiRootURL: URL?
     private let bearerToken: String?
     private let dataProvider: DataProvidable
-    private static var sharedInstance: ServiceDiscovery?
+    private static var sharedInstance: ServiceDiscoveryType?
 
+    /// Instantiates Service Discovery. On success you can use to query HAL entity and perform mappings using `ServiceDiscovery.shared()`
+    /// - Parameters:
+    ///   - apiRootURL: The API root url. For example `https://uat02.beta.tab.com.au/v1`. This will also accept a file:// url which is handy for tests.
+    ///   - bearerToken: An optional bearer token.
+    ///   - completion: The completion is invoked after initialisation is completed. This informs if the discovery is sucessfully loaded. You should check the completion before using ServiceDiscovery.
     public static func instantiate(apiRootURL: URL?, bearerToken: String? = nil, completion: ServiceDiscoveryCompletionBlock?) {
+        ServiceDiscovery.createInstance(apiRootURL: apiRootURL, bearerToken: bearerToken) { result in
+            switch result {
+            case .success(let theInstance):
+                sharedInstance = theInstance
+                completion?(.success(Void()))
+            case .failure(let error):
+                completion?(.failure(error))
+            }
+        }
+    }
+
+    /// Internal mechanism to create an instance of service discovery. This is not shared but a always creates a new instance.
+    static func createInstance(apiRootURL: URL?, bearerToken: String? = nil, completion: @escaping ServiceDiscoveryCreationCompletionBlock) {
+        var ourInstance: ServiceDiscovery!
         let service = ServiceDiscoveryNetworking(apiRootURL: apiRootURL, bearerToken: bearerToken)
         let persistence = ServiceDiscoveryPersistence(fileURL: apiRootURL)
-        let dataProvider = ServiceDiscoveryDataProvider(service: service, persistence: persistence, completion: completion)
-        sharedInstance = ServiceDiscovery(apiRootURL: apiRootURL, bearerToken: bearerToken, dataProvider: dataProvider)
+        let dataProvider = ServiceDiscoveryDataProvider(service: service, persistence: persistence)
+        ourInstance = ServiceDiscovery(apiRootURL: apiRootURL, bearerToken: bearerToken, dataProvider: dataProvider)
+        // Start loading discovery after the instance is created.
+        dataProvider.load { result in
+            switch result {
+            case .success:
+                completion(.success(ourInstance))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 
     init(apiRootURL: URL?, bearerToken: String?, dataProvider: DataProvidable) {
@@ -37,7 +65,8 @@ public class ServiceDiscovery {
     }
 }
 
-extension ServiceDiscovery: ServiceDiscoveryOverlayConfigurable {
+// MARK: ServiceDiscoveryOverlayConfigurable
+extension ServiceDiscovery {
 
     public func setServiceDiscoveryOverlayEntryRelation(with name: String, uriTemplate: String) {
         dataProvider.updateOverlay(with: name, uriTemplate: uriTemplate)
@@ -48,7 +77,8 @@ extension ServiceDiscovery: ServiceDiscoveryOverlayConfigurable {
     }
 }
 
-extension ServiceDiscovery: ServiceDiscoveryUnderlayConfigurable {
+// MARK: ServiceDiscoveryUnderlayConfigurable
+extension ServiceDiscovery {
 
     public func setServiceDiscoveryUnderlayEntryRelation(with name: String, uriTemplate: String) {
         dataProvider.updateUnderlay(with: name, uriTemplate: uriTemplate)
@@ -59,7 +89,8 @@ extension ServiceDiscovery: ServiceDiscoveryUnderlayConfigurable {
     }
 }
 
-extension ServiceDiscovery: ServiceDiscoveryQueryable {
+// MARK: ServiceDiscoveryQueryable
+extension ServiceDiscovery {
 
     public func hasURLForEntryRelationNamed(_ name: String) -> Bool {
         if let _ = serviceDiscoveryOverlayForEntryRelationNamed(name) {
@@ -99,14 +130,16 @@ extension ServiceDiscovery: ServiceDiscoveryQueryable {
     }
 }
 
-extension ServiceDiscovery: ServiceDiscoverySTHALResolvable {
+// MARK: ServiceDiscoverySTHALResolvable
+extension ServiceDiscovery {
 
     public func urlForHALLink(_ link: STHALLink, variables: [String: Any]?) -> URL? {
         return link.url(withVariables: variables)
     }
 }
 
-extension ServiceDiscovery: ServiceDiscoveryRefreshable {
+// MARK: ServiceDiscoveryRefreshable
+extension ServiceDiscovery {
 
     public func refreshServiceDiscoveryIfNecessary(_ completion: @escaping ServiceDiscoveryCompletionBlock) {
         dataProvider.requestServiceDiscovery(completion)
@@ -115,7 +148,7 @@ extension ServiceDiscovery: ServiceDiscoveryRefreshable {
 
 extension ServiceDiscovery {
 
-    public static func shared() -> ServiceDiscovery {
+    public static func shared() -> ServiceDiscoveryType {
         if let ourInstance = sharedInstance {
             return ourInstance
         }

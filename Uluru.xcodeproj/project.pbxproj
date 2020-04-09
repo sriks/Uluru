@@ -59,7 +59,7 @@
 		ADB7EB37234EB4C600D65C16 /* StubResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB7EB36234EB4C600D65C16 /* StubResponse.swift */; };
 		ADD567E4233B2973005939E4 /* APITargetSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD567E3233B2973005939E4 /* APITargetSpec.swift */; };
 		ADE9DF592321E4BA00195774 /* PluginsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE9DF582321E4BA00195774 /* PluginsSpec.swift */; };
-		B11632F4243BEA16008A308E /* DiscoveryTemplate.json in Resources */ = {isa = PBXBuildFile; fileRef = B11632F3243BEA16008A308E /* DiscoveryTemplate.json */; };
+		B11632F4243BEA16008A308E /* uat02.json in Resources */ = {isa = PBXBuildFile; fileRef = B11632F3243BEA16008A308E /* uat02.json */; };
 		B11632F6243BF085008A308E /* ServiceDiscoveryLoadingFileSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11632F5243BF085008A308E /* ServiceDiscoveryLoadingFileSpec.swift */; };
 		B1E8671B23791AF300131222 /* MockServiceDiscoveryPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E8671523791AF300131222 /* MockServiceDiscoveryPersistence.swift */; };
 		B1E8671C23791AF300131222 /* MockServiceDiscoveryNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E8671623791AF300131222 /* MockServiceDiscoveryNetworking.swift */; };
@@ -156,7 +156,7 @@
 		ADB7EB36234EB4C600D65C16 /* StubResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubResponse.swift; sourceTree = "<group>"; };
 		ADD567E3233B2973005939E4 /* APITargetSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITargetSpec.swift; sourceTree = "<group>"; };
 		ADE9DF582321E4BA00195774 /* PluginsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginsSpec.swift; sourceTree = "<group>"; };
-		B11632F3243BEA16008A308E /* DiscoveryTemplate.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DiscoveryTemplate.json; sourceTree = "<group>"; };
+		B11632F3243BEA16008A308E /* uat02.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = uat02.json; sourceTree = "<group>"; };
 		B11632F5243BF085008A308E /* ServiceDiscoveryLoadingFileSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDiscoveryLoadingFileSpec.swift; sourceTree = "<group>"; };
 		B1E8671523791AF300131222 /* MockServiceDiscoveryPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockServiceDiscoveryPersistence.swift; sourceTree = "<group>"; };
 		B1E8671623791AF300131222 /* MockServiceDiscoveryNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockServiceDiscoveryNetworking.swift; sourceTree = "<group>"; };
@@ -444,7 +444,7 @@
 			children = (
 				B1E8671523791AF300131222 /* MockServiceDiscoveryPersistence.swift */,
 				B1E8671623791AF300131222 /* MockServiceDiscoveryNetworking.swift */,
-				B11632F3243BEA16008A308E /* DiscoveryTemplate.json */,
+				B11632F3243BEA16008A308E /* uat02.json */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -567,7 +567,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B11632F4243BEA16008A308E /* DiscoveryTemplate.json in Resources */,
+				B11632F4243BEA16008A308E /* uat02.json in Resources */,
 				ADB7EB33234EA47B00D65C16 /* StubSuccessResponse.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
