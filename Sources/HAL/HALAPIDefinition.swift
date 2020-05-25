@@ -15,10 +15,10 @@ public struct NamedEntity {
 
 /// HAL Entity resolved by URL
 public struct LinkedEntity {
-    public let halLink: STHALLink
+    public let halLink: __STHALLink
     public let variables: Uluru.JSONRepresentable?
 
-    public init(halLink: STHALLink, variables: Uluru.JSONRepresentable? = nil) {
+    public init(halLink: __STHALLink, variables: Uluru.JSONRepresentable? = nil) {
         self.halLink = halLink
         self.variables = variables
     }

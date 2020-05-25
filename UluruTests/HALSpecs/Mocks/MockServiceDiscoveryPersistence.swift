@@ -7,11 +7,11 @@ class MockServiceDiscoveryPersistence: ServiceDiscoveryPersistentable {
 
     var shouldLoadFromFile: Bool { return false }
 
-    func loadServiceDiscoveryFromPersistence(_ completion: (STHALResource?, Error?) -> Void) {
+    func loadServiceDiscoveryFromPersistence(_ completion: (__STHALResource?, Error?) -> Void) {
         completion(nil, nil)
     }
 
-    func saveServiceDiscoveryToPersistence(resource: STHALResource, completion: ((Bool, Error?) -> Void)?) {
+    func saveServiceDiscoveryToPersistence(resource: __STHALResource, completion: ((Bool, Error?) -> Void)?) {
         completion?(true, nil)
     }
 }

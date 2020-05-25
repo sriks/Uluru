@@ -5,7 +5,7 @@ import Foundation
 public extension ServiceRequester {
 
     /// Provides target resolver which resolves an APIDefintion to an APITarget with fully formed URL using HAL entity resolution.
-    static func makeHALTargetResolver(_ serviceDiscovery: ServiceDiscoveryQueryable & ServiceDiscoverySTHALResolvable = ServiceDiscovery.shared()) -> APITargetResolver {
+    static func makeHALTargetResolver(_ serviceDiscovery: ServiceDiscoveryQueryable & ServiceDiscovery__STHALResolvable = ServiceDiscovery.shared()) -> APITargetResolver {
         let resolver: APITargetResolver = { apiDef in
             guard let halAPI = apiDef as? RequiresHALEntityResolution else {
                 return .failure(.invalidResolvedUrl(apiDef.baseURL))

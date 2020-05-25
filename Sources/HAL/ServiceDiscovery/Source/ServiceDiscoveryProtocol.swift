@@ -27,9 +27,9 @@ public protocol ServiceDiscoveryQueryable {
     @objc func urlForEntryRelationNamed(_ name: String, variables: [String: Any]?) -> URL?
 }
 
-public protocol ServiceDiscoverySTHALResolvable: ServiceDiscoveryQueryable {
-    func urlForHALLink(_ link: STHALLink, variables: [String: Any]?) -> URL?
+public protocol ServiceDiscovery__STHALResolvable: ServiceDiscoveryQueryable {
+    func urlForHALLink(_ link: __STHALLink, variables: [String: Any]?) -> URL?
 }
 
 /// Service Discovery capability
-public typealias ServiceDiscoveryType = ServiceDiscoveryOverlayConfigurable & ServiceDiscoveryUnderlayConfigurable & ServiceDiscoveryRefreshable & ServiceDiscoverySTHALResolvable
+public typealias ServiceDiscoveryType = ServiceDiscoveryOverlayConfigurable & ServiceDiscoveryUnderlayConfigurable & ServiceDiscoveryRefreshable & ServiceDiscovery__STHALResolvable

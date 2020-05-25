@@ -5,4 +5,4 @@
 //  Copyright (c) 2014 Scott Talbot.
 
 #import <Foundation/Foundation.h>
-#import "STHALResource.h"
+#import "__STHALResource.h"

@@ -40,16 +40,16 @@ public class ServiceDiscovery: ServiceDiscoveryType {
         self.dataProvider = dataProvider
     }
 
-    private func halLinkForEntryRelationNamed(_ name: String) -> STHALLink? {
+    private func halLinkForEntryRelationNamed(_ name: String) -> __STHALLink? {
         return dataProvider.serviceDiscoveryResource?.links.link(forRelationNamed: name)
     }
 
-    private func serviceDiscoveryOverlayForEntryRelationNamed(_ name: String) -> STURITemplate? {
-        return dataProvider.serviceDiscoveryOverlay[name] as? STURITemplate
+    private func serviceDiscoveryOverlayForEntryRelationNamed(_ name: String) -> __STURITemplate? {
+        return dataProvider.serviceDiscoveryOverlay[name] as? __STURITemplate
     }
 
-    private func serviceDiscoveryUnderlayForEntryRelationNamed(_ name: String) -> STURITemplate? {
-        return dataProvider.serviceDiscoveryUnderlay[name] as? STURITemplate
+    private func serviceDiscoveryUnderlayForEntryRelationNamed(_ name: String) -> __STURITemplate? {
+        return dataProvider.serviceDiscoveryUnderlay[name] as? __STURITemplate
     }
 }
 
@@ -118,10 +118,10 @@ extension ServiceDiscovery {
     }
 }
 
-// MARK: ServiceDiscoverySTHALResolvable
+// MARK: ServiceDiscovery__STHALResolvable
 extension ServiceDiscovery {
 
-    public func urlForHALLink(_ link: STHALLink, variables: [String: Any]?) -> URL? {
+    public func urlForHALLink(_ link: __STHALLink, variables: [String: Any]?) -> URL? {
         return link.url(withVariables: variables)
     }
 }

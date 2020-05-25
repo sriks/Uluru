@@ -4,13 +4,13 @@
 //
 //  Copyright (c) 2014 Scott Talbot.
 
-#import "STHALEmbeddedResources.h"
+#import "__STHALEmbeddedResources.h"
 
-#import "STHALTypeSafety.h"
-#import "STHALResource.h"
+#import "__STHALTypeSafety.h"
+#import "__STHALResource.h"
 
 
-@implementation STHALEmbeddedResources {
+@implementation __STHALEmbeddedResources {
 @private
     NSDictionary *_resources;
 }
@@ -18,7 +18,7 @@
 - (id)init {
     return [self initWithDictionary:nil baseURL:nil options:0];
 }
-- (id)initWithDictionary:(NSDictionary *)dict baseURL:(NSURL *)baseURL options:(STHALResourceReadingOptions)options {
+- (id)initWithDictionary:(NSDictionary *)dict baseURL:(NSURL *)baseURL options:(__STHALResourceReadingOptions)options {
     NSParameterAssert(dict);
     if (![dict isKindOfClass:[NSDictionary class]]) {
         return nil;
@@ -33,28 +33,28 @@
         NSMutableDictionary * const resources = [[NSMutableDictionary alloc] initWithCapacity:dict.count];
 
         [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL * __unused stop) {
-            NSString * const resourceName = STHALEnsureNSString(key);
+            NSString * const resourceName = __STHALEnsureNSString(key);
             if (!resourceName) {
                 return;
             }
 
             NSMutableArray * const resourcesForName = [[NSMutableArray alloc] initWithCapacity:1];
 
-            NSArray * const resourceObjects = STHALEnsureNSArray(obj);
+            NSArray * const resourceObjects = __STHALEnsureNSArray(obj);
             if (resourceObjects) {
                 for (id resourceObject in resourceObjects) {
-                    NSDictionary * const resourceDictionary = STHALEnsureNSDictionary(resourceObject);
+                    NSDictionary * const resourceDictionary = __STHALEnsureNSDictionary(resourceObject);
                     if (resourceDictionary) {
-                        id<STHALResource> const resource = [[STHALResource alloc] initWithDictionary:resourceDictionary baseURL:baseURL options:options];
+                        id<__STHALResource> const resource = [[__STHALResource alloc] initWithDictionary:resourceDictionary baseURL:baseURL options:options];
                         if (resource) {
                             [resourcesForName addObject:resource];
                         }
                     }
                 }
             } else {
-                NSDictionary * const resourceDictionary = STHALEnsureNSDictionary(obj);
+                NSDictionary * const resourceDictionary = __STHALEnsureNSDictionary(obj);
                 if (resourceDictionary) {
-                    id<STHALResource> const resource = [[STHALResource alloc] initWithDictionary:resourceDictionary baseURL:baseURL options:options];
+                    id<__STHALResource> const resource = [[__STHALResource alloc] initWithDictionary:resourceDictionary baseURL:baseURL options:options];
                     if (resource) {
                         [resourcesForName addObject:resource];
                     }
@@ -73,12 +73,12 @@
     return [_resources.allKeys sortedArrayUsingSelector:@selector(compare:)];
 }
 
-- (id<STHALResource>)resourceNamed:(NSString *)name {
+- (id<__STHALResource>)resourceNamed:(NSString *)name {
     NSParameterAssert(name);
     if (!name) {
         return nil;
     }
-    return STHALEnsureNSArray(_resources[name]).firstObject;
+    return __STHALEnsureNSArray(_resources[name]).firstObject;
 }
 - (NSArray *)resourcesNamed:(NSString *)name {
     NSParameterAssert(name);
@@ -93,17 +93,17 @@
     if (!name) {
         return nil;
     }
-    NSArray * const resources = STHALEnsureNSArray(_resources[name]);
+    NSArray * const resources = __STHALEnsureNSArray(_resources[name]);
     if (resources.count == 1) {
         return resources.firstObject;
     }
     return resources;
 }
 
-- (NSDictionary *)dictionaryRepresentationWithOptions:(STHALResourceWritingOptions)options {
+- (NSDictionary *)dictionaryRepresentationWithOptions:(__STHALResourceWritingOptions)options {
     NSMutableDictionary * const dictionary = [[NSMutableDictionary alloc] initWithCapacity:_resources.count];
     [_resources enumerateKeysAndObjectsUsingBlock:^(id<NSCopying> key, id obj, BOOL * __unused stop) {
-        NSArray * const array = STHALEnsureNSArray(obj);
+        NSArray * const array = __STHALEnsureNSArray(obj);
         if (array) {
             NSMutableArray * const embeddedDictionaries = [[NSMutableArray alloc] initWithCapacity:array.count];
             [array enumerateObjectsUsingBlock:^(id obj, NSUInteger __unused idx, BOOL * __unused stop) {

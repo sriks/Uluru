@@ -4,25 +4,25 @@
 //
 //  Copyright (c) 2014 Scott Talbot.
 
-#import "STHALLinks.h"
-#import "STHALTypeSafety.h"
-#import "STURITemplate.h"
+#import "__STHALLinks.h"
+#import "__STHALTypeSafety.h"
+#import "__STURITemplate.h"
 
-@interface STHALLink : NSObject<STHALLink>
-- (id)initWithDictionary:(NSDictionary *)dict baseURL:(NSURL *)baseURL options:(STHALResourceReadingOptions)options;
-- (id)dictionaryRepresentationWithOptions:(STHALResourceWritingOptions)options;
+@interface __STHALLink : NSObject<__STHALLink>
+- (id)initWithDictionary:(NSDictionary *)dict baseURL:(NSURL *)baseURL options:(__STHALResourceReadingOptions)options;
+- (id)dictionaryRepresentationWithOptions:(__STHALResourceWritingOptions)options;
 @end
 
 
-@implementation STHALLinks {
+@implementation __STHALLinks {
 @private
     NSDictionary *_links;
 }
 
-+ (NSArray *)linksForRelationNamed:(NSString *)name inDictionary:(NSDictionary *)dict baseURL:(NSURL *)baseURL options:(STHALResourceReadingOptions)options {
++ (NSArray *)linksForRelationNamed:(NSString *)name inDictionary:(NSDictionary *)dict baseURL:(NSURL *)baseURL options:(__STHALResourceReadingOptions)options {
     NSArray * __block links = nil;
     [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL * __unused stop) {
-        NSString * const relationName = STHALEnsureNSString(key);
+        NSString * const relationName = __STHALEnsureNSString(key);
         if (!relationName) {
             return;
         }
@@ -35,26 +35,26 @@
     return links;
 }
 
-+ (NSArray *)linksFromLinkJSONObject:(id)object baseURL:(NSURL *)baseURL options:(STHALResourceReadingOptions)options {
++ (NSArray *)linksFromLinkJSONObject:(id)object baseURL:(NSURL *)baseURL options:(__STHALResourceReadingOptions)options {
     NSMutableArray * const linksForName = [[NSMutableArray alloc] initWithCapacity:1];
 
-    NSArray *linkObjects = STHALEnsureNSArray(object);
+    NSArray *linkObjects = __STHALEnsureNSArray(object);
     if (!linkObjects && object) {
         linkObjects = @[ object ];
     }
     for (id linkObject in linkObjects) {
-        NSDictionary * const linkDictionary = STHALEnsureNSDictionary(linkObject);
+        NSDictionary * const linkDictionary = __STHALEnsureNSDictionary(linkObject);
         if (linkDictionary) {
-            id<STHALLink> const link = [[STHALLink alloc] initWithDictionary:linkDictionary baseURL:baseURL options:options];
+            id<__STHALLink> const link = [[__STHALLink alloc] initWithDictionary:linkDictionary baseURL:baseURL options:options];
             if (link) {
                 [linksForName addObject:link];
             }
             continue;
-        } else if (options & STHALResourceReadingAllowSimplifiedLinks) {
-            NSString * const linkString = STHALEnsureNSString(linkObject);
+        } else if (options & __STHALResourceReadingAllowSimplifiedLinks) {
+            NSString * const linkString = __STHALEnsureNSString(linkObject);
             if (linkString) {
                 NSDictionary * const linkDictionary = @{ @"href": linkString, @"templated": @YES };
-                id<STHALLink> const link = [[STHALLink alloc] initWithDictionary:linkDictionary baseURL:baseURL options:options];
+                id<__STHALLink> const link = [[__STHALLink alloc] initWithDictionary:linkDictionary baseURL:baseURL options:options];
                 if (link) {
                     [linksForName addObject:link];
                 }
@@ -69,7 +69,7 @@
 - (id)init {
     return [self initWithDictionary:nil baseURL:nil options:0];
 }
-- (id)initWithDictionary:(NSDictionary *)dict baseURL:(NSURL *)baseURL options:(STHALResourceReadingOptions)options {
+- (id)initWithDictionary:(NSDictionary *)dict baseURL:(NSURL *)baseURL options:(__STHALResourceReadingOptions)options {
     NSParameterAssert(dict);
     if (![dict isKindOfClass:[NSDictionary class]]) {
         return nil;
@@ -78,7 +78,7 @@
     if ((self = [super init])) {
         NSMutableDictionary * const links = [[NSMutableDictionary alloc] initWithCapacity:dict.count];
         [dict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL * __unused stop) {
-            NSString * const relationName = STHALEnsureNSString(key);
+            NSString * const relationName = __STHALEnsureNSString(key);
             if (!relationName) {
                 return;
             }
@@ -96,26 +96,26 @@
     return [_links.allKeys sortedArrayUsingSelector:@selector(compare:)];
 }
 
-- (id<STHALLink>)linkForRelationNamed:(NSString *)name {
-    return STHALEnsureNSArray(_links[name]).firstObject;
+- (id<__STHALLink>)linkForRelationNamed:(NSString *)name {
+    return __STHALEnsureNSArray(_links[name]).firstObject;
 }
 - (NSArray *)linksForRelationNamed:(NSString *)name {
-    return STHALEnsureNSArray(_links[name]);
+    return __STHALEnsureNSArray(_links[name]);
 }
 
 - (id)objectForKeyedSubscript:(NSString *)name {
-    NSArray * const links = STHALEnsureNSArray(_links[name]);
+    NSArray * const links = __STHALEnsureNSArray(_links[name]);
     if (links.count <= 1) {
         return links.firstObject;
     }
     return links;
 }
 
-- (NSDictionary *)dictionaryRepresentationWithOptions:(STHALResourceWritingOptions)options {
+- (NSDictionary *)dictionaryRepresentationWithOptions:(__STHALResourceWritingOptions)options {
     NSMutableDictionary * const dictionary = [[NSMutableDictionary alloc] initWithCapacity:_links.count];
     [_links enumerateKeysAndObjectsUsingBlock:^(NSString *name, NSArray *links, BOOL * __unused stop) {
         NSMutableArray * const linkDictionaries = [[NSMutableArray alloc] init];
-        [links enumerateObjectsUsingBlock:^(STHALLink *link, NSUInteger __unused idx, BOOL * __unused stop) {
+        [links enumerateObjectsUsingBlock:^(__STHALLink *link, NSUInteger __unused idx, BOOL * __unused stop) {
             id const linkRepresentation = [link dictionaryRepresentationWithOptions:options];
             if (linkRepresentation) {
                 [linkDictionaries addObject:linkRepresentation];
@@ -138,37 +138,37 @@
 @end
 
 
-@implementation STHALLink {
+@implementation __STHALLink {
 @private
     NSString *_href;
-    STURITemplate *_template;
+    __STURITemplate *_template;
     NSURL *_baseURL;
 }
 
 - (id)init {
     return [self initWithDictionary:nil baseURL:nil options:0];
 }
-- (id)initWithDictionary:(NSDictionary *)dict baseURL:(NSURL *)baseURL options:(STHALResourceReadingOptions __unused)options {
+- (id)initWithDictionary:(NSDictionary *)dict baseURL:(NSURL *)baseURL options:(__STHALResourceReadingOptions __unused)options {
     NSParameterAssert(dict);
     if (![dict isKindOfClass:[NSDictionary class]]) {
         return nil;
     }
 
-    NSString * const href = STHALEnsureNSString(dict[@"href"]);
+    NSString * const href = __STHALEnsureNSString(dict[@"href"]);
     if (!href) {
         return nil;
     }
 
     if ((self = [super init])) {
-        _name = STHALEnsureNSString(dict[@"name"]).copy;
-        _type = STHALEnsureNSString(dict[@"type"]).copy;
+        _name = __STHALEnsureNSString(dict[@"name"]).copy;
+        _type = __STHALEnsureNSString(dict[@"type"]).copy;
         _href = href.copy;
-        if (STHALEnsureNSNumber(dict[@"templated"]).boolValue) {
-            _template = [[STURITemplate alloc] initWithString:_href];
+        if (__STHALEnsureNSNumber(dict[@"templated"]).boolValue) {
+            _template = [[__STURITemplate alloc] initWithString:_href];
         }
-        _title = STHALEnsureNSString(dict[@"title"]).copy;
-        _hreflang = STHALEnsureNSString(dict[@"hreflang"]).copy;
-        _deprecation = STHALEnsureNSString(dict[@"deprecation"]).copy;
+        _title = __STHALEnsureNSString(dict[@"title"]).copy;
+        _hreflang = __STHALEnsureNSString(dict[@"hreflang"]).copy;
+        _deprecation = __STHALEnsureNSString(dict[@"deprecation"]).copy;
         _baseURL = baseURL.copy;
     }
     return self;
@@ -196,7 +196,7 @@
     return [NSURL URLWithString:_href relativeToURL:_baseURL];
 }
 
-- (id)dictionaryRepresentationWithOptions:(STHALResourceWritingOptions)options {
+- (id)dictionaryRepresentationWithOptions:(__STHALResourceWritingOptions)options {
     NSMutableDictionary * const dictionary = [[NSMutableDictionary alloc] init];
     if (_name) {
         dictionary[@"name"] = _name;
@@ -215,7 +215,7 @@
         dictionary[@"deprecation"] = _deprecation;
     }
 
-    if (options & STHALResourceWritingWriteSimplifiedLinks) {
+    if (options & __STHALResourceWritingWriteSimplifiedLinks) {
         if ([@[ @"href" ] isEqualToArray:dictionary.allKeys]) {
             return dictionary[@"href"];
         }
