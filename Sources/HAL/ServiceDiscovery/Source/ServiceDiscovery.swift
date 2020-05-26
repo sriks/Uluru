@@ -108,7 +108,7 @@ extension ServiceDiscovery {
         }
 
         if let link = halLinkForEntryRelationNamed(name) {
-            return urlForHALLink(link, variables: variables)
+            return link.url(withVariables: variables)
         }
 
         if let underlay = serviceDiscoveryUnderlayForEntryRelationNamed(name) {
@@ -118,11 +118,11 @@ extension ServiceDiscovery {
     }
 }
 
-// MARK: ServiceDiscovery__STHALResolvable
+// MARK: ServiceDiscoveryURIResolvable
 extension ServiceDiscovery {
-
-    public func urlForHALLink(_ link: __STHALLink, variables: [String: Any]?) -> URL? {
-        return link.url(withVariables: variables)
+    public func urlForHALLink(_ uri: String, variables: [String: Any]?) -> URL? {
+        let halLink = HALLinkRepresentation(template: __STURITemplate(string: uri))
+        return halLink.url(withVariables: variables)
     }
 }
 

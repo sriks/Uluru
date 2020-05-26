@@ -13,14 +13,30 @@ public struct NamedEntity {
     }
 }
 
-/// HAL Entity resolved by URL
-public struct LinkedEntity {
-    public let halLink: __STHALLink
+// Ability to resolve a URI Entity
+public protocol URIEntityResolvable {
+    // Returns a resolved URL. This can be nil to indicate failure.
+    func resolved() -> URL?
+}
+
+/// URI Entity which can be resolved into a fully formed URL.
+/// This can be used in two mutually exlusive ways
+/// * Creates an instance with a template URI and variables
+///     For ex: `https://uat02.beta.tab.com.au/v1/account-service/tab/accounts/{accountNumber}/transactions{?count}`
+/// * Creates an instance with URL.
+///     For ex: `https://uat02.beta.tab.com.au/v1/account-service/tab/accounts/123456`
+public struct URIEntity: URIEntityResolvable {
+    public let urlString: String
     public let variables: Uluru.JSONRepresentable?
 
-    public init(halLink: __STHALLink, variables: Uluru.JSONRepresentable? = nil) {
-        self.halLink = halLink
+    init(_ uriTemplate: String, variables: Uluru.JSONRepresentable? = nil) {
+        urlString = uriTemplate
         self.variables = variables
+    }
+
+    init(_ url: URL) {
+        urlString = url.absoluteString
+        variables = nil
     }
 }
 
@@ -29,8 +45,8 @@ public enum EntityResolution {
     /// Resolve with a named entity and optional params
     case namedEntity(NamedEntity)
 
-    /// Resolve with a HAL link and optional params
-    case linkedEntity(LinkedEntity)
+    /// Resolve with a URI and optional params
+    case linkedEntity(URIEntity)
 }
 
 /// A conformance protocol that expresses that APIDefinition requires HAL entity resolution.
