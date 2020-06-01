@@ -3,7 +3,7 @@
 import Foundation
 
 protocol DataProvidable {
-    var serviceDiscoveryResource: STHALResource? { get }
+    var serviceDiscoveryResource: __STHALResource? { get }
     var serviceDiscoveryLastUpdatedDate: Date? { get }
     var serviceDiscoveryOverlay: [String : Any] { get }
     var serviceDiscoveryUnderlay: [String : Any] { get }
@@ -21,7 +21,7 @@ protocol DataProvidable {
 /// Responsible to provide service discovery data from a URL.
 class ServiceDiscoveryDataProvider: DataProvidable {
 
-    var serviceDiscoveryResource: STHALResource?
+    var serviceDiscoveryResource: __STHALResource?
     var serviceDiscoveryLastUpdatedDate: Date?
     var serviceDiscoveryOverlay: [String : Any] = [:]
     var serviceDiscoveryUnderlay: [String : Any] = [:]
@@ -35,7 +35,7 @@ class ServiceDiscoveryDataProvider: DataProvidable {
     }
 
     func updateOverlay(with name: String, uriTemplate: String) {
-        guard let template = STURITemplate(string: uriTemplate) else {
+        guard let template = __STURITemplate(string: uriTemplate) else {
             return
         }
         serviceDiscoveryOverlay[name] = template
@@ -46,7 +46,7 @@ class ServiceDiscoveryDataProvider: DataProvidable {
     }
 
     func updateUnderlay(with name: String, uriTemplate: String) {
-        guard let template = STURITemplate(string: uriTemplate) else {
+        guard let template = __STURITemplate(string: uriTemplate) else {
             return
         }
         serviceDiscoveryUnderlay[name] = template
@@ -113,7 +113,7 @@ private extension ServiceDiscoveryDataProvider {
     func processData(_ apiRootURL: URL?, _ data: Data) -> Result<Void, DiscoveryError> {
         do {
             if let jsonObj = try JSONSerialization.jsonObject(with: data) as? [String : Any],
-               let serviceDiscoveryResource = STHALResource(dictionary: jsonObj, baseURL: apiRootURL, options: STHALResourceReadingOptions.allowSimplifiedLinks) {
+               let serviceDiscoveryResource = __STHALResource(dictionary: jsonObj, baseURL: apiRootURL, options: __STHALResourceReadingOptions.allowSimplifiedLinks) {
                 updateServiceDiscovery(with: serviceDiscoveryResource)
                 persistence.saveServiceDiscoveryToPersistence(resource: serviceDiscoveryResource, completion: nil)
                 return .success
@@ -142,7 +142,7 @@ private extension ServiceDiscoveryDataProvider {
         }
     }
 
-    func updateServiceDiscovery(with resources: STHALResource) {
+    func updateServiceDiscovery(with resources: __STHALResource) {
         serviceDiscoveryResource = resources
         serviceDiscoveryLastUpdatedDate = Date()
     }

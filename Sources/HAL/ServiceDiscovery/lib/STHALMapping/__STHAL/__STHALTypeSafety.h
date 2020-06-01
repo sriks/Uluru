@@ -6,23 +6,23 @@
 
 #import <Foundation/Foundation.h>
 
-#ifndef STHAL_STHALTypeSafety_h
-#define STHAL_STHALTypeSafety_h
+#ifndef __STHAL___STHALTypeSafety_h
+#define __STHAL___STHALTypeSafety_h
 
 
-#define STHALDeclareEnsure(type) \
-static inline type *STHALEnsure##type(id o) { \
+#define __STHALDeclareEnsure(type) \
+static inline type *__STHALEnsure##type(id o) { \
     if ([o isKindOfClass:[type class]]) { \
         return o; \
     } \
     return nil; \
 }
 
-STHALDeclareEnsure(NSArray)
-STHALDeclareEnsure(NSDictionary)
-STHALDeclareEnsure(NSNumber)
-STHALDeclareEnsure(NSString)
+__STHALDeclareEnsure(NSArray)
+__STHALDeclareEnsure(NSDictionary)
+__STHALDeclareEnsure(NSNumber)
+__STHALDeclareEnsure(NSString)
 
-#undef STHALDeclareEnsure
+#undef __STHALDeclareEnsure
 
 #endif

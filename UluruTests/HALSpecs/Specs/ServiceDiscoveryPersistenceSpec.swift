@@ -18,7 +18,7 @@ class ServiceDiscoveryPersistenceSpec: QuickSpec {
     override func spec() {
         context("Save service dicovery template locally") {
             it("should successfully save mock service discovery template locally") {
-                if let mockDiscoveryResource = STHALResource(dictionary: self.mockDiscoveryDict, baseURL: nil, options: .allowSimplifiedLinks) {
+                if let mockDiscoveryResource = __STHALResource(dictionary: self.mockDiscoveryDict, baseURL: nil, options: .allowSimplifiedLinks) {
                     self.persistence.saveServiceDiscoveryToPersistence(resource: mockDiscoveryResource) { (success, error) in
                         expect(success).to( beTrue() )
                         expect(error).to( beNil() )

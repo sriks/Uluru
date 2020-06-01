@@ -40,16 +40,16 @@ public class ServiceDiscovery: ServiceDiscoveryType {
         self.dataProvider = dataProvider
     }
 
-    private func halLinkForEntryRelationNamed(_ name: String) -> STHALLink? {
+    private func halLinkForEntryRelationNamed(_ name: String) -> __STHALLink? {
         return dataProvider.serviceDiscoveryResource?.links.link(forRelationNamed: name)
     }
 
-    private func serviceDiscoveryOverlayForEntryRelationNamed(_ name: String) -> STURITemplate? {
-        return dataProvider.serviceDiscoveryOverlay[name] as? STURITemplate
+    private func serviceDiscoveryOverlayForEntryRelationNamed(_ name: String) -> __STURITemplate? {
+        return dataProvider.serviceDiscoveryOverlay[name] as? __STURITemplate
     }
 
-    private func serviceDiscoveryUnderlayForEntryRelationNamed(_ name: String) -> STURITemplate? {
-        return dataProvider.serviceDiscoveryUnderlay[name] as? STURITemplate
+    private func serviceDiscoveryUnderlayForEntryRelationNamed(_ name: String) -> __STURITemplate? {
+        return dataProvider.serviceDiscoveryUnderlay[name] as? __STURITemplate
     }
 }
 
@@ -108,7 +108,7 @@ extension ServiceDiscovery {
         }
 
         if let link = halLinkForEntryRelationNamed(name) {
-            return urlForHALLink(link, variables: variables)
+            return link.url(withVariables: variables)
         }
 
         if let underlay = serviceDiscoveryUnderlayForEntryRelationNamed(name) {
@@ -118,11 +118,11 @@ extension ServiceDiscovery {
     }
 }
 
-// MARK: ServiceDiscoverySTHALResolvable
+// MARK: ServiceDiscoveryURIResolvable
 extension ServiceDiscovery {
-
-    public func urlForHALLink(_ link: STHALLink, variables: [String: Any]?) -> URL? {
-        return link.url(withVariables: variables)
+    public func urlForHALLink(_ uri: String, variables: [String: Any]?) -> URL? {
+        let halLink = HALLinkRepresentation(template: __STURITemplate(string: uri))
+        return halLink.url(withVariables: variables)
     }
 }
 

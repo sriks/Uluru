@@ -24,21 +24,23 @@
 		AD25673B23A0531300B9A899 /* ServiceDiscoveryPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFBF2375189D00F96615 /* ServiceDiscoveryPersistence.swift */; };
 		AD25673C23A0531300B9A899 /* ServiceDiscoveryDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFC02375189D00F96615 /* ServiceDiscoveryDataProvider.swift */; };
 		AD25673D23A0531300B9A899 /* ServiceDiscoveryNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFC12375189D00F96615 /* ServiceDiscoveryNetworking.swift */; };
-		AD25673E23A0531D00B9A899 /* STHALResource.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFC52375189D00F96615 /* STHALResource.m */; };
-		AD25673F23A0531D00B9A899 /* STHALTypeSafety.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFC62375189D00F96615 /* STHALTypeSafety.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AD25674023A0531D00B9A899 /* STHALEmbeddedResources.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFC72375189D00F96615 /* STHALEmbeddedResources.m */; };
-		AD25674123A0531D00B9A899 /* STHALLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFC82375189D00F96615 /* STHALLinks.m */; };
-		AD25674223A0531D00B9A899 /* STHALResource.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFC92375189D00F96615 /* STHALResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AD25674323A0531D00B9A899 /* STHALEmbeddedResources.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFCA2375189D00F96615 /* STHALEmbeddedResources.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AD25674423A0531D00B9A899 /* STHAL.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFCB2375189D00F96615 /* STHAL.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AD25674523A0531D00B9A899 /* STHALLinks.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFCC2375189D00F96615 /* STHALLinks.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AD25674623A0532200B9A899 /* STURITemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFCE2375189D00F96615 /* STURITemplate.m */; };
-		AD25674723A0532200B9A899 /* STURITemplate.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFCF2375189D00F96615 /* STURITemplate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AD25673E23A0531D00B9A899 /* __STHALResource.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFC52375189D00F96615 /* __STHALResource.m */; };
+		AD25673F23A0531D00B9A899 /* __STHALTypeSafety.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFC62375189D00F96615 /* __STHALTypeSafety.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AD25674023A0531D00B9A899 /* __STHALEmbeddedResources.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFC72375189D00F96615 /* __STHALEmbeddedResources.m */; };
+		AD25674123A0531D00B9A899 /* __STHALLinks.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFC82375189D00F96615 /* __STHALLinks.m */; };
+		AD25674223A0531D00B9A899 /* __STHALResource.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFC92375189D00F96615 /* __STHALResource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AD25674323A0531D00B9A899 /* __STHALEmbeddedResources.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFCA2375189D00F96615 /* __STHALEmbeddedResources.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AD25674423A0531D00B9A899 /* __STHAL.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFCB2375189D00F96615 /* __STHAL.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AD25674523A0531D00B9A899 /* __STHALLinks.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFCC2375189D00F96615 /* __STHALLinks.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AD25674623A0532200B9A899 /* __STURITemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFCE2375189D00F96615 /* __STURITemplate.m */; };
+		AD25674723A0532200B9A899 /* __STURITemplate.h in Headers */ = {isa = PBXBuildFile; fileRef = AD79AFCF2375189D00F96615 /* __STURITemplate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AD39099B2332077D004452A7 /* ServiceCancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD39099A2332077D004452A7 /* ServiceCancellable.swift */; };
 		AD390DC9232A465400442BFB /* ErrorsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD390DC8232A465400442BFB /* ErrorsSpec.swift */; };
 		AD390DCD232C573E00442BFB /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD390DCC232C573E00442BFB /* HTTPStatusCode.swift */; };
 		AD394C842328F3C800BEA019 /* CompletionStrategySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD394C832328F3C800BEA019 /* CompletionStrategySpec.swift */; };
 		AD394C862329C65700BEA019 /* TestPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD394C852329C65700BEA019 /* TestPlugin.swift */; };
+		AD63C87E247C93D100B6E5E9 /* URIEntity+ImplentationDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD63C87D247C93D000B6E5E9 /* URIEntity+ImplentationDetail.swift */; };
+		AD63C880247CA32100B6E5E9 /* HALEntityResolutionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD63C87F247CA32100B6E5E9 /* HALEntityResolutionSpec.swift */; };
 		AD79AFE923753C9B00F96615 /* HALAPITargetSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD79AFE823753C9B00F96615 /* HALAPITargetSpec.swift */; };
 		AD804B0D230FA8130033C7B0 /* Uluru.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD804B03230FA8130033C7B0 /* Uluru.framework */; };
 		AD804B14230FA8130033C7B0 /* Uluru.h in Headers */ = {isa = PBXBuildFile; fileRef = AD804B06230FA8130033C7B0 /* Uluru.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -112,6 +114,9 @@
 		AD390DCC232C573E00442BFB /* HTTPStatusCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
 		AD394C832328F3C800BEA019 /* CompletionStrategySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionStrategySpec.swift; sourceTree = "<group>"; };
 		AD394C852329C65700BEA019 /* TestPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestPlugin.swift; sourceTree = "<group>"; };
+		AD63C87C247C849900B6E5E9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		AD63C87D247C93D000B6E5E9 /* URIEntity+ImplentationDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URIEntity+ImplentationDetail.swift"; sourceTree = "<group>"; };
+		AD63C87F247CA32100B6E5E9 /* HALEntityResolutionSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HALEntityResolutionSpec.swift; sourceTree = "<group>"; };
 		AD79AFB62374D4E900F96615 /* HALAPIDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HALAPIDefinition.swift; sourceTree = "<group>"; };
 		AD79AFBC2375189D00F96615 /* ServiceDiscoveryEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDiscoveryEnum.swift; sourceTree = "<group>"; };
 		AD79AFBD2375189D00F96615 /* ServiceDiscoveryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDiscoveryProtocol.swift; sourceTree = "<group>"; };
@@ -119,16 +124,16 @@
 		AD79AFC02375189D00F96615 /* ServiceDiscoveryDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDiscoveryDataProvider.swift; sourceTree = "<group>"; };
 		AD79AFC12375189D00F96615 /* ServiceDiscoveryNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDiscoveryNetworking.swift; sourceTree = "<group>"; };
 		AD79AFC22375189D00F96615 /* ServiceDiscovery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDiscovery.swift; sourceTree = "<group>"; };
-		AD79AFC52375189D00F96615 /* STHALResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHALResource.m; sourceTree = "<group>"; };
-		AD79AFC62375189D00F96615 /* STHALTypeSafety.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHALTypeSafety.h; sourceTree = "<group>"; };
-		AD79AFC72375189D00F96615 /* STHALEmbeddedResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHALEmbeddedResources.m; sourceTree = "<group>"; };
-		AD79AFC82375189D00F96615 /* STHALLinks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHALLinks.m; sourceTree = "<group>"; };
-		AD79AFC92375189D00F96615 /* STHALResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHALResource.h; sourceTree = "<group>"; };
-		AD79AFCA2375189D00F96615 /* STHALEmbeddedResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHALEmbeddedResources.h; sourceTree = "<group>"; };
-		AD79AFCB2375189D00F96615 /* STHAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHAL.h; sourceTree = "<group>"; };
-		AD79AFCC2375189D00F96615 /* STHALLinks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHALLinks.h; sourceTree = "<group>"; };
-		AD79AFCE2375189D00F96615 /* STURITemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STURITemplate.m; sourceTree = "<group>"; };
-		AD79AFCF2375189D00F96615 /* STURITemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STURITemplate.h; sourceTree = "<group>"; };
+		AD79AFC52375189D00F96615 /* __STHALResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __STHALResource.m; sourceTree = "<group>"; };
+		AD79AFC62375189D00F96615 /* __STHALTypeSafety.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __STHALTypeSafety.h; sourceTree = "<group>"; };
+		AD79AFC72375189D00F96615 /* __STHALEmbeddedResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __STHALEmbeddedResources.m; sourceTree = "<group>"; };
+		AD79AFC82375189D00F96615 /* __STHALLinks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __STHALLinks.m; sourceTree = "<group>"; };
+		AD79AFC92375189D00F96615 /* __STHALResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __STHALResource.h; sourceTree = "<group>"; };
+		AD79AFCA2375189D00F96615 /* __STHALEmbeddedResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __STHALEmbeddedResources.h; sourceTree = "<group>"; };
+		AD79AFCB2375189D00F96615 /* __STHAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __STHAL.h; sourceTree = "<group>"; };
+		AD79AFCC2375189D00F96615 /* __STHALLinks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __STHALLinks.h; sourceTree = "<group>"; };
+		AD79AFCE2375189D00F96615 /* __STURITemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __STURITemplate.m; sourceTree = "<group>"; };
+		AD79AFCF2375189D00F96615 /* __STURITemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __STURITemplate.h; sourceTree = "<group>"; };
 		AD79AFE423751A7B00F96615 /* ServiceDiscovery-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ServiceDiscovery-Bridging-Header.h"; sourceTree = "<group>"; };
 		AD79AFE6237536F100F96615 /* HALAPITargetResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HALAPITargetResolver.swift; sourceTree = "<group>"; };
 		AD79AFE823753C9B00F96615 /* HALAPITargetSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HALAPITargetSpec.swift; sourceTree = "<group>"; };
@@ -212,11 +217,22 @@
 			path = Plugins;
 			sourceTree = "<group>";
 		};
+		AD63C87B247C83C300B6E5E9 /* STHALMapping */ = {
+			isa = PBXGroup;
+			children = (
+				AD63C87C247C849900B6E5E9 /* README.md */,
+				AD79AFCD2375189D00F96615 /* __STURITemplate */,
+				AD79AFC42375189D00F96615 /* __STHAL */,
+			);
+			path = STHALMapping;
+			sourceTree = "<group>";
+		};
 		AD79AF602373F05600F96615 /* HAL */ = {
 			isa = PBXGroup;
 			children = (
 				AD79AFB62374D4E900F96615 /* HALAPIDefinition.swift */,
 				AD79AFE6237536F100F96615 /* HALAPITargetResolver.swift */,
+				AD63C87D247C93D000B6E5E9 /* URIEntity+ImplentationDetail.swift */,
 				AD79AFBA2375189D00F96615 /* ServiceDiscovery */,
 			);
 			path = HAL;
@@ -274,34 +290,33 @@
 		AD79AFC32375189D00F96615 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				AD79AFC42375189D00F96615 /* STHAL */,
-				AD79AFCD2375189D00F96615 /* STURITemplate */,
+				AD63C87B247C83C300B6E5E9 /* STHALMapping */,
 			);
 			path = lib;
 			sourceTree = "<group>";
 		};
-		AD79AFC42375189D00F96615 /* STHAL */ = {
+		AD79AFC42375189D00F96615 /* __STHAL */ = {
 			isa = PBXGroup;
 			children = (
-				AD79AFC52375189D00F96615 /* STHALResource.m */,
-				AD79AFC62375189D00F96615 /* STHALTypeSafety.h */,
-				AD79AFC72375189D00F96615 /* STHALEmbeddedResources.m */,
-				AD79AFC82375189D00F96615 /* STHALLinks.m */,
-				AD79AFC92375189D00F96615 /* STHALResource.h */,
-				AD79AFCA2375189D00F96615 /* STHALEmbeddedResources.h */,
-				AD79AFCB2375189D00F96615 /* STHAL.h */,
-				AD79AFCC2375189D00F96615 /* STHALLinks.h */,
+				AD79AFC52375189D00F96615 /* __STHALResource.m */,
+				AD79AFC62375189D00F96615 /* __STHALTypeSafety.h */,
+				AD79AFC72375189D00F96615 /* __STHALEmbeddedResources.m */,
+				AD79AFC82375189D00F96615 /* __STHALLinks.m */,
+				AD79AFC92375189D00F96615 /* __STHALResource.h */,
+				AD79AFCA2375189D00F96615 /* __STHALEmbeddedResources.h */,
+				AD79AFCB2375189D00F96615 /* __STHAL.h */,
+				AD79AFCC2375189D00F96615 /* __STHALLinks.h */,
 			);
-			path = STHAL;
+			path = __STHAL;
 			sourceTree = "<group>";
 		};
-		AD79AFCD2375189D00F96615 /* STURITemplate */ = {
+		AD79AFCD2375189D00F96615 /* __STURITemplate */ = {
 			isa = PBXGroup;
 			children = (
-				AD79AFCE2375189D00F96615 /* STURITemplate.m */,
-				AD79AFCF2375189D00F96615 /* STURITemplate.h */,
+				AD79AFCE2375189D00F96615 /* __STURITemplate.m */,
+				AD79AFCF2375189D00F96615 /* __STURITemplate.h */,
 			);
-			path = STURITemplate;
+			path = __STURITemplate;
 			sourceTree = "<group>";
 		};
 		AD79AFE32375197000F96615 /* Resources */ = {
@@ -456,6 +471,7 @@
 				B1E8671923791AF300131222 /* ServiceDiscoveryDataProviderSpec.swift */,
 				B1E8671A23791AF300131222 /* ServiceDiscoverySpec.swift */,
 				B11632F5243BF085008A308E /* ServiceDiscoveryLoadingFileSpec.swift */,
+				AD63C87F247CA32100B6E5E9 /* HALEntityResolutionSpec.swift */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -467,12 +483,12 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD25674723A0532200B9A899 /* STURITemplate.h in Headers */,
-				AD25674323A0531D00B9A899 /* STHALEmbeddedResources.h in Headers */,
-				AD25674223A0531D00B9A899 /* STHALResource.h in Headers */,
-				AD25674523A0531D00B9A899 /* STHALLinks.h in Headers */,
-				AD25674423A0531D00B9A899 /* STHAL.h in Headers */,
-				AD25673F23A0531D00B9A899 /* STHALTypeSafety.h in Headers */,
+				AD25674723A0532200B9A899 /* __STURITemplate.h in Headers */,
+				AD25674323A0531D00B9A899 /* __STHALEmbeddedResources.h in Headers */,
+				AD25674223A0531D00B9A899 /* __STHALResource.h in Headers */,
+				AD25674523A0531D00B9A899 /* __STHALLinks.h in Headers */,
+				AD25674423A0531D00B9A899 /* __STHAL.h in Headers */,
+				AD25673F23A0531D00B9A899 /* __STHALTypeSafety.h in Headers */,
 				AD25673723A052F200B9A899 /* ServiceDiscovery-Bridging-Header.h in Headers */,
 				AD804B14230FA8130033C7B0 /* Uluru.h in Headers */,
 			);
@@ -582,12 +598,12 @@
 				AD036C8223287A230057FBB6 /* AuthenticationPlugin.swift in Sources */,
 				AD25673523A052DA00B9A899 /* HALAPIDefinition.swift in Sources */,
 				AD00E2DF2326326000A228F5 /* ServiceError.swift in Sources */,
-				AD25674023A0531D00B9A899 /* STHALEmbeddedResources.m in Sources */,
+				AD25674023A0531D00B9A899 /* __STHALEmbeddedResources.m in Sources */,
 				CDDFA3FF233C8CD900B3ABFF /* JSONAPILogger.swift in Sources */,
 				ADA0F1F32314CC96001ED542 /* ServiceRequester.swift in Sources */,
 				AD25673D23A0531300B9A899 /* ServiceDiscoveryNetworking.swift in Sources */,
-				AD25674623A0532200B9A899 /* STURITemplate.m in Sources */,
-				AD25673E23A0531D00B9A899 /* STHALResource.m in Sources */,
+				AD25674623A0532200B9A899 /* __STURITemplate.m in Sources */,
+				AD25673E23A0531D00B9A899 /* __STHALResource.m in Sources */,
 				AD25673923A0530600B9A899 /* ServiceDiscoveryProtocol.swift in Sources */,
 				AD25673623A052DE00B9A899 /* HALAPITargetResolver.swift in Sources */,
 				AD25673C23A0531300B9A899 /* ServiceDiscoveryDataProvider.swift in Sources */,
@@ -596,12 +612,13 @@
 				ADA0F1F42314CC96001ED542 /* AccessAuthorizable.swift in Sources */,
 				ADA0F1F22314CC96001ED542 /* ServicePluginType.swift in Sources */,
 				AD390DCD232C573E00442BFB /* HTTPStatusCode.swift in Sources */,
+				AD63C87E247C93D100B6E5E9 /* URIEntity+ImplentationDetail.swift in Sources */,
 				ADA0F1F12314CC96001ED542 /* Service.swift in Sources */,
 				ADA0F1EA2314C860001ED542 /* ServiceExecutable.swift in Sources */,
 				CDE465552329CEF30062C71C /* RequestCompletionStrategy.swift in Sources */,
 				ADA0F2042317D9CA001ED542 /* APITarget.swift in Sources */,
 				ADB7EB37234EB4C600D65C16 /* StubResponse.swift in Sources */,
-				AD25674123A0531D00B9A899 /* STHALLinks.m in Sources */,
+				AD25674123A0531D00B9A899 /* __STHALLinks.m in Sources */,
 				AD25673823A0530300B9A899 /* ServiceDiscoveryEnum.swift in Sources */,
 				ADA0F1EB2314C860001ED542 /* ExecutorURLSession.swift in Sources */,
 				ADA0F1FD231634FC001ED542 /* URLRequest+Encoding.swift in Sources */,
@@ -627,6 +644,7 @@
 				B1E8671E23791AF300131222 /* ServiceDiscoveryDataProviderSpec.swift in Sources */,
 				AD394C862329C65700BEA019 /* TestPlugin.swift in Sources */,
 				AD00E2DA2321FA5000A228F5 /* TestHelper.swift in Sources */,
+				AD63C880247CA32100B6E5E9 /* HALEntityResolutionSpec.swift in Sources */,
 				B1E8671D23791AF300131222 /* ServiceDiscoveryPersistenceSpec.swift in Sources */,
 				AD79AFE923753C9B00F96615 /* HALAPITargetSpec.swift in Sources */,
 				B1E8671C23791AF300131222 /* MockServiceDiscoveryNetworking.swift in Sources */,

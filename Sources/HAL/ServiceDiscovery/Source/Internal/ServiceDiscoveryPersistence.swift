@@ -5,8 +5,8 @@ import Foundation
 protocol ServiceDiscoveryPersistentable {
     var shouldLoadFromFile: Bool { get }
 
-    func loadServiceDiscoveryFromPersistence(_ completion: (STHALResource?, Error?)-> Void)
-    func saveServiceDiscoveryToPersistence(resource: STHALResource, completion: ((Bool, Error?)-> Void)?)
+    func loadServiceDiscoveryFromPersistence(_ completion: (__STHALResource?, Error?)-> Void)
+    func saveServiceDiscoveryToPersistence(resource: __STHALResource, completion: ((Bool, Error?)-> Void)?)
 }
 
 class ServiceDiscoveryPersistence: ServiceDiscoveryPersistentable {
@@ -26,11 +26,11 @@ class ServiceDiscoveryPersistence: ServiceDiscoveryPersistentable {
         self.fileURL = fileURL
     }
 
-    func loadServiceDiscoveryFromPersistence(_ completion: (STHALResource?, Error?) -> Void) {
+    func loadServiceDiscoveryFromPersistence(_ completion: (__STHALResource?, Error?) -> Void) {
         do {
             let data = try Data(contentsOf: try serviceDiscoveryURL(), options: .mappedIfSafe)
             if let jsonObj = try JSONSerialization.jsonObject(with: data) as? [String : Any] {
-                let serviceDiscoveryResource = STHALResource(dictionary: jsonObj, baseURL: nil, options: STHALResourceReadingOptions.allowSimplifiedLinks)
+                let serviceDiscoveryResource = __STHALResource(dictionary: jsonObj, baseURL: nil, options: __STHALResourceReadingOptions.allowSimplifiedLinks)
                 completion(serviceDiscoveryResource, nil)
                 return
             }
@@ -40,7 +40,7 @@ class ServiceDiscoveryPersistence: ServiceDiscoveryPersistentable {
         }
     }
 
-    func saveServiceDiscoveryToPersistence(resource: STHALResource, completion: ((Bool, Error?)-> Void)?) {
+    func saveServiceDiscoveryToPersistence(resource: __STHALResource, completion: ((Bool, Error?)-> Void)?) {
         do {
             if let dict = resource.dictionaryRepresentation(options: .writeSimplifiedLinks) {
                 let discoveryData = try JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
