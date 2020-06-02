@@ -13,6 +13,7 @@ enum PostmanEcho {
     // returns supplied headers in response.
     case echoBearerAuth
     case echoCustomHeaderAuth(headerName: String)
+    case patch
     // dont exists
     case invalidRoute
 }
@@ -34,6 +35,9 @@ extension PostmanEcho: APIDefinition, AccessAuthorizable {
         case .postWithBody, .postBodyWithCustomEncoder, .postWithoutBody:
             return "/post"
 
+        case .patch:
+            return "/patch"
+
         case .invalidRoute:
             return "/godzillaIsAlive"
         }
@@ -46,6 +50,9 @@ extension PostmanEcho: APIDefinition, AccessAuthorizable {
 
         case .postWithBody, .postBodyWithCustomEncoder, .postWithoutBody:
             return .POST
+
+        case .patch:
+            return .PATCH
         }
     }
 
@@ -63,7 +70,7 @@ extension PostmanEcho: APIDefinition, AccessAuthorizable {
         case .postBodyWithCustomEncoder(let body):
             return .jsonBodyUsingCustomEncoder(parameters: body, encoder: CustomEncoder())
 
-        case .postWithoutBody:
+        case .postWithoutBody, .patch:
             return .dontEncode
         }
     }

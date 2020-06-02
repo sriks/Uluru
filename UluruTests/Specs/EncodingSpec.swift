@@ -181,8 +181,6 @@ extension SampleAPI: APIDefinition {
         switch self {
         case .simpleGET, .getWithParams:
             return .GET
-
-
         }
     }
 
