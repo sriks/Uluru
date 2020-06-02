@@ -31,7 +31,7 @@ public typealias ParsedDataResponseResult<T: Decodable> = Result<ParsedDataRespo
 public typealias APIRequestCompletion<T: Decodable> = (_ result: Result<ParsedDataResponse<T>, ServiceError>) -> Void
 
 /// Ability to make a request with an APIDefinition. This can be used for reactive extensions.
-public protocol Service {
+public protocol Service: AnyObject {
     associatedtype API: APIDefinition
 
     /// Makes an API request with supplied APIDefinition
