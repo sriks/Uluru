@@ -150,37 +150,6 @@ class EncodingSpec: QuickSpec {
                 expect(urlRequest.allHTTPHeaderFields).to(equal(headers))
             }
         }
-
-        it("sample test") {
-
-            struct OurDomainModel: Decodable {
-                //let userId: Int
-                let id: Int
-                //let title: String
-                let body: String
-            }
-
-
-
-            let service = ServiceRequester<SampleAPI>()
-
-            waitUntil(timeout: 1200) { done in
-
-                let _ = service.request(.getWithParams(postId: CommentById(postId: 1)), expecting: [OurDomainModel].self, completion: {
-                    result in
-                    switch result {
-
-                    case let .success(model):
-                        print("decoded model: \(model)")
-                    case let .failure(error):
-                        print("service error: \(error)")
-                    }
-                    print(result)
-                    done()
-                })
-            }
-        }
-
     }
 }
 
