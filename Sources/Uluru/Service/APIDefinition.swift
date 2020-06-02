@@ -53,8 +53,9 @@ public protocol APIDefinition {
     var headers: [String: String]? { get }
 
     /// A place holder data.
-    /// * If you provide one, then this is used instead of making an API call.
+    /// * If you provide one, it is used instead of making an API call.
     /// * Should be used when testing APIs offline.
+    /// * You are responsible to remove it in production code.
     var placeholderData: Data? { get }
 }
 

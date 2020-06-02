@@ -15,16 +15,18 @@ public struct NamedEntity {
 
 // Ability to resolve a URI Entity
 public protocol URIEntityResolvable {
-    // Returns a resolved URL. This can be nil to indicate failure.
+    // Returns a fully resolved URL. This can be nil to indicate failure.
     func resolved() -> URL?
 }
 
 /// URI Entity which can be resolved into a fully formed URL.
 /// This can be used in two mutually exlusive ways
 /// * Creates an instance with a template URI and variables
-///     For ex: `https://uat02.beta.tab.com.au/v1/account-service/tab/accounts/{accountNumber}/transactions{?count}`
-/// * Creates an instance with URL.
-///     For ex: `https://uat02.beta.tab.com.au/v1/account-service/tab/accounts/123456`
+///     * The variables are filled into the URI before resolving to an URL.
+///     * For ex: `https://api.com/v1/accounts/{accountNumber}/transactions{?count}`
+///
+/// * Creates an instance with an URL.
+///     * The supplied URL is used as is.
 public struct URIEntity: URIEntityResolvable {
     public let urlString: String
     public let variables: Uluru.JSONRepresentable?
