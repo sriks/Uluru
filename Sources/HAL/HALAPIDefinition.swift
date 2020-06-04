@@ -31,12 +31,12 @@ public struct URIEntity: URIEntityResolvable {
     public let urlString: String
     public let variables: Uluru.JSONRepresentable?
 
-    init(_ uriTemplate: String, variables: Uluru.JSONRepresentable? = nil) {
+    public init(_ uriTemplate: String, variables: Uluru.JSONRepresentable? = nil) {
         urlString = uriTemplate
         self.variables = variables
     }
 
-    init(_ url: URL) {
+    public init(_ url: URL) {
         urlString = url.absoluteString
         variables = nil
     }
