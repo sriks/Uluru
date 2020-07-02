@@ -29,36 +29,60 @@ class ServiceRequesterSpec: QuickSpec {
         }
 
         // MARK: Placeholder data
+        // Here we test the expectations when both stub strategy and placeholder data are provided.
         context("Placeholder data") {
-            var service: ServiceRequester<PostmanEcho>!
 
-            beforeEach {
-                service = ServiceRequester()
-            }
+            context("when provided a stub strategy") {
+                let service: ServiceRequester<PostmanEcho> = ServiceRequester(stubStrategy:.stub(delay: 0, response: { _, _ in
+                        return .networkTimedoutError()
+                }))
 
-            it("should return placeholder data when provided") {
-                var decoded: MockPlaceholder!
+                var decoded: MockPlaceholder?
+
                 waitUntil { done in
                     let _  = service.request(.justGetWithPlaceholderData, expecting: MockPlaceholder.self) { result in
-                        decoded = result.forceGetParsed(MockPlaceholder.self)
+                        decoded = try? result.get().parsed
                         done()
                     }
                 }
 
-                expect(decoded).to( equal(MockPlaceholder()) )
+                it("the stub strategy should take priority") {
+                    expect(decoded).to( beNil() )
+                }
             }
 
-            it("statusCode of placeholder data response is 200") {
-                var dataSuccessResponse: DataResponse!
-                waitUntil { done in
-                    let _ = service.request(.justGetWithPlaceholderData, expecting: EmptyDecodableModel.self, completion: { (result) in
-                        dataSuccessResponse = try! result.get().dataResponse
-                        done()
-                    })
+            context("when stub strategy is not provided") {
+                var service: ServiceRequester<PostmanEcho>!
+
+                beforeEach {
+                    service = ServiceRequester()
                 }
 
-                expect(dataSuccessResponse.urlResponse?.statusCode).to( equal(200) )
+                it("should return placeholder data") {
+                    var decoded: MockPlaceholder!
+                    waitUntil { done in
+                        let _  = service.request(.justGetWithPlaceholderData, expecting: MockPlaceholder.self) { result in
+                            decoded = result.forceGetParsed(MockPlaceholder.self)
+                            done()
+                        }
+                    }
+
+                    expect(decoded).to( equal(MockPlaceholder()) )
+                }
+
+                it("statusCode of placeholder data response is 200") {
+                    var dataSuccessResponse: DataResponse!
+                    waitUntil { done in
+                        let _ = service.request(.justGetWithPlaceholderData, expecting: EmptyDecodableModel.self, completion: { (result) in
+                            dataSuccessResponse = try! result.get().dataResponse
+                            done()
+                        })
+                    }
+
+                    expect(dataSuccessResponse.urlResponse?.statusCode).to( equal(200) )
+                }
             }
+
         }
 
         // MARK: Request cancellation

@@ -157,7 +157,8 @@ public class ServiceRequester<API: APIDefinition>: Service {
             })
         }
 
-        if let placeholderData = api.placeholderData {
+        // Stubbing takes priority than placeholder data.
+        if let placeholderData = api.placeholderData, case .dontStub = stubStrategy {
             // Placeholder data
             let ourResponse = HTTPURLResponse(url: mutatedRequest.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
             self.log("found and returning place holder data \(ourResponse) for \(target.url)")
