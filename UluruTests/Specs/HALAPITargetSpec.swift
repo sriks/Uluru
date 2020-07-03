@@ -4,7 +4,6 @@ import Foundation
 import Quick
 import Nimble
 @testable import Uluru
-@testable import Uluru
 
 class HALAPITargetSpec: QuickSpec {
     override func spec() {
@@ -25,8 +24,7 @@ class HALAPITargetSpec: QuickSpec {
         context("URI Linked Entity") {
             var parsed: EmptyDecodableModel?
             waitUntil { done in
-                service.request(.competitions(URL(string: "https://uat01.beta.tab.com.au/v1/stats-service/sports/basketball/competitions/nba/matches/123456/h2h/stats")!), expecting: EmptyDecodableModel.self) { result in
-                    print("result --> \(result)")
+                service.request(.fetchWithURL(URL(string: "https://postman-echo.com/get?foo1=bar1&foo2=bar2")!), expecting: EmptyDecodableModel.self) { result in
                     parsed = try? result.get().parsed
                     done()
                 }
@@ -45,7 +43,7 @@ struct PromoGroup: Codable, JSONRepresentable {
 
 enum SampleHALAPI {
     case promo(promoGroup: JSONRepresentable)
-    case competitions(URL)
+    case fetchWithURL(URL)
 }
 
 extension SampleHALAPI: HALAPIDefinition, RequiresHALEntityResolution {
@@ -54,7 +52,7 @@ extension SampleHALAPI: HALAPIDefinition, RequiresHALEntityResolution {
         case .promo(let promoGroup):
             // Using this enitity "invenue:promo-groups:update":"https://api.beta.tab.com.au/v1/invenue-service/promo-groups/{promoGroupId}",
             return .namedEntity(.init(name: "invenue:promo-groups:update", variables: promoGroup))
-        case .competitions(let url):
+        case .fetchWithURL(let url):
             return .linkedEntity(.init(url))
         }
     }
