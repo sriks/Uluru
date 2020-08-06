@@ -57,8 +57,9 @@ class ServiceDiscoveryDataProvider: DataProvidable {
     }
 
     func requestServiceDiscovery(_ completion: ServiceDiscoveryCompletionBlock?) {
-        if isServiceDiscoveryJustUpdated() {
+        guard !isServiceDiscoveryJustUpdated() else {
             completion?(.failure(.discoveryIsUpToDate))
+            return
         }
 
         service.requestServiceDiscovery { [weak self] (apiRootURL, data, error) in
