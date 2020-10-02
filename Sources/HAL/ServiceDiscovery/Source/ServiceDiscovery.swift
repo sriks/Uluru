@@ -6,7 +6,7 @@ public typealias ServiceDiscoveryCompletionBlock = (Result<Void, DiscoveryError>
 typealias ServiceDiscoveryCreationCompletionBlock = (Result<ServiceDiscoveryType, DiscoveryError>) -> Void
 public class ServiceDiscovery: ServiceDiscoveryType {
 
-    private let apiRootURL: URL?
+    private let apiRootURL: URL
     private let bearerToken: String?
     private let dataProvider: DataProvidable
     private static var sharedInstance: ServiceDiscoveryType?
@@ -18,12 +18,12 @@ public class ServiceDiscovery: ServiceDiscoveryType {
     ///   - completion: The completion to indicate if loading service discovery is success or not.
     ///   * You should check the completion before using ServiceDiscovery. However the instance will be created either success or failure.
     ///   * Do not access `shared()` within the completion, since this completion is only to indicate discovery loading status.
-    public static func instantiate(apiRootURL: URL?, bearerToken: String? = nil, completion: ServiceDiscoveryCompletionBlock? = nil) {
+    public static func instantiate(apiRootURL: URL, bearerToken: String? = nil, completion: ServiceDiscoveryCompletionBlock? = nil) {
         sharedInstance = ServiceDiscovery.createInstance(apiRootURL: apiRootURL, bearerToken: bearerToken, completion: completion)
     }
 
     /// Internal mechanism to create an instance of service discovery. This is not shared but a always creates a new instance.
-    static func createInstance(apiRootURL: URL?, bearerToken: String? = nil, completion: ServiceDiscoveryCompletionBlock? = nil) -> ServiceDiscovery {
+    static func createInstance(apiRootURL: URL, bearerToken: String? = nil, completion: ServiceDiscoveryCompletionBlock? = nil) -> ServiceDiscovery {
         var ourInstance: ServiceDiscovery!
         let service = ServiceDiscoveryNetworking(apiRootURL: apiRootURL, bearerToken: bearerToken)
         let persistence = ServiceDiscoveryPersistence(fileURL: apiRootURL)
@@ -34,7 +34,7 @@ public class ServiceDiscovery: ServiceDiscoveryType {
         return ourInstance
     }
 
-    init(apiRootURL: URL?, bearerToken: String?, dataProvider: DataProvidable) {
+    init(apiRootURL: URL, bearerToken: String?, dataProvider: DataProvidable) {
         self.apiRootURL = apiRootURL
         self.bearerToken = bearerToken
         self.dataProvider = dataProvider
