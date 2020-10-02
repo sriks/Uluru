@@ -5,7 +5,7 @@ import Foundation
 
 class MockServiceDiscoveryNetworking: ServiceDiscoveryRequestable {
 
-    private let apiRootURL: URL?
+    private let apiRootURL: URL
     private let bearerToken: String?
     private let mockDiscoveryDict: [String : Any] = [
         "homepage" : "www.tab.com.au",
@@ -16,22 +16,22 @@ class MockServiceDiscoveryNetworking: ServiceDiscoveryRequestable {
         ]
     ]
 
-    required init(apiRootURL: URL?, bearerToken: String?) {
+    required init(apiRootURL: URL, bearerToken: String?) {
         self.apiRootURL = apiRootURL
         self.bearerToken = bearerToken
     }
 
-    func requestServiceDiscovery(_ completion: @escaping (URL?, Data?, RequestServiceDiscoveryError?) -> Void) {
-        guard let _ = apiRootURL, let _ = bearerToken else {
-            completion(nil, nil, .unknownError)
+    func requestServiceDiscovery(_ completion: @escaping (URL, Data?, RequestServiceDiscoveryError?) -> Void) {
+        guard let _ = bearerToken else {
+            completion(apiRootURL, nil, .unknownError)
             return
         }
 
         do {
             let discoveryData = try JSONSerialization.data(withJSONObject: mockDiscoveryDict, options: .prettyPrinted)
-            completion(nil, discoveryData, nil)
+            completion(apiRootURL, discoveryData, nil)
         } catch {
-            completion(nil, nil, .unknownError)
+            completion(apiRootURL, nil, .unknownError)
         }
     }
 }

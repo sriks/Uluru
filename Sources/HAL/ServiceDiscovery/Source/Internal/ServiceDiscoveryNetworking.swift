@@ -3,41 +3,36 @@
 import Foundation
 
 protocol ServiceDiscoveryRequestable {
-    init(apiRootURL: URL?, bearerToken: String?)
-    func requestServiceDiscovery(_ completion: @escaping (URL?, Data?, RequestServiceDiscoveryError?) -> Void)
+    init(apiRootURL: URL, bearerToken: String?)
+    func requestServiceDiscovery(_ completion: @escaping (URL, Data?, RequestServiceDiscoveryError?) -> Void)
 }
 
 enum RequestServiceDiscoveryError: Error {
-    case noApiRootURL
     case serverError
     case unknownError
 }
 
 class ServiceDiscoveryNetworking: ServiceDiscoveryRequestable {
 
-    private let apiRootURL: URL?
+    private let apiRootURL: URL
     private let bearerToken: String?
     private let session = URLSession.shared
 
-    required init(apiRootURL: URL?, bearerToken: String?) {
+    required init(apiRootURL: URL, bearerToken: String?) {
         self.apiRootURL = apiRootURL
         self.bearerToken = bearerToken
     }
 
-    func requestServiceDiscovery(_ completion: @escaping (URL?, Data?, RequestServiceDiscoveryError?) -> Void) {
-        guard let apiRootURL = apiRootURL else {
-            completion(nil, nil, RequestServiceDiscoveryError.noApiRootURL)
-            return
-        }
-
-        let task = session.dataTask(with: urlRequest(apiRootURL), completionHandler: { data, response, error -> Void in
+    func requestServiceDiscovery(_ completion: @escaping (URL, Data?, RequestServiceDiscoveryError?) -> Void) {
+        let url = apiRootURL
+        let task = session.dataTask(with: urlRequest(url), completionHandler: { data, response, error -> Void in
             guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode),
                 let data = data
                 else {
-                    completion(nil, nil, RequestServiceDiscoveryError.serverError)
+                    completion(url, nil, RequestServiceDiscoveryError.serverError)
                     return
             }
-            completion(apiRootURL, data, nil)
+            completion(url, data, nil)
         })
         task.resume()
     }

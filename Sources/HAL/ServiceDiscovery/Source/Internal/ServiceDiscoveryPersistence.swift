@@ -16,19 +16,34 @@ class ServiceDiscoveryPersistence: ServiceDiscoveryPersistentable {
         static let fileScheme = "file"
     }
 
-    private let fileURL: URL?
+    private let fileURL: URL
 
     var shouldLoadFromFile: Bool {
-        return isExternalFileExist
+        let fileManager = FileManager.default
+        return fileManager.fileExists(atPath: fileURL.path)
     }
 
     init(fileURL: URL?) {
-        self.fileURL = fileURL
+        if let url = fileURL,
+            url.scheme == Constant.fileScheme {
+            // We use local file URL for unit testing
+            self.fileURL = url
+        } else {
+            var url = FileManager.default.cachesDirectoryURL
+            // use apiRootURL host as the sub directory
+            // so each envrionment could have its own discovery cache
+            // the url would be like:
+            // cachesDir/api.beta.tab.com.au/discovery.json
+            if let subDir = fileURL?.host {
+                url = url.appendingPathComponent(subDir, isDirectory: true)
+            }
+            self.fileURL = url.appendingPathComponent(Constant.discoveryStorageFileName)
+        }
     }
 
     func loadServiceDiscoveryFromPersistence(_ completion: (__STHALResource?, Error?) -> Void) {
         do {
-            let data = try Data(contentsOf: try serviceDiscoveryURL(), options: .mappedIfSafe)
+            let data = try Data(contentsOf: fileURL, options: .mappedIfSafe)
             if let jsonObj = try JSONSerialization.jsonObject(with: data) as? [String : Any] {
                 let serviceDiscoveryResource = __STHALResource(dictionary: jsonObj, baseURL: nil, options: __STHALResourceReadingOptions.allowSimplifiedLinks)
                 completion(serviceDiscoveryResource, nil)
@@ -44,7 +59,7 @@ class ServiceDiscoveryPersistence: ServiceDiscoveryPersistentable {
         do {
             if let dict = resource.dictionaryRepresentation(options: .writeSimplifiedLinks) {
                 let discoveryData = try JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
-                try discoveryData.write(to: try serviceDiscoveryURL(), options: .completeFileProtection)
+                try discoveryData.write(to: fileURL, options: .completeFileProtection)
                 completion?(true, nil)
             }
         } catch (let error) {
@@ -53,34 +68,9 @@ class ServiceDiscoveryPersistence: ServiceDiscoveryPersistentable {
     }
 }
 
-private extension ServiceDiscoveryPersistence {
-
-    var discoveryDefaultStorageURL: URL {
-        let fileManager = FileManager.default
-        let paths = fileManager.urls(for: .cachesDirectory, in: .userDomainMask)
-        return paths[0].appendingPathComponent(Constant.discoveryStorageFileName, isDirectory: false)
-    }
-
-    var isExternalFileExist: Bool {
-        guard let fileURL = fileURL,
-              fileURL.scheme == Constant.fileScheme else { return false }
-
-        let fileManager = FileManager.default
-        return fileManager.fileExists(atPath: fileURL.path)
-    }
-
-    var isSavedTemplateExist: Bool {
-        let fileManager = FileManager.default
-        return fileManager.fileExists(atPath: discoveryDefaultStorageURL.path)
-    }
-
-    func serviceDiscoveryURL() throws -> URL {
-        if let fileURL = fileURL, isExternalFileExist {
-            return fileURL // loading from file
-        } else if isSavedTemplateExist {
-            return discoveryDefaultStorageURL // loading from saved template(fallback action of loading from API)
-        } else {
-            throw DiscoveryError.fileNotFound // loading from file but file not found
-        }
+private extension FileManager {
+    var cachesDirectoryURL: URL {
+        let paths = urls(for: .cachesDirectory, in: .userDomainMask)
+        return paths[0]
     }
 }
