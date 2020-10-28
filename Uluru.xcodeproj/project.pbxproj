@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3DE903A2254905DF002D8B7B /* ServiceError+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE903A1254905DF002D8B7B /* ServiceError+Extension.swift */; };
+		3DE903A8254906BC002D8B7B /* ServiceErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE903A7254906BC002D8B7B /* ServiceErrorTests.swift */; };
 		AD00E2D52321F56D00A228F5 /* ServiceRequesterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00E2D42321F56D00A228F5 /* ServiceRequesterSpec.swift */; };
 		AD00E2DA2321FA5000A228F5 /* TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00E2D92321FA5000A228F5 /* TestHelper.swift */; };
 		AD00E2DC2321FB7500A228F5 /* EncoderDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00E2DB2321FB7500A228F5 /* EncoderDecoder.swift */; };
@@ -128,6 +130,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3DE903A1254905DF002D8B7B /* ServiceError+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ServiceError+Extension.swift"; sourceTree = "<group>"; };
+		3DE903A7254906BC002D8B7B /* ServiceErrorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceErrorTests.swift; sourceTree = "<group>"; };
 		AD00E2D42321F56D00A228F5 /* ServiceRequesterSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceRequesterSpec.swift; sourceTree = "<group>"; };
 		AD00E2D92321FA5000A228F5 /* TestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelper.swift; sourceTree = "<group>"; };
 		AD00E2DB2321FB7500A228F5 /* EncoderDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncoderDecoder.swift; sourceTree = "<group>"; };
@@ -462,6 +466,7 @@
 				ADA0F1FA2314D611001ED542 /* ServiceRequester+Defaults.swift */,
 				ADA0F2032317D9CA001ED542 /* APITarget.swift */,
 				AD00E2DE2326326000A228F5 /* ServiceError.swift */,
+				3DE903A1254905DF002D8B7B /* ServiceError+Extension.swift */,
 				CDE465542329CEF30062C71C /* RequestCompletionStrategy.swift */,
 				AD390DCC232C573E00442BFB /* HTTPStatusCode.swift */,
 				AD39099A2332077D004452A7 /* ServiceCancellable.swift */,
@@ -487,6 +492,7 @@
 				AD79AFE823753C9B00F96615 /* HALAPITargetSpec.swift */,
 				AD060E5323B1E06100D37862 /* JSONRepresentableSpec.swift */,
 				AD5F84C42485CDF300662524 /* RxUluruSpec.swift */,
+				3DE903A7254906BC002D8B7B /* ServiceErrorTests.swift */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -734,6 +740,7 @@
 				AD25674123A0531D00B9A899 /* __STHALLinks.m in Sources */,
 				AD25673823A0530300B9A899 /* ServiceDiscoveryEnum.swift in Sources */,
 				ADA0F1EB2314C860001ED542 /* ExecutorURLSession.swift in Sources */,
+				3DE903A2254905DF002D8B7B /* ServiceError+Extension.swift in Sources */,
 				ADA0F1FD231634FC001ED542 /* URLRequest+Encoding.swift in Sources */,
 				ADA0F1FB2314D611001ED542 /* ServiceRequester+Defaults.swift in Sources */,
 				AD25673A23A0530A00B9A899 /* ServiceDiscovery.swift in Sources */,
@@ -765,6 +772,7 @@
 				AD5F84C52485CDF300662524 /* RxUluruSpec.swift in Sources */,
 				B1E8671F23791AF300131222 /* ServiceDiscoverySpec.swift in Sources */,
 				ADA0F2022317CD10001ED542 /* PostmanEcho.swift in Sources */,
+				3DE903A8254906BC002D8B7B /* ServiceErrorTests.swift in Sources */,
 				AD036C8423288B1B0057FBB6 /* AuthenticationPluginSpec.swift in Sources */,
 				B1E8671B23791AF300131222 /* MockServiceDiscoveryPersistence.swift in Sources */,
 				AD394C842328F3C800BEA019 /* CompletionStrategySpec.swift in Sources */,
