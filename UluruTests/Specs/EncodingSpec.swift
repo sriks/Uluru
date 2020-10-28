@@ -8,18 +8,17 @@ import Nimble
 // Tests default encoding strategies.
 class EncodingSpec: QuickSpec {
 
-    func sampleResolvedDefinition(encoding: EncodingStrategy, method: TargetMethod = .GET, headers: [String: String]? = nil) -> ResolvedAPIDefinition {
-        return ResolvedAPIDefinition(url: URL(string: "https://example.com")!,
-                                     path: "/some-path",
-                                     method: method,
-                                     encoding: encoding,
-                                     headers: headers,
-                                     authorizationType: .none)
+    func sampleResolvedDefinition(encoding: EncodingStrategy, method: HTTPMethod = .GET, headers: [String: String]? = nil) -> APITarget {
+        return APITarget(url: URL(string: "https://example.com")!,
+                         path: "/some-path",
+                         method: method,
+                         encoding: encoding,
+                         headers: headers)
     }
 
     override func spec() {
 
-        var requestMapper: ServiceProvider.RequestMapper  { return ServiceProvider.defaultRequestMapper() }
+        var requestMapper: ServiceRequester<PostmanEcho>.RequestMapper  { return ServiceRequester<PostmanEcho>.defaultRequestMapper() }
 
         context("when encoding strategy is .queryParameters") {
             
@@ -62,7 +61,7 @@ class EncodingSpec: QuickSpec {
             }
 
             it("body is nil when no parameters are supplied") {
-                let api = self.sampleResolvedDefinition(encoding: .ignore)
+                let api = self.sampleResolvedDefinition(encoding: .dontEncode)
                 let urlRequest = try! requestMapper(api).get()
                 expect(urlRequest.httpBody).to(beNil())
             }
@@ -77,10 +76,11 @@ class EncodingSpec: QuickSpec {
 
             let postParams = TestParameters.make()
             var urlRequest: URLRequest!
+            var customEncoder: CustomEncoder!
 
             beforeEach {
-                CustomEncoder.isInvoked = false
-                let api = self.sampleResolvedDefinition(encoding: .jsonBodyUsingCustomEncoder(parameters: postParams, encoder: CustomEncoder()),
+                customEncoder = CustomEncoder()
+                let api = self.sampleResolvedDefinition(encoding: .jsonBodyUsingCustomEncoder(parameters: postParams, encoder: customEncoder),
                                                         method: .POST)
                 urlRequest = try! requestMapper(api).get()
             }
@@ -88,7 +88,7 @@ class EncodingSpec: QuickSpec {
             it("custom encoder is indeed used") {
                 let decodedBody = try! JSONDecoder().decode(TestParameters.self, from: urlRequest.httpBody!)
                 // Checking if our custom encoder is indeed invoked.
-                expect(CustomEncoder.isInvoked).to(beTrue())
+                expect(customEncoder.isInvoked).to(beTrue())
             }
             it("body is json encoded") {
                 let decodedBody = try! JSONDecoder().decode(TestParameters.self, from: urlRequest.httpBody!)
@@ -96,7 +96,7 @@ class EncodingSpec: QuickSpec {
             }
 
             it("body is nil when no parameters are supplied") {
-                let api = self.sampleResolvedDefinition(encoding: .ignore)
+                let api = self.sampleResolvedDefinition(encoding: .dontEncode)
                 let urlRequest = try! requestMapper(api).get()
                 expect(urlRequest.httpBody).to(beNil())
             }
@@ -110,8 +110,8 @@ class EncodingSpec: QuickSpec {
 
         context("HTTP Methods") {
 
-            func ourMappedUrlRequest(_ method: TargetMethod) -> URLRequest {
-                let api = self.sampleResolvedDefinition(encoding: .ignore, method: method)
+            func ourMappedUrlRequest(_ method: HTTPMethod) -> URLRequest {
+                let api = self.sampleResolvedDefinition(encoding: .dontEncode, method: method)
                 return try! requestMapper(api).get()
             }
 
@@ -139,8 +139,8 @@ class EncodingSpec: QuickSpec {
 
         context("HTTP Headers") {
 
-            func ourMappedUrlRequest(_ method: TargetMethod, headers: [String: String]?) -> URLRequest {
-                let api = self.sampleResolvedDefinition(encoding: .ignore, method: method, headers: headers)
+            func ourMappedUrlRequest(_ method: HTTPMethod, headers: [String: String]?) -> URLRequest {
+                let api = self.sampleResolvedDefinition(encoding: .dontEncode, method: method, headers: headers)
                 return try! requestMapper(api).get()
             }
 
@@ -150,8 +150,58 @@ class EncodingSpec: QuickSpec {
                 expect(urlRequest.allHTTPHeaderFields).to(equal(headers))
             }
         }
-
     }
+}
+
+struct CommentById: Encodable, JSONRepresentable {
+    let postId: Int
+}
+
+enum SampleAPI {
+    case simpleGET
+    case getWithParams(postId: CommentById)
+}
+
+extension SampleAPI: APIDefinition {
+    var baseURL: URL {
+        return URL(string: "https://jsonplaceholder.typicode.com")!
+    }
+
+    var path: String {
+        switch self {
+        case .simpleGET:
+            return "/posts/1"
+
+        case .getWithParams:
+            return "/comments"
+        }
+    }
+
+    var method: HTTPMethod {
+        switch self {
+        case .simpleGET, .getWithParams:
+            return .GET
+        }
+    }
+
+    var encoding: EncodingStrategy {
+        switch self {
+        case .simpleGET:
+            return .dontEncode
+
+        case let .getWithParams(postId):
+            return .queryParameters(parameters: postId)
+        }
+    }
+
+    var headers: [String : String]? {
+        return nil
+    }
+
+    var authorizationType: AuthenticationStrategy {
+        return .none
+    }
+
 }
 
 struct EmptyParameters: Codable, Equatable, JSONRepresentable {}
@@ -166,14 +216,3 @@ struct TestParameters: Codable, Equatable, JSONRepresentable {
         return TestParameters(state: "New South Wales", city: "Sydney", postcode: 2000, isSunny: true)
     }
 }
-
-// A fake encoder
-class CustomEncoder: JSONEncoder {
-    static var isInvoked = false
-
-    override func encode<T>(_ value: T) throws -> Data where T : Encodable {
-        CustomEncoder.isInvoked = true
-        return try JSONEncoder().encode(value)
-    }
-}
-
