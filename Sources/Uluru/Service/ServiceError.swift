@@ -1,5 +1,3 @@
-//Copyright © 2019 Tabcorp. All rights reserved.
-
 import Foundation
 
 /// A conformance to represent an error response. For example API returned an error response stating missing mandatory fields.
@@ -16,9 +14,10 @@ public enum ServiceError: Error {
     /// The url cannot be resolved when mapping to an URLRequest.
     case invalidResolvedUrl(URL)
 
-    /// The HAL entity not found. This happens when the entity is not found in service discovery.
-    /// The entity name as String.
-    case halEntityNotFound(String)
+    /// Target resolver failed which resolves an APIDefintion to an APITarget with fully formed URL
+    /// A resolver is injected into Uluru so the implementation can provide the exact error information.
+    /// The underlying error reason.
+    case targetResolverFailed(String)
 
     /// Failed to encode url parameters. The URL and JSONRepresentable parameters
     case parameterEncoding(URL, JSONRepresentable)
@@ -49,8 +48,8 @@ extension ServiceError: LocalizedError {
         switch self {
         case .invalidResolvedUrl:
             return  "The resolved url is invalid."
-        case .halEntityNotFound:
-            return "HAL entity not found"
+        case .targetResolverFailed:
+            return "Unable to resolve into an URL."
         case .parameterEncoding:
             return "Failed to perform parameter encoding"
         case .applyingBody:

@@ -1,5 +1,3 @@
-//  Copyright © 2020 Tabcorp. All rights reserved.
-
 /**
 
  Convenience  property for a network connection error

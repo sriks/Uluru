@@ -1,5 +1,3 @@
-//  Copyright © 2019 Tabcorp. All rights reserved.
-
 import Foundation
 
 public enum HTTPMethod: String {

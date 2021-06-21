@@ -1,5 +1,3 @@
-//  Copyright © 2019 Tabcorp. All rights reserved.
-
 import Foundation
 
 /// Represents a data response from a HTTP API call.

@@ -1,11 +1,3 @@
-//
-//  AccessAuthorizable.swift
-//  Wager
-//
-//  Created by Sombhatla, Srikanth on 26/2/19.
-//  Copyright © 2019 Tabcorp. All rights reserved.
-//
-
 import Foundation
 
 /// Defines the authentication strategy

@@ -1,11 +1,3 @@
-//
-//  ServicePluginType.swift
-//  TAB
-//
-//  Created by Sombhatla, Srikanth on 21/2/19.
-//  Copyright © 2019 Tabcorp. All rights reserved.
-//
-
 import Foundation
 
 public protocol ServicePluginType {

@@ -1,6 +1,0 @@
-#import "__STHALResource.h"
-#import "__STURITemplate.h"
-#import "__STHAL.h"
-#import "__STHALLinks.h"
-#import "__STHALEmbeddedResources.h"
-#import "__STHALTypeSafety.h"

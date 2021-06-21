@@ -1,5 +1,3 @@
-// Copyright © 2019 Tabcorp. All rights reserved.
-
 import Foundation
 
 /// A concrete resolved representation of an abstract `APIDefinition`. This representation can be used to a target to create a URLRequest.

@@ -1,5 +1,3 @@
-//Copyright © 2019 Tabcorp. All rights reserved.
-
 import Foundation
 
 /// Defines the strategy before completing the request.
