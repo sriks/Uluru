@@ -1,0 +1,18 @@
+default_platform(:ios)
+
+platform :ios do
+  
+  desc "PR Check"
+  lane :pr_check do
+    scan
+  end
+
+  #######################################################################
+  # Tests
+  #
+  desc "Run tests"
+  lane :tests do
+      scan
+  end
+
+end
