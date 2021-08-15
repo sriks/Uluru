@@ -85,4 +85,7 @@ fastlane/test_output
 
 iOSInjectionProject/
 
+# Bundler
+vendor/
+
 # End of https://www.gitignore.io/api/swift
