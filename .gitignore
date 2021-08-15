@@ -56,7 +56,7 @@ playground.xcworkspace
 # https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
 # Pods # Adding Pods since we are using it for test target only and saves time running off free tier CI Servers.
 # Add this line if you want to avoid checking in source code from the Xcode workspace
-*.xcworkspace
+# *.xcworkspace
 
 # Carthage
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
