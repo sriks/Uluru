@@ -11,6 +11,7 @@ Uluru.framework.zip
 
 ## Fastlane
 fastlane/xcov_report/
+fastlane/README.md
 
 ## Build generated
 build/

@@ -26,6 +26,15 @@ PR Check
 fastlane ios tests
 ```
 Run tests
+### ios prepare_release
+```
+fastlane ios prepare_release
+```
+Prepares for release by updating version number as per semver.
+
+Intended to run locally.
+
+options[:type]: 'major', 'minor' or 'patch'
 
 ----
 
