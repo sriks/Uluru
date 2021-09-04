@@ -21,5 +21,5 @@ Pod::Spec.new do |spec|
   spec.ios.deployment_target = "10.0"
   spec.swift_version  = "5.0"
   spec.source         = { :git => "https://github.com/sriks/Uluru.git", :tag => spec.version }
-  spec.source_files   = "Sources/*"  
+  spec.source_files   = "Sources/**/*.{h,m,swift}"  
 end
