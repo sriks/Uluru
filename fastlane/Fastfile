@@ -164,13 +164,12 @@ desc "Publish GitHub release"
 
       # Release to github
       github_release = set_github_release(
+          repository_name: ENV['REPO_NAME'],
           api_token: ENV['GH_PERSONAL_TOKEN'],
-          server_url: "https://github.tabcorp.com.au/api/v3",
           name: name,
           tag_name: tag,
-          commitish: "master",
-          description: changeLog,
-          upload_assets: uploadAssets)
+          commitish: "ci-cd-pipeline",
+          description: changeLog)
 
       # Publish PodSpec after github release since it requires the tags to be available in the repo.
       publish_pod_spec
