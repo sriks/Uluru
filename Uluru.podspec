@@ -17,7 +17,7 @@ Pod::Spec.new do |spec|
   DESC
   spec.homepage       = "https://github.com/sriks/Uluru"
   spec.license        = { :type => "MIT", :file => "License.md" }
-  spec.author         = { "Srikanth Sombhatla" => "sriks.memberships@gmail.com" }
+  spec.author         = { "Srikanth Sombhatla" => "srikanthsombhatla@gmail.com" }
   spec.ios.deployment_target = "10.0"
   spec.swift_version  = "5.0"
   spec.source         = { :git => "https://github.com/sriks/Uluru.git", :tag => spec.version }
