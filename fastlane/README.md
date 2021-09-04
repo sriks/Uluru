@@ -15,6 +15,16 @@ Install _fastlane_ using
 or alternatively using `brew install fastlane`
 
 # Available Actions
+### publish_github_release
+```
+fastlane publish_github_release
+```
+Publish GitHub release
+
+The version for the release is picked from Xcode project CFBundleShortVersionString
+
+----
+
 ## iOS
 ### ios pr_check
 ```
@@ -26,6 +36,13 @@ PR Check
 fastlane ios tests
 ```
 Run tests
+### ios github_release_pre_check
+```
+fastlane ios github_release_pre_check
+```
+Pre-check for github release to ensure we can indeed publish a github release.
+
+This is safe to run on your local machine also.
 ### ios prepare_release
 ```
 fastlane ios prepare_release
