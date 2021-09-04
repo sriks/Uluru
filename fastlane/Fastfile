@@ -1,8 +1,11 @@
 default_platform(:ios)
 
 platform :ios do
-  
-  desc "PR Check"
+
+  #######################################################################
+  # PR check 
+  #
+  desc "PR Check intended to run for every PR"
   lane :pr_check do
     scan
   end
@@ -18,7 +21,8 @@ platform :ios do
   #######################################################################
   # Release preparation
   #
-  desc "Pre-check for github release to ensure we can indeed publish a github release."
+  desc "Precheck for github release to ensure we can indeed publish a github release."
+  desc "This step should run and pass before merging into master."
   desc "This is safe to run on your local machine also."
   lane :github_release_pre_check do
       # We do certain checks to see if a release can be published to github.
@@ -30,15 +34,14 @@ platform :ios do
       tag = get_version_number(target: ENV['TARGET'])
       
       puts("Checking if #{tag} already exists in the repo.")
+
       # And ensure the current tag dont exists.
       if git_tag_exists(tag: tag)
           errorMessage = "
           The tag #{tag} already exists. You should update the xcode project CFBundleShortVersionString before merging into master.
 
-          On your local machine run bundle exec fastlane prepare_<major or minor or patch>_release which will update the project version.
+          On your local machine run bundle exec fastlane ios prepare_release type: <major or minor or patch> which updates the version.
           And then push the code.
-
-          Or manually update the version and push the code.
           "
           UI.user_error!(errorMessage)
       else
@@ -51,7 +54,7 @@ platform :ios do
           errorMessage = "
         The version #{tag} is not updated in your podspec file. Refer https://guides.cocoapods.org/syntax/podspec.html#version and https://guides.cocoapods.org/making/specs-and-specs-repo.html. 
       
-        Alternatively you can use bundle exec fastlane prepare_<major or minor or patch>_release on your local machine."
+        On your local machine run bundle exec fastlane ios prepare_release type: <major or minor or patch> which updates the version."
         UI.user_error!(errorMessage)
       else
         puts("Podspec looks good.")
@@ -67,7 +70,7 @@ platform :ios do
       # Last git tag can be nil if the repo have no tags so far.
       version = last_git_tag
       if version.nil?
-          puts "git tab not found. Using 0.0.0"
+          puts "git tag not found. Using 0.0.0"
           version = '0.0.0'
       end
 
@@ -85,6 +88,8 @@ platform :ios do
           1. Update Info.plist(s) to #{version}
           2. Updated #{podspec} file to #{version}
           3. Commit the changes with the message \"#{commitMessage}\"
+
+          However this step WILL NOT add a git tag.
 
           What you should do ?
 
@@ -146,7 +151,7 @@ platform :ios do
 end
 
 #######################################################################
-# Release preparation
+# Publish release
 #
 desc "Publish GitHub release"
   desc "The version for the release is picked from Xcode project CFBundleShortVersionString"
@@ -172,7 +177,7 @@ desc "Publish GitHub release"
           description: changeLog)
 
       # Publish PodSpec after github release since it requires the tags to be available in the repo.
-      publish_pod_spec
+      pod_push
 end
 
     # Change log
