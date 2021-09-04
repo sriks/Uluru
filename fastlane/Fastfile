@@ -154,7 +154,7 @@ desc "Publish GitHub release"
 
       # Get the release version from xcode project CFBundleShortVersionString/
       # Assumption is that a tag don't exists with this version.
-      tag = get_version_number(xcodeproj: ENV['FRAMEWORK_NAME'], target: ENV['TARGET'])
+      tag = get_version_number(target: ENV['TARGET'])
 
       # Formatted release name.
       name = "#{ENV['FRAMEWORK_NAME']} #{tag}"
