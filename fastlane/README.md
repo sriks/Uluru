@@ -30,7 +30,7 @@ The version for the release is picked from Xcode project CFBundleShortVersionStr
 ```
 fastlane ios pr_check
 ```
-PR Check
+PR Check intended to run for every PR
 ### ios tests
 ```
 fastlane ios tests
@@ -40,7 +40,9 @@ Run tests
 ```
 fastlane ios github_release_pre_check
 ```
-Pre-check for github release to ensure we can indeed publish a github release.
+Precheck for github release to ensure we can indeed publish a github release.
+
+This step should run and pass before merging into master.
 
 This is safe to run on your local machine also.
 ### ios prepare_release
