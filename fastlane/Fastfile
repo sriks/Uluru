@@ -175,9 +175,8 @@ desc "Publish GitHub release"
           tag_name: tag,
           commitish: "ci-cd-pipeline",
           description: changeLog)
-
-      # Publish PodSpec after github release since it requires the tags to be available in the repo.
-      pod_push
+      
+      # pod push should be done on local machine to ensure only repo owner can do it.
 end
 
     # Change log
