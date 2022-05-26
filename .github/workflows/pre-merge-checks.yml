@@ -1,21 +1,15 @@
-name: PR Check 
+name: Before merge into master 
 
 on: 
-  push:
-    branches:
-      # Run on all branches 
-      #- '**'
-      - 'invalid'
   pull_request:
     branches:
-      # Run on all branches 
-      - '**'
+      - 'test'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
   pr-check:
-    name: PR Check 
+    name: Before merge into master 
     runs-on: macos-latest
       
     steps:      
@@ -32,7 +26,7 @@ jobs:
         ruby-version: 2.6.8
         bundler-cache: true
         
-    - name: Run PR Check 
+    - name: Run checks before merging into master 
       run: |
-        bundle exec fastlane pr_check
+        bundle exec fastlane github_release_pre_check
     
