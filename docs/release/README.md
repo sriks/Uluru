@@ -1,0 +1,23 @@
+# Framework release process
+
+Uses fastlane to automate release process.
+
+## On your local branch
+1. Start branching from `master` into your local branch. 
+2. Apply code changes. 
+3. Ensure unit tests are passing, else fix the tests. New test cases should be added with every new feature changes. This ensures the code sanity.
+
+## Prepare your PR
+We follow [semver](semver.org) for verion numbering.
+
+With each PR merging into `master`, you should update the version number which will also be the github release version.
+
+Depending on the nature of your change, you should update the `CFBundleShortVersionString` before merging into `master`
+
+1. To ease this process use `bundle exec fastlane ios prepare_release` and use `major` or `minor` or `patch` depending on the nature of change. This will update the version accordingly in project and any dependency managers. 
+
+2. `push` changes to your local branch. This will kick CI build in github. 
+3. Once all PR checks are passed, you can ask the PR to be merged into `master`.
+
+> Tip: If you are not sure, run `bundle exec fastlane ios github_release_pre_check` locally which will list out all pre check errors. 
+

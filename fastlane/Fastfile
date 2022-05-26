@@ -176,7 +176,7 @@ desc "Publish GitHub release"
           commitish: "ci-cd-pipeline",
           description: changeLog)
       
-      # pod push should be done on local machine to ensure only repo owner can do it.
+      puts "The framework is not yet released. pod push should be done on local machine to ensure only repo owner can do it."
 end
 
     # Change log
