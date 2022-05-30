@@ -9,11 +9,11 @@ final class TestHelper {
 
     /// Sets async timeout expectation longer.
     static func markWaitExpecationAsAPIRequest() {
-        Nimble.AsyncDefaults.Timeout = 10
+        Nimble.AsyncDefaults.timeout = .seconds(10)
     }
 
     static func markWaitExpectationAsTestingErrors() {
-        Nimble.AsyncDefaults.Timeout = 20
+        Nimble.AsyncDefaults.timeout = .seconds(20)
     }
 
 }

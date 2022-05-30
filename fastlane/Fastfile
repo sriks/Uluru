@@ -1,0 +1,199 @@
+default_platform(:ios)
+
+platform :ios do
+
+  #######################################################################
+  # PR check 
+  #
+  desc "PR Check intended to run for every PR"
+  lane :pr_check do
+    scan
+  end
+
+  #######################################################################
+  # Tests
+  #
+  desc "Run tests"
+  lane :tests do
+      scan
+  end
+
+  #######################################################################
+  # Release preparation
+  #
+  desc "Precheck for github release to ensure we can indeed publish a github release."
+  desc "This step should run and pass before merging into master."
+  desc "This is safe to run on your local machine also."
+  lane :github_release_pre_check do
+      # We do certain checks to see if a release can be published to github.
+
+      # Fetch all tags 
+      fetch_all_tags
+
+      # Get the release version from xcode project CFBundleShortVersionString.
+      tag = get_version_number(target: ENV['TARGET'])
+      
+      puts("Checking if #{tag} already exists in the repo.")
+
+      # And ensure the current tag dont exists.
+      if git_tag_exists(tag: tag)
+          errorMessage = "
+          The tag #{tag} already exists. You should update the xcode project CFBundleShortVersionString before merging into master.
+
+          On your local machine run bundle exec fastlane ios prepare_release type: <major or minor or patch> which updates the version.
+          And then push the code.
+          "
+          UI.user_error!(errorMessage)
+      else
+          puts("All good.")
+      end
+      
+      # And ensure podspec is updated as well.
+      podspec_version = version_get_podspec(path: "#{ENV['FRAMEWORK_NAME']}.podspec")
+      if podspec_version != tag
+          errorMessage = "
+        The version #{tag} is not updated in your podspec file. Refer https://guides.cocoapods.org/syntax/podspec.html#version and https://guides.cocoapods.org/making/specs-and-specs-repo.html. 
+      
+        On your local machine run bundle exec fastlane ios prepare_release type: <major or minor or patch> which updates the version."
+        UI.user_error!(errorMessage)
+      else
+        puts("Podspec looks good.")
+      end
+  end
+
+  desc "Prepares for release by updating version number as per semver."
+  desc "Intended to run locally."
+  desc "options[:type]: 'major', 'minor' or 'patch'"
+  lane :prepare_release do |options|
+      type = options[:type]
+      fetch_all_tags
+      # Last git tag can be nil if the repo have no tags so far.
+      version = last_git_tag
+      if version.nil?
+          puts "git tag not found. Using 0.0.0"
+          version = '0.0.0'
+      end
+
+      # Get next logical version from last git tag.
+      version = next_version_from_old_version(version, type)
+      podspec = "#{ENV['FRAMEWORK_NAME']}.podspec"
+
+      # Prepare commit based on user decision.
+      commitMessage = "Updated version to #{version}"
+      text = "
+          IMPORTANT: You should do this step on your local machine after committing all code changes and git status is clean. 
+
+          This step will ...
+
+          1. Update Info.plist(s) to #{version}
+          2. Updated #{podspec} file to #{version}
+          3. Commit the changes with the message \"#{commitMessage}\"
+
+          However this step WILL NOT add a git tag.
+
+          What you should do ?
+
+          1. Make sure to push the changes.
+          
+          Do you want to continue ?"
+
+      shouldContinue = prompt(text: text, boolean: true)
+
+      if shouldContinue 
+          # Make sure git status is clean 
+          # ensure_git_status_clean(show_uncommitted_changes: true)
+
+          # Update proj to new version
+          increment_version_number(version_number: version)
+
+          # Update podspec to new version.
+          version_bump_podspec(path: podspec, version_number: version)
+
+          # Lets commit the code
+          sh "git commit -a -m \"#{commitMessage}\""
+          puts "Make sure to push the changes."
+      end
+
+  end
+
+  # Returns the next logical version from old_version based on bump type by following semver.org.
+  # Accepted bump types are 'major', 'minor' or 'patch'
+  # next_version_from_old_version(1.0.1, 'patch') will return '1.0.2'. Note that there is no 'v' prefix.
+  def next_version_from_old_version(old_version, bump)
+      # Calculates the new version according to the semantic version
+      type = bump
+      old = old_version
+      puts "Old version #{old}"
+      version = old
+
+      oldArr = old.split('.').map{|v| v.to_i}    
+
+      if type == "patch"
+          version = "#{oldArr[0]}.#{oldArr[1]}.#{oldArr[2] + 1}"
+      elsif type == "minor"
+          version = "#{oldArr[0]}.#{oldArr[1] + 1}.0"
+      elsif type == "major"
+          version = "#{oldArr[0] + 1}.0.0"
+      end   
+
+      puts "Next logical #{type} version for #{old_version} is #{version}"
+      if version == old
+          UI.user_error!("Wrong release type parameter. Enter: patch | minor | major")
+      end
+      return version
+  end
+
+  # Fetch all tags
+  def fetch_all_tags
+      sh('git fetch --tags')
+  end
+
+end
+
+
+#######################################################################
+# Post merge into master
+#
+desc "Post merge into master"
+lane :post_merge_into_master do
+    # Ensure tests pass after merging
+    scan
+    # Publish github release
+    publish_github_release
+end
+
+#######################################################################
+# Publish release
+#
+desc "Publish GitHub release"
+  desc "The version for the release is picked from Xcode project CFBundleShortVersionString"
+  lane :publish_github_release do
+
+      # Get the release version from xcode project CFBundleShortVersionString/
+      # Assumption is that a tag don't exists with this version.
+      tag = get_version_number(target: ENV['TARGET'])
+
+      # Formatted release name.
+      name = "#{ENV['FRAMEWORK_NAME']} #{tag}"
+
+      # Change log
+      changeLog = return_change_log_since_last_tag
+
+      # Release to github
+      github_release = set_github_release(
+          repository_name: ENV['REPO_NAME'],
+          api_token: ENV['GH_PERSONAL_TOKEN'],
+          name: name,
+          tag_name: tag,
+          commitish: "ci-cd-pipeline",
+          description: changeLog)
+      
+      puts "The framework is not yet released. pod push should be done on local machine to ensure only repo owner can do it."
+end
+
+    # Change log
+def return_change_log_since_last_tag
+    # http://git-scm.com/docs/pretty-formats
+    # <short hash> <commit title>
+    return changelog_from_git_commits(pretty: '%h %s')
+end

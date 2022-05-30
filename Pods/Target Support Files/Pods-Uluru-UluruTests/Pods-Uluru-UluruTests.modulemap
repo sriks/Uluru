@@ -1,0 +1,6 @@
+framework module Pods_Uluru_UluruTests {
+  umbrella header "Pods-Uluru-UluruTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

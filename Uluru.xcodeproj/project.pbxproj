@@ -3,11 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		053AF86682AD73510B571546 /* Pods_Uluru_UluruTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54CB362E38793F85E1348A6D /* Pods_Uluru_UluruTests.framework */; };
 		3DE903A2254905DF002D8B7B /* ServiceError+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE903A1254905DF002D8B7B /* ServiceError+Extension.swift */; };
+		47EE54EDFBF418A7417E1C07 /* Pods_Uluru.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED4539843AC717678918DBD /* Pods_Uluru.framework */; };
 		AD00E2D52321F56D00A228F5 /* ServiceRequesterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00E2D42321F56D00A228F5 /* ServiceRequesterSpec.swift */; };
 		AD00E2DA2321FA5000A228F5 /* TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00E2D92321FA5000A228F5 /* TestHelper.swift */; };
 		AD00E2DC2321FB7500A228F5 /* EncoderDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00E2DB2321FB7500A228F5 /* EncoderDecoder.swift */; };
@@ -21,7 +23,6 @@
 		AD390DCD232C573E00442BFB /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD390DCC232C573E00442BFB /* HTTPStatusCode.swift */; };
 		AD394C842328F3C800BEA019 /* CompletionStrategySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD394C832328F3C800BEA019 /* CompletionStrategySpec.swift */; };
 		AD394C862329C65700BEA019 /* TestPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD394C852329C65700BEA019 /* TestPlugin.swift */; };
-		AD5F84C72485E51700662524 /* RxSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AD5F84C22485BF6B00662524 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AD804B0D230FA8130033C7B0 /* Uluru.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD804B03230FA8130033C7B0 /* Uluru.framework */; };
 		AD804B14230FA8130033C7B0 /* Uluru.h in Headers */ = {isa = PBXBuildFile; fileRef = AD804B06230FA8130033C7B0 /* Uluru.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ADA0F1EA2314C860001ED542 /* ServiceExecutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0F1E82314C860001ED542 /* ServiceExecutable.swift */; };
@@ -41,10 +42,6 @@
 		ADB7EB37234EB4C600D65C16 /* StubResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB7EB36234EB4C600D65C16 /* StubResponse.swift */; };
 		ADD567E4233B2973005939E4 /* APITargetSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD567E3233B2973005939E4 /* APITargetSpec.swift */; };
 		ADE9DF592321E4BA00195774 /* PluginsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE9DF582321E4BA00195774 /* PluginsSpec.swift */; };
-		CBCBD84C23A338E00064C2ED /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADA0F1DE2314C607001ED542 /* Nimble.framework */; };
-		CBCBD84D23A338E40064C2ED /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADA0F1DF2314C607001ED542 /* Quick.framework */; };
-		CBCBD84F23A339470064C2ED /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = ADA0F1DE2314C607001ED542 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CBCBD85023A3394C0064C2ED /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = ADA0F1DF2314C607001ED542 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CDDFA3FF233C8CD900B3ABFF /* JSONAPILogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDFA3FE233C8CD900B3ABFF /* JSONAPILogger.swift */; };
 		CDE465552329CEF30062C71C /* RequestCompletionStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE465542329CEF30062C71C /* RequestCompletionStrategy.swift */; };
 /* End PBXBuildFile section */
@@ -60,22 +57,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		ADA0F1E22314C617001ED542 /* CopyFiles */ = {
+		ADA0F1E22314C617001ED542 /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AD5F84C72485E51700662524 /* RxSwift.framework in CopyFiles */,
-				CBCBD85023A3394C0064C2ED /* Quick.framework in CopyFiles */,
-				CBCBD84F23A339470064C2ED /* Nimble.framework in CopyFiles */,
 			);
+			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		19F8B44F04E9B7BCA7ADFEA5 /* Pods-Uluru-UluruTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uluru-UluruTests.release.xcconfig"; path = "Target Support Files/Pods-Uluru-UluruTests/Pods-Uluru-UluruTests.release.xcconfig"; sourceTree = "<group>"; };
 		3DE903A1254905DF002D8B7B /* ServiceError+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ServiceError+Extension.swift"; sourceTree = "<group>"; };
+		54CB362E38793F85E1348A6D /* Pods_Uluru_UluruTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Uluru_UluruTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7ED4539843AC717678918DBD /* Pods_Uluru.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Uluru.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FE528C201EE688205541BEC /* Pods-Uluru.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uluru.release.xcconfig"; path = "Target Support Files/Pods-Uluru/Pods-Uluru.release.xcconfig"; sourceTree = "<group>"; };
 		AD00E2D42321F56D00A228F5 /* ServiceRequesterSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceRequesterSpec.swift; sourceTree = "<group>"; };
 		AD00E2D92321FA5000A228F5 /* TestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelper.swift; sourceTree = "<group>"; };
 		AD00E2DB2321FB7500A228F5 /* EncoderDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncoderDecoder.swift; sourceTree = "<group>"; };
@@ -114,8 +113,10 @@
 		ADB7EB36234EB4C600D65C16 /* StubResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubResponse.swift; sourceTree = "<group>"; };
 		ADD567E3233B2973005939E4 /* APITargetSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITargetSpec.swift; sourceTree = "<group>"; };
 		ADE9DF582321E4BA00195774 /* PluginsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginsSpec.swift; sourceTree = "<group>"; };
+		B99D532E58D5B8F27CBED0B6 /* Pods-Uluru.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uluru.debug.xcconfig"; path = "Target Support Files/Pods-Uluru/Pods-Uluru.debug.xcconfig"; sourceTree = "<group>"; };
 		CDDFA3FE233C8CD900B3ABFF /* JSONAPILogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONAPILogger.swift; sourceTree = "<group>"; };
 		CDE465542329CEF30062C71C /* RequestCompletionStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCompletionStrategy.swift; sourceTree = "<group>"; };
+		DC6D926F1A444DADDCA4DABA /* Pods-Uluru-UluruTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uluru-UluruTests.debug.xcconfig"; path = "Target Support Files/Pods-Uluru-UluruTests/Pods-Uluru-UluruTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47EE54EDFBF418A7417E1C07 /* Pods_Uluru.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,8 +133,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD804B0D230FA8130033C7B0 /* Uluru.framework in Frameworks */,
-				CBCBD84C23A338E00064C2ED /* Nimble.framework in Frameworks */,
-				CBCBD84D23A338E40064C2ED /* Quick.framework in Frameworks */,
+				053AF86682AD73510B571546 /* Pods_Uluru_UluruTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,6 +143,10 @@
 		945D48A4F46FC5565DB75042 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				B99D532E58D5B8F27CBED0B6 /* Pods-Uluru.debug.xcconfig */,
+				7FE528C201EE688205541BEC /* Pods-Uluru.release.xcconfig */,
+				DC6D926F1A444DADDCA4DABA /* Pods-Uluru-UluruTests.debug.xcconfig */,
+				19F8B44F04E9B7BCA7ADFEA5 /* Pods-Uluru-UluruTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -216,6 +221,8 @@
 				AD5F84C22485BF6B00662524 /* RxSwift.framework */,
 				ADA0F1DE2314C607001ED542 /* Nimble.framework */,
 				ADA0F1DF2314C607001ED542 /* Quick.framework */,
+				7ED4539843AC717678918DBD /* Pods_Uluru.framework */,
+				54CB362E38793F85E1348A6D /* Pods_Uluru_UluruTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -316,6 +323,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AD804B17230FA8130033C7B0 /* Build configuration list for PBXNativeTarget "Uluru" */;
 			buildPhases = (
+				FC69D727D0A15C4282D0FB10 /* [CP] Check Pods Manifest.lock */,
 				AD804AFE230FA8130033C7B0 /* Headers */,
 				AD804AFF230FA8130033C7B0 /* Sources */,
 				AD804B00230FA8130033C7B0 /* Frameworks */,
@@ -334,10 +342,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AD804B1A230FA8130033C7B0 /* Build configuration list for PBXNativeTarget "UluruTests" */;
 			buildPhases = (
+				45E1DF3BD31A36AD4803728E /* [CP] Check Pods Manifest.lock */,
 				AD804B08230FA8130033C7B0 /* Sources */,
 				AD804B09230FA8130033C7B0 /* Frameworks */,
 				AD804B0A230FA8130033C7B0 /* Resources */,
-				ADA0F1E22314C617001ED542 /* CopyFiles */,
+				ADA0F1E22314C617001ED542 /* Copy Files */,
+				B0B213D74FE9F5F2B21C6583 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -403,6 +413,70 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		45E1DF3BD31A36AD4803728E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Uluru-UluruTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B0B213D74FE9F5F2B21C6583 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Uluru-UluruTests/Pods-Uluru-UluruTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Uluru-UluruTests/Pods-Uluru-UluruTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Uluru-UluruTests/Pods-Uluru-UluruTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FC69D727D0A15C4282D0FB10 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Uluru-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AD804AFF230FA8130033C7B0 /* Sources */ = {
@@ -586,6 +660,7 @@
 		};
 		AD804B18230FA8130033C7B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B99D532E58D5B8F27CBED0B6 /* Pods-Uluru.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				APPLICATION_EXTENSION_API_ONLY = NO;
@@ -619,6 +694,7 @@
 		};
 		AD804B19230FA8130033C7B0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FE528C201EE688205541BEC /* Pods-Uluru.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				APPLICATION_EXTENSION_API_ONLY = NO;
@@ -651,14 +727,12 @@
 		};
 		AD804B1B230FA8130033C7B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC6D926F1A444DADDCA4DABA /* Pods-Uluru-UluruTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2E8VMJTP9D;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = UluruTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -675,14 +749,12 @@
 		};
 		AD804B1C230FA8130033C7B0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19F8B44F04E9B7BCA7ADFEA5 /* Pods-Uluru-UluruTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2E8VMJTP9D;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = UluruTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
