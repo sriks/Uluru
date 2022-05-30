@@ -18,6 +18,16 @@ Depending on the nature of your change, you should update the `CFBundleShortVers
 
 2. `push` changes to your local branch. This will kick CI build in github. 
 3. Once all PR checks are passed, you can ask the PR to be merged into `master`.
-
+4. Once a PR is raised against `master` the CI runs pre merge checks. Your PR is ready to merge into `master` after these checks pass.
+ 
 > Tip: If you are not sure, run `bundle exec fastlane ios github_release_pre_check` locally which will list out all pre check errors. 
 
+## Merging into `master`
+
+1. Once all checks are passed, the reviewer can merge your PR into `master`.
+2. Once merged, CI runs post merge checks.
+3. Once checks pass, a github release is performed and a tag with your release number is created.
+
+## Publishing changes via Cocoapods
+
+1. The repo admin can release the version to cocoapods manually. 

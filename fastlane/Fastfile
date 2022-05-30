@@ -150,6 +150,18 @@ platform :ios do
 
 end
 
+
+#######################################################################
+# Post merge into master
+#
+desc "Post merge into master"
+lane :post_merge_into_master do
+    # Ensure tests pass after merging
+    scan
+    # Publish github release
+    publish_github_release
+end
+
 #######################################################################
 # Publish release
 #
