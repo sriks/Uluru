@@ -26,8 +26,10 @@ Depending on the nature of your change, you should update the `CFBundleShortVers
 
 1. Once all checks are passed, the reviewer can merge your PR into `master`.
 2. Once merged, CI runs post merge checks.
-3. Once checks pass, a github release is performed and a tag with your release number is created.
+3. Once checks pass, a github release is performed automatically and a tag with your release number is created. 
+
+> We use github actions provided `GITHUB_TOKEN`. So ensure it has enough permissions to perform a release.
 
 ## Publishing changes via Cocoapods
 
-1. The repo admin can release the version to cocoapods manually. 
+The repo admin have to release the version to cocoapods manually. 

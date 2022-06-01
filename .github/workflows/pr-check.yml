@@ -4,8 +4,7 @@ on:
   push:
     branches:
       # Run on all branches 
-      #- '**'
-      - 'invalid'
+      - '**'
   pull_request:
     branches:
       # Run on all branches 
