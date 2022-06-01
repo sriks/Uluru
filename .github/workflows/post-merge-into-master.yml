@@ -30,4 +30,4 @@ jobs:
         
     - name: Run checks before merging into master 
       run: |
-        bundle exec fastlane post_merge_into_master
+        GH_PERSONAL_TOKEN=${{ secrets.GITHUB_TOKEN }} bundle exec fastlane post_merge_into_master
