@@ -157,7 +157,7 @@ end
 desc "Post merge into master"
 lane :post_merge_into_master do
     # Ensure tests pass after merging
-    scan
+    # scan
     # Publish github release
     publish_github_release
 end
@@ -180,9 +180,10 @@ desc "Publish GitHub release"
       changeLog = return_change_log_since_last_tag
 
       # Release to github
+      # Using api_bearer since github actions token should be passed as bearer.
       github_release = set_github_release(
           repository_name: ENV['REPO_NAME'],
-          api_token: ENV['GH_PERSONAL_TOKEN'],
+          api_bearer: ENV['GH_PERSONAL_TOKEN'],
           name: name,
           tag_name: tag,
           commitish: "ci-cd-pipeline",
