@@ -1,0 +1,33 @@
+name: After merge into master 
+
+on: 
+  pull_request:
+    types:
+      - closed
+    branches:
+      - 'master'
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  if_merged_into_master:
+    if: github.event.pull_request.merged == true
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Select Xcode Version
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: latest-stable
+    
+    - name: Setup ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.6.8
+        bundler-cache: true
+        
+    - name: Run checks before merging into master 
+      run: |
+        GH_PERSONAL_TOKEN=${{ secrets.GITHUB_TOKEN }} bundle exec fastlane post_merge_into_master

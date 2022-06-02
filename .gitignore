@@ -8,10 +8,10 @@
 
 ## Prebuild framework for carthage 
 Uluru.framework.zip
-HALUluru.framework.zip
 
 ## Fastlane
 fastlane/xcov_report/
+fastlane/README.md
 
 ## Build generated
 build/
@@ -55,9 +55,9 @@ playground.xcworkspace
 # We recommend against adding the Pods directory to your .gitignore. However
 # you should judge for yourself, the pros and cons are mentioned at:
 # https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
-Pods/
+# Pods # Adding Pods since we are using it for test target only and saves time running off free tier CI Servers.
 # Add this line if you want to avoid checking in source code from the Xcode workspace
-*.xcworkspace
+# *.xcworkspace
 
 # Carthage
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
@@ -85,5 +85,8 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+
+# Bundler
+vendor/
 
 # End of https://www.gitignore.io/api/swift
