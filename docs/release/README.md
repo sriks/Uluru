@@ -16,6 +16,10 @@ Depending on the nature of your change, you should update the `CFBundleShortVers
 
 1. To ease this process use `bundle exec fastlane ios prepare_release` and use `major` or `minor` or `patch` depending on the nature of change. This will update the version accordingly in project and any dependency managers. 
 
+For example for a patch release use 
+`bundle exec fastlane ios prepare_release type:patch`
+
+
 2. `push` changes to your local branch. This will kick CI build in github. 
 3. Once all PR checks are passed, you can ask the PR to be merged into `master`.
 4. Once a PR is raised against `master` the CI runs pre merge checks. Your PR is ready to merge into `master` after these checks pass.
